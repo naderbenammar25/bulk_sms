@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload CSV</title>
+</head>
+<body>
+    <h1>Upload CSV</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="group">Group Name:</label>
+        <input type="text" name="group" id="group" required>
+        <br>
+        <label for="file">CSV File:</label>
+        <input type="file" name="file" id="file" required>
+        <br>
+        <button type="submit">Upload</button>
+    </form>
+</body>
+</html>

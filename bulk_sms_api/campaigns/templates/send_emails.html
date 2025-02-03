@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Send Emails</title>
+    <script>
+        function addGroup() {
+            var select = document.getElementById("groupSelect");
+            var selectedGroup = select.options[select.selectedIndex];
+            var selectedGroups = document.getElementById("selectedGroups");
+
+            if (!Array.from(selectedGroups.options).some(option => option.value === selectedGroup.value)) {
+                var option = document.createElement("option");
+                option.value = selectedGroup.value;
+                option.text = selectedGroup.text;
+                selectedGroups.add(option);
+            }
+        }
+
+        function removeGroup() {
+            var selectedGroups = document.getElementById("selectedGroups");
+            selectedGroups.remove(selectedGroups.selectedIndex);
+        }
+    </script>
+</head>
+<body>
+    <h1>Send Emails</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="groupSelect">Select Group:</label>
+        <select id="groupSelect">
+            {% for group in groups %}
+                <option value="{{ group.id }}">{{ group.name }}</option>
+            {% endfor %}
+        </select>
+        <button type="button" onclick="addGroup()">Add Group</button>
+        <button type="button" onclick="removeGroup()">Remove Group</button>
+        <br><br>
+        <label for="selectedGroups">Selected Groups:</label>
+        <select id="selectedGroups" name="groups" multiple size="5"></select>
+        <br><br>
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="4" cols="50"></textarea>
+        <br><br>
+        <button type="submit">Send Emails</button>
+    </form>
+</body>
+</html>

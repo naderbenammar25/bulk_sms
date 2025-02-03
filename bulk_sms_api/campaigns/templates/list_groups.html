@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>List of Groups</title>
+</head>
+<body>
+    <h1>List of Groups</h1>
+    <ul>
+        {% for group in groups %}
+            <li>
+                <strong>{{ group.name }}</strong>
+                <ul>
+                    {% for contact in group.contacts.all %}
+                        <li>
+                            {{ contact.first_name }} {{ contact.last_name }} - {{ contact.email }} - {{ contact.phone }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
