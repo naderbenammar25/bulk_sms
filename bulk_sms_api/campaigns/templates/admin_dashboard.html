@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            background: linear-gradient(to right, {% for color in colors %} {{ color }}{% if not forloop.last %}, {% endif %}{% endfor %});
+        }
+        .logo {
+            max-width: 200px;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+    <img src="{{ logo_url }}" alt="Company Logo" class="logo">
+    <p>Welcome, {{ user.username }}!</p>
+</body>
+</html>

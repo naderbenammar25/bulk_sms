@@ -1,13 +1,13 @@
 from django.urls import path
-from .views import TokenObtainPairView, TokenRefreshView, user_profile, index
-from . import views
+from .views import index, admin_dashboard, marketing_dashboard, user_login, upload_csv, list_groups, send_emails, register
 
 urlpatterns = [
     path('', index, name='index'),
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('api/user-profile/', user_profile, name='user_profile'),
-    path("upload-csv/", views.upload_csv, name="upload_csv"),
-    path("send-emails/", views.send_emails, name="send_emails"), 
-    path("list-groups/", views.list_groups, name="list_groups"),
+    path('login/', user_login, name='login'),
+    path('register/', register, name='register'),
+    path('admin_dashboard/', admin_dashboard, name='admin_dashboard'),
+    path('marketing_dashboard/', marketing_dashboard, name='marketing_dashboard'),
+    path('upload_csv/', upload_csv, name='upload_csv'),
+    path('list_groups/', list_groups, name='list_groups'),
+    path('send_emails/', send_emails, name='send_emails'),
 ]

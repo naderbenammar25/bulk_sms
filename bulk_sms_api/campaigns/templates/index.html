@@ -1,13 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mass Mailing Web App</title>
+    <title>Index</title>
+    <script>
+        function limitCheckboxes(max) {
+            const checkboxes = document.querySelectorAll('input[name="colors"]:checked');
+            if (checkboxes.length > max) {
+                alert(`Vous ne pouvez sélectionner que ${max} couleurs.`);
+                return false;
+            }
+            return true;
+        }
+    </script>
 </head>
 <body>
-    <div id="root"></div>
-    {% load render_bundle from webpack_loader %}
-    {% render_bundle 'main' %}
+    <h1>Welcome to Bulk SMS</h1>
+    <a href="{% url 'login' %}">Login</a>
+
+    <h2>Inscription</h2>
+    <form method="post" enctype="multipart/form-data" action="{% url 'register' %}" onsubmit="return limitCheckboxes(3);">
+        {% csrf_token %}
+        <label for="company_name">Nom de l'entreprise:</label>
+        <input type="text" id="company_name" name="company_name" required><br>
+
+        <label for="logo">Logo:</label>
+        <input type="file" id="logo" name="logo" required><br>
+
+        <label for="colors">Couleurs principales :</label><br>
+        <input type="checkbox" id="color1" name="colors" value="#FF5733">
+        <label for="color1" style="background-color: #FF5733; padding: 5px; color: white;">#FF5733</label><br>
+        <input type="checkbox" id="color2" name="colors" value="#33FF57">
+        <label for="color2" style="background-color: #33FF57; padding: 5px; color: white;">#33FF57</label><br>
+        <input type="checkbox" id="color3" name="colors" value="#3357FF">
+        <label for="color3" style="background-color: #3357FF; padding: 5px; color: white;">#3357FF</label><br>
+        <input type="checkbox" id="color4" name="colors" value="#FF33A1">
+        <label for="color4" style="background-color: #FF33A1; padding: 5px; color: white;">#FF33A1</label><br>
+        <input type="checkbox" id="color5" name="colors" value="#33FFF5">
+        <label for="color5" style="background-color: #33FFF5; padding: 5px; color: white;">#33FFF5</label><br>
+        <input type="checkbox" id="color6" name="colors" value="#F5FF33">
+        <label for="color6" style="background-color: #F5FF33; padding: 5px; color: white;">#F5FF33</label><br>
+
+        <label for="admin_username">Nom d'utilisateur de l'administrateur:</label>
+        <input type="text" id="admin_username" name="admin_username" required><br>
+
+        <label for="admin_email">Email de l'administrateur:</label>
+        <input type="email" id="admin_email" name="admin_email" required><br>
+
+        <label for="admin_password">Mot de passe de l'administrateur:</label>
+        <input type="password" id="admin_password" name="admin_password" required><br>
+
+        <button type="submit">S'inscrire</button>
+    </form>
 </body>
 </html>
