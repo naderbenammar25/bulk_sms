@@ -19,6 +19,8 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('campaigns/', include('campaigns.urls')),
+    path('', include('campaigns.urls')),  # Inclure les URLs de l'application campaigns
 ]
+
+
 

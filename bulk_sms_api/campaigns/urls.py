@@ -1,8 +1,13 @@
-from django.urls import path, re_path
+from django.urls import path
+from .views import TokenObtainPairView, TokenRefreshView, user_profile, index
 from . import views
 
 urlpatterns = [
+    path('', index, name='index'),
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/user-profile/', user_profile, name='user_profile'),
     path("upload-csv/", views.upload_csv, name="upload_csv"),
-    re_path(r'^send-emails(?:/(?P<group_id>\d+))?/$', views.send_emails, name="send_emails"),
+    path("send-emails/", views.send_emails, name="send_emails"), 
     path("list-groups/", views.list_groups, name="list_groups"),
 ]

@@ -5,6 +5,25 @@ from .models import Contact, Group
 from django.core.mail import send_mail
 from django.shortcuts import render, get_object_or_404
 
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
+
+@api_view(['GET'])
+def user_profile(request):
+    user = request.user
+    if user.is_authenticated:
+        return Response({
+            'username': user.username,
+            'email': user.email,
+            'role': user.role,
+        })
+    return Response(status=status.HTTP_401_UNAUTHORIZED)
+
 def upload_csv(request):
     if request.method == "POST":
         group_name = request.POST.get("group")
@@ -52,3 +71,6 @@ def send_emails(request):
     
     groups = Group.objects.all()
     return render(request, "send_emails.html", {"groups": groups})
+
+def index(request):
+    return render(request, 'index.html')
