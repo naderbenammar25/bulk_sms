@@ -192,7 +192,8 @@ def reject_registration(request, user_id):
     return render(request, 'reject_registration.html', {'user': user})
 
 def gestion_employe(request):
-    return render(request, 'gestionEmploye.html')
+    employees = CustomUser.objects.filter(role='marketing')
+    return render(request, 'gestionEmploye.html', {'employees': employees})
 
 @login_required
 def edit_user(request, user_id):
