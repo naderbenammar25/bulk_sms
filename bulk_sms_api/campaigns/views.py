@@ -1,7 +1,6 @@
 import csv
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
-from .models import Contact, Group, Company
 from django.core.mail import send_mail
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
@@ -9,7 +8,12 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from django.contrib.auth import get_user_model
-from django.contrib.auth.models import Group as AuthGroup
+from django.contrib.admin.views.decorators import staff_member_required
+from .models import Company, CustomUser, Group, Contact
+from django.urls import reverse
+from .forms import UserEditForm, PasswordResetForm
+from .models import CustomUser
+from .serializers import CustomUserSerializer
 
 User = get_user_model()
 
@@ -23,11 +27,6 @@ def user_profile(request):
             'role': user.role,
         })
     return Response(status=status.HTTP_401_UNAUTHORIZED)
-
-
-
-
-from django.contrib.auth.models import Group as AuthGroup
 
 def register(request):
     if request.method == 'POST':
@@ -45,20 +44,35 @@ def register(request):
         # Créer l'entreprise
         company = Company.objects.create(name=company_name, logo=logo, color=','.join(colors))
 
-        # Créer l'administrateur
-        admin_user = User.objects.create_user(
+        # Créer l'administrateur sans l'activer
+        admin_user = CustomUser.objects.create_user(
             username=admin_username,
             email=admin_email,
             password=admin_password,
             role='admin',
-            company=company
+            company=company,
+            is_active=False  # Désactiver le compte jusqu'à approbation
         )
 
-        # Ajouter l'utilisateur au groupe des administrateurs
-        admin_group, created = AuthGroup.objects.get_or_create(name='Administrateurs')
-        admin_user.groups.add(admin_group)
+        # Envoyer un message de confirmation à l'administrateur
+        send_mail(
+            'Inscription en cours de traitement',
+            'Votre demande d\'inscription est en cours de traitement. Vous recevrez un email une fois votre compte approuvé.',
+            'nader@metadia.net',
+            [admin_email],
+        )
 
-        return redirect('login')
+        # Envoyer une notification au super administrateur
+        super_admin_email = 'superadmin@example.com'  # Remplacez par l'email du super administrateur
+        send_mail(
+            'Nouvelle demande d\'inscription',
+            f'Une nouvelle demande d\'inscription a été soumise par {admin_username}. Veuillez la traiter.',
+            'nader@metadia.net',
+            [super_admin_email],
+        )
+
+        return render(request, 'index.html', {'message': 'Votre demande d\'inscription est en cours de traitement.'})
+
     return render(request, 'index.html')
 
 def upload_csv(request):
@@ -112,6 +126,8 @@ def send_emails(request):
 def index(request):
     return render(request, 'index.html')
 
+
+
 def user_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -138,3 +154,88 @@ def admin_dashboard(request):
 @login_required
 def marketing_dashboard(request):
     return render(request, 'marketing_dashboard.html')
+
+@staff_member_required
+def approve_registration(request, user_id):
+    user = get_object_or_404(CustomUser, id=user_id)
+    user.is_active = True
+    user.save()
+
+    # Envoyer un email de confirmation à l'utilisateur
+    send_mail(
+        'Compte approuvé',
+        'Votre compte a été approuvé. Vous pouvez maintenant vous connecter.',
+        'nader@metadia.net',  # Remplacez par votre adresse email
+        [user.email],
+    )
+
+    return redirect(reverse('admin:auth_user_changelist'))
+
+@staff_member_required
+def reject_registration(request, user_id):
+    user = get_object_or_404(CustomUser, id=user_id)
+    if request.method == 'POST':
+        reason = request.POST.get('reason')
+        # Envoyer un email de refus à l'utilisateur
+        send_mail(
+            'Demande d\'inscription refusée',
+            f'Votre demande d\'inscription a été refusée pour la raison suivante : {reason}',
+            'nader@metadia.net',  # Remplacez par votre adresse email
+            [user.email],
+        )
+        # Supprimer l'entreprise associée
+        if user.company:
+            user.company.delete()
+        # Supprimer l'utilisateur
+        user.delete()
+        return redirect(reverse('admin:auth_user_changelist'))
+    return render(request, 'reject_registration.html', {'user': user})
+
+def gestion_employe(request):
+    return render(request, 'gestionEmploye.html')
+
+@login_required
+def edit_user(request, user_id):
+    user = get_object_or_404(CustomUser, id=user_id)
+    if request.method == 'POST':
+        form = UserEditForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('admin_dashboard')
+    else:
+        form = UserEditForm(instance=user)
+    return render(request, 'edit_user.html', {'form': form})
+
+@login_required
+def reset_password(request, user_id):
+    user = get_object_or_404(CustomUser, id=user_id)
+    if request.method == 'POST':
+        form = PasswordResetForm(request.POST)
+        if form.is_valid():
+            user.set_password(form.cleaned_data['password'])
+            user.save()
+            return redirect('admin_dashboard')
+    else:
+        form = PasswordResetForm()
+    return render(request, 'reset_password.html', {'form': form})
+
+@login_required
+def toggle_user_status(request, user_id):
+    user = get_object_or_404(CustomUser, id=user_id)
+    user.is_active = not user.is_active
+    user.save()
+    return redirect('admin_dashboard')
+
+@api_view(['GET'])
+def get_employees(request):
+    employees = CustomUser.objects.filter(role='marketing')
+    serializer = CustomUserSerializer(employees, many=True)
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def toggle_employee_status(request, user_id):
+    user = get_object_or_404(CustomUser, id=user_id)
+    user.is_active = not user.is_active
+    user.save()
+    serializer = CustomUserSerializer(user)
+    return Response(serializer.data)

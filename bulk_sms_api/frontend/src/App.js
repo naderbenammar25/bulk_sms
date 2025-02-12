@@ -3,10 +3,11 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 import Login from './Login';
 import AdminDashboard from './AdminDashboard';
 import MarketingDashboard from './MarketingDashboard';
+import EmployeeManagement from './EmployeeManagement'; 
 
 const App = () => {
   const [token, setToken] = useState(null);
-
+  console.log("test");
   return (
     <Router>
       <Switch>
@@ -18,6 +19,9 @@ const App = () => {
         </Route>
         <Route path="/marketing-dashboard">
           {token ? <MarketingDashboard /> : <Redirect to="/login" />}
+        </Route>
+        <Route path="/employee-management">
+          {token ? <EmployeeManagement /> : <Redirect to="/login" />}
         </Route>
         <Route path="/">
           <Redirect to="/login" />

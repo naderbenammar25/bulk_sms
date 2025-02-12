@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rejeter l'inscription</title>
+</head>
+<body>
+    <h1>Rejeter l'inscription de {{ user.username }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="reason">Raison du refus :</label>
+        <textarea name="reason" id="reason" required></textarea>
+        <br>
+        <button type="submit">Rejeter</button>
+    </form>
+</body>
+</html>
