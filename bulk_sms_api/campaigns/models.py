@@ -5,7 +5,7 @@ class Company(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100, unique=True)
     logo = models.ImageField(upload_to='logos/')
-    color = models.CharField(max_length=100)  # Augmenter la longueur maximale
+    color = models.CharField(max_length=100)  
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

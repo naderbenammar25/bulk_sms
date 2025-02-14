@@ -1,0 +1,78 @@
+<!-- filepath: /C:/Users/LENOVO/django_projects/bulk_sms/bulk_sms_api/campaigns/templates/gestion_utilisateurs_marketing.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Employés</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'campaigns/css/admin_dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'campaigns/css/gestion_utilisateurs_marketing.css' %}">
+    <script src="{% static 'campaigns/js/gestion_utilisateurs_marketing.js' %}" defer></script>
+</head>
+<body>
+    <div class="sidebar">
+        <img src="{{ logo_url }}" alt="Company Logo" class="logo">
+        <h2>Mass Mailing - {{ company.name }}</h2>
+        <nav>
+            <ul>
+                <li><a href="{% url 'admin_dashboard' %}">Accueil</a></li>
+                <li><a href="{% url 'gestion_contacts' %}">Gestion des contacts</a></li>
+                <li><a href="{% url 'gestion_utilisateurs_marketing' %}">Gestion des utilisateurs marketing</a></li>
+                <li><a href="{% url 'gestion_groupes' %}">Gestion des groupes</a></li>
+                <li><a href="{% url 'gestion_campagnes' %}">Gestion des campagnes</a></li>
+                <li><a href="{% url 'visualisation_performances' %}">Visualisation des performances</a></li>
+                <li><a href="{% url 'gestion_feedback' %}">Gestion de feedback</a></li>
+                <li><a href="{% url 'demander_intervention' %}">Demander une intervention</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="main-content">
+        <div class="header-bar">
+            <h1>Gestion des Employés</h1>
+        </div>
+        <div class="search-bar">
+            <input type="text" id="search" placeholder="Rechercher...">
+            <button id="add-employee">Ajouter un employé</button>
+        </div>
+        <div class="filter-bar">
+            <label for="employee-actions">Voir les actions de :</label>
+            <select id="employee-actions">
+                <option value="">Sélectionner un employé</option>
+                {% for employee in employees %}
+                    <option value="{{ employee.id }}">{{ employee.first_name }} {{ employee.last_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <table id="employees-table">
+            <thead>
+                <tr>
+                    <th>Nom & Prénom</th>
+                    <th>Email</th>
+                    <th>Téléphone</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for employee in employees %}
+                <tr>
+                    <td>
+                        {{ employee.first_name }} {{ employee.last_name }}
+                        <button onclick="connectAsEmployee('{{ employee.id }}')">Se connecter</button>
+                    </td>
+                    <td>{{ employee.email }}</td>
+                    <td>{{ employee.phone }}</td>
+                    <td>{{ employee.is_active|yesno:"Actif,Inactif" }}</td>
+                    <td>
+                        <button onclick="editEmployee('{{ employee.id }}')">Modifier</button>
+                        <button onclick="resetPassword('{{ employee.id }}')">Réinitialiser</button>
+                        <button onclick="toggleStatus('{{ employee.id }}')">{{ employee.is_active|yesno:"Désactiver,Activer" }}</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

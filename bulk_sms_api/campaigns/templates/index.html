@@ -1,55 +1,67 @@
+<!-- filepath: /C:/Users/LENOVO/django_projects/bulk_sms/bulk_sms_api/campaigns/templates/index.html -->
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-    <title>Index</title>
-    <script>
-        function limitCheckboxes(max) {
-            const checkboxes = document.querySelectorAll('input[name="colors"]:checked');
-            if (checkboxes.length > max) {
-                alert(`Vous ne pouvez sélectionner que ${max} couleurs.`);
-                return false;
-            }
-            return true;
-        }
-    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription - Bulk SMS</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'campaigns/css/register.css' %}">
+    <script src="{% static 'campaigns/js/register.js' %}" defer></script>
 </head>
 <body>
-    <h1>Welcome to Bulk SMS</h1>
-    <a href="{% url 'login' %}">Login</a>
+    <div class="floating-mails-container"></div>
 
-    <h2>Inscription</h2>
-    <form method="post" enctype="multipart/form-data" action="{% url 'register' %}" onsubmit="return limitCheckboxes(3);">
-        {% csrf_token %}
-        <label for="company_name">Nom de l'entreprise:</label>
-        <input type="text" id="company_name" name="company_name" required><br>
+    <div class="container">
+        <h1>Formulaire d'inscription</h1>
+        <p>Vous avez dejà un compte ?</p>
+        <a class="lien_login" href="{% url 'login' %}">Se Connecter</a>
 
-        <label for="logo">Logo:</label>
-        <input type="file" id="logo" name="logo" required><br>
+        <h2>Inscription</h2>
+        {% if error %}
+            <p style="color: red;">{{ error }}</p>
+        {% endif %}
+        {% if message %}
+            <p style="color: green;">{{ message }}</p>
+        {% endif %}
+        <form method="post" enctype="multipart/form-data" action="{% url 'register' %}">
+            {% csrf_token %}
+            
+            <label for="company_name">Nom de l'entreprise:</label>
+            <input type="text" id="company_name" name="company_name" required>
 
-        <label for="colors">Couleurs principales :</label><br>
-        <input type="checkbox" id="color1" name="colors" value="#FF5733">
-        <label for="color1" style="background-color: #FF5733; padding: 5px; color: white;">#FF5733</label><br>
-        <input type="checkbox" id="color2" name="colors" value="#33FF57">
-        <label for="color2" style="background-color: #33FF57; padding: 5px; color: white;">#33FF57</label><br>
-        <input type="checkbox" id="color3" name="colors" value="#3357FF">
-        <label for="color3" style="background-color: #3357FF; padding: 5px; color: white;">#3357FF</label><br>
-        <input type="checkbox" id="color4" name="colors" value="#FF33A1">
-        <label for="color4" style="background-color: #FF33A1; padding: 5px; color: white;">#FF33A1</label><br>
-        <input type="checkbox" id="color5" name="colors" value="#33FFF5">
-        <label for="color5" style="background-color: #33FFF5; padding: 5px; color: white;">#33FFF5</label><br>
-        <input type="checkbox" id="color6" name="colors" value="#F5FF33">
-        <label for="color6" style="background-color: #F5FF33; padding: 5px; color: white;">#F5FF33</label><br>
+            <label for="logo">Logo:</label>
+            <input type="file" id="logo" name="logo" required>
+            
+            <label>Choisissez vos couleurs d'identité visuelle :</label>
+            <p style="font-size: 12px; color: #666;">
+                Votre service de mailing sera livré avec les couleurs sélectionnées. 
+                Si aucune couleur n'est choisie, des couleurs formelles par défaut seront appliquées.
+            </p>
+            <canvas id="colorWheel" width="300" height="300"></canvas>
 
-        <label for="admin_username">Nom d'utilisateur de l'administrateur:</label>
-        <input type="text" id="admin_username" name="admin_username" required><br>
+            <div class="color-inputs">
+                <label for="primary_color">Couleur principale :</label>
+                <input type="text" id="primary_color" name="primary_color" placeholder="#F4EDDE (blanc par défaut)" required>
+                
+                <label for="secondary_color">Couleur secondaire :</label>
+                <input type="text" id="secondary_color" name="secondary_color" placeholder="#2A303D (noir par défaut)" required>
 
-        <label for="admin_email">Email de l'administrateur:</label>
-        <input type="email" id="admin_email" name="admin_email" required><br>
+                <label for="tertiary_color">Couleur tertiaire :</label>
+                <input type="text" id="tertiary_color" name="tertiary_color" placeholder="#808080 (gris par défaut)" required>
+            </div>
 
-        <label for="admin_password">Mot de passe de l'administrateur:</label>
-        <input type="password" id="admin_password" name="admin_password" required><br>
+            <label for="admin_username">Nom d'utilisateur de l'administrateur:</label>
+            <input type="text" id="admin_username" name="admin_username" required>
 
-        <button type="submit">S'inscrire</button>
-    </form>
+            <label for="admin_email">Email de l'administrateur:</label>
+            <input type="email" id="admin_email" name="admin_email" required>
+
+            <label for="admin_password">Mot de passe de l'administrateur:</label>
+            <input type="password" id="admin_password" name="admin_password" required>
+
+            <button type="submit">S'inscrire</button>
+        </form>
+    </div>
 </body>
 </html>

@@ -1,0 +1,124 @@
+/* Variables pour les couleurs de l'entreprise */
+:root {
+    --primary-color: {{ colors.0 }}; /* Couleur principale */
+    --secondary-color: {{ colors.1 }}; /* Couleur secondaire */
+    --background-color: #f4f7f6;
+    --sidebar-color: #2c3e50;
+    --text-color: #333;
+    --hover-color: #1abc9c;
+}
+
+/* Reset */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: var(--sidebar-color);
+    color: #fff;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.sidebar .logo {
+    max-width: 100px;
+    margin-bottom: 15px;
+}
+
+.sidebar h2 {
+    font-size: 18px;
+    margin: 0;
+    color: #fff;
+}
+
+.sidebar nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar nav ul li {
+    margin-bottom: 15px;
+}
+
+.sidebar nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar nav ul li a:hover {
+    background-color: var(--hover-color);
+}
+
+.sidebar nav ul li a i {
+    margin-right: 10px;
+}
+
+/* Main Content */
+.main-content {
+    margin-left: 270px;
+    padding: 20px;
+}
+
+.header-bar {
+    width: calc(100% - 300px);
+    padding: 15px 20px;
+    background-color: rgb(140, 150, 163);
+    color: #fff;
+    position: fixed;
+    top: 0;
+    left: 270px;
+    z-index: -1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header-bar h1 {
+    margin: 0;
+    margin-left: 20px;
+    font-size: 24px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-info i {
+    font-size: 24px;
+}
+
+/* Contenu principal */
+.content {
+    margin-top: 80px; /* Pour éviter que le contenu ne soit caché sous la barre d'en-tête */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Icônes FontAwesome */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');

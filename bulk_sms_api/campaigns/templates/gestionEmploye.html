@@ -1,4 +1,3 @@
-<!-- filepath: /C:/Users/LENOVO/django_projects/bulk_sms/bulk_sms_api/campaigns/templates/html/gestionEmploye.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,8 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestion des Employés</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/gestionEmploye.css' %}">
-    <script src="{% static 'js/gestionEmploye.js' %}" defer></script>
+    <link rel="stylesheet" href="{% static 'campaigns/css/gestionEmploye.css' %}">
+    <script src="{% static 'campaigns/js/gestionEmploye.js' %}" defer></script>
+    <style>
+        body {
+            background: linear-gradient(to right, {% for color in colors %} {{ color }}{% if not forloop.last %}, {% endif %}{% endfor %});
+        }
+    </style>
 </head>
 <body>
     <h1>Gestion des Employés</h1>

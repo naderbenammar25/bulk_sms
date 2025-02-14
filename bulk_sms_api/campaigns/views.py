@@ -14,6 +14,7 @@ from django.urls import reverse
 from .forms import UserEditForm, PasswordResetForm
 from .models import CustomUser
 from .serializers import CustomUserSerializer
+from django.http import JsonResponse
 
 User = get_user_model()
 
@@ -28,21 +29,28 @@ def user_profile(request):
         })
     return Response(status=status.HTTP_401_UNAUTHORIZED)
 
+from django.core.mail import send_mail
+from django.shortcuts import render
+from .models import Company, CustomUser
+
 def register(request):
     if request.method == 'POST':
         company_name = request.POST.get('company_name')
         logo = request.FILES.get('logo')
-        colors = request.POST.getlist('colors')
+        primary_color = request.POST.get('primary_color')
+        secondary_color = request.POST.get('secondary_color')
+        tertiary_color = request.POST.get('tertiary_color')
         admin_username = request.POST.get('admin_username')
         admin_email = request.POST.get('admin_email')
         admin_password = request.POST.get('admin_password')
 
-        # Vérifier que l'utilisateur a sélectionné au moins une couleur
-        if not colors:
-            return render(request, 'index.html', {'error': 'Vous devez sélectionner au moins une couleur.'})
+        # Vérifier que l'utilisateur a sélectionné les couleurs
+        if not (primary_color and secondary_color and tertiary_color):
+            return render(request, 'index.html', {'error': 'Vous devez sélectionner toutes les couleurs.'})
 
         # Créer l'entreprise
-        company = Company.objects.create(name=company_name, logo=logo, color=','.join(colors))
+        colors = ','.join([primary_color, secondary_color, tertiary_color])
+        company = Company.objects.create(name=company_name, logo=logo, color=colors)
 
         # Créer l'administrateur sans l'activer
         admin_user = CustomUser.objects.create_user(
@@ -143,13 +151,7 @@ def user_login(request):
             return render(request, 'login.html', {'error': 'Invalid username or password'})
     return render(request, 'login.html')
 
-@login_required
-def admin_dashboard(request):
-    user = request.user
-    company = user.company
-    colors = company.color.split(',')
-    logo_url = company.logo.url
-    return render(request, 'admin_dashboard.html', {'colors': colors, 'logo_url': logo_url})
+
 
 @login_required
 def marketing_dashboard(request):
@@ -240,3 +242,78 @@ def toggle_employee_status(request, user_id):
     user.save()
     serializer = CustomUserSerializer(user)
     return Response(serializer.data)
+
+
+@login_required
+def admin_dashboard(request):
+    return render(request, 'admin_dashboard.html')
+
+def gestion_contacts(request):
+    return render(request, 'gestion_contacts.html')
+
+@login_required
+def gestion_utilisateurs_marketing(request):
+    employees = CustomUser.objects.filter(role='marketing')
+    return render(request, 'gestion_utilisateurs_marketing.html', {'employees': employees})
+
+@login_required
+def edit_user(request, user_id):
+    user = get_object_or_404(CustomUser, id=user_id)
+    if request.method == 'POST':
+        form = UserEditForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('gestion_utilisateurs_marketing')
+    else:
+        form = UserEditForm(instance=user)
+    return render(request, 'edit_user.html', {'form': form})
+
+@login_required
+def reset_password(request, user_id):
+    user = get_object_or_404(CustomUser, id=user_id)
+    if request.method == 'POST':
+        form = PasswordResetForm(request.POST)
+        if form.is_valid():
+            user.set_password(form.cleaned_data['password'])
+            user.save()
+            return redirect('gestion_utilisateurs_marketing')
+    else:
+        form = PasswordResetForm()
+    return render(request, 'reset_password.html', {'form': form})
+
+
+@login_required
+def add_employee(request):
+    # Logic to add a new employee
+    return render(request, 'add_employee.html')
+
+@login_required
+def accueil_MK_User(request):
+    # Logic to handle the marketing user dashboard
+    return render(request, 'accueil_MK_User.html')
+
+@login_required
+def employee_actions(request, employee_id):
+    employee = get_object_or_404(CustomUser, id=employee_id)
+    actions = {
+        'last_campaign_created': '2025-02-10',
+        'last_campaign_launched': '2025-02-12',
+        'last_campaign_cancelled': '2025-02-11',
+    }
+    return JsonResponse(actions)
+
+
+def gestion_groupes(request):
+    return render(request, 'gestion_groupes.html')
+
+def gestion_campagnes(request):
+    return render(request, 'gestion_campagnes.html')
+
+def visualisation_performances(request):
+    return render(request, 'visualisation_performances.html')
+
+def gestion_feedback(request):
+    return render(request, 'gestion_feedback.html')
+
+def demander_intervention(request):
+    return render(request, 'demander_intervention.html')
