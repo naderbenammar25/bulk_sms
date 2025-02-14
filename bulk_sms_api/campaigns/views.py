@@ -298,7 +298,7 @@ def add_employee(request):
             send_mail(
                 'Ouverture de votre compte',
                 f'Bonjour {employee.first_name},\n\nVotre compte a été créé avec succès. Vous pouvez vous connecter avec les informations suivantes :\n\nNom d\'utilisateur : {employee.username}\nMot de passe : {form.cleaned_data["password"]}\n\nLien de connexion : http://127.0.0.1:8000/login/\n\nCordialement,\nL\'équipe',
-                'noreply@example.com',
+                'nader@metadia.netr',
                 [employee.email],
             )
 
