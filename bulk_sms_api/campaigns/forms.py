@@ -20,3 +20,13 @@ class PasswordResetForm(forms.Form):
             raise forms.ValidationError("Passwords do not match")
 
         return cleaned_data
+    
+
+
+class AddEmployeeForm(forms.ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = ['username', 'first_name', 'last_name', 'email', 'phone', 'password']
+        widgets = {
+            'password': forms.PasswordInput(),
+        }

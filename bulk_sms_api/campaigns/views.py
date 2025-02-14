@@ -15,6 +15,7 @@ from .forms import UserEditForm, PasswordResetForm
 from .models import CustomUser
 from .serializers import CustomUserSerializer
 from django.http import JsonResponse
+from .forms import AddEmployeeForm
 
 User = get_user_model()
 
@@ -284,8 +285,27 @@ def reset_password(request, user_id):
 
 @login_required
 def add_employee(request):
-    # Logic to add a new employee
-    return render(request, 'add_employee.html')
+    if request.method == 'POST':
+        form = AddEmployeeForm(request.POST)
+        if form.is_valid():
+            employee = form.save(commit=False)
+            employee.role = 'marketing'
+            employee.is_active = True
+            employee.set_password(form.cleaned_data['password'])
+            employee.save()
+
+            # Envoyer un email à l'employé
+            send_mail(
+                'Ouverture de votre compte',
+                f'Bonjour {employee.first_name},\n\nVotre compte a été créé avec succès. Vous pouvez vous connecter avec les informations suivantes :\n\nNom d\'utilisateur : {employee.username}\nMot de passe : {form.cleaned_data["password"]}\n\nLien de connexion : http://127.0.0.1:8000/login/\n\nCordialement,\nL\'équipe',
+                'noreply@example.com',
+                [employee.email],
+            )
+
+            return redirect('gestion_utilisateurs_marketing')
+    else:
+        form = AddEmployeeForm()
+    return render(request, 'add_employee.html', {'form': form})
 
 @login_required
 def accueil_MK_User(request):

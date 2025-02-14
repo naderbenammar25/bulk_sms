@@ -19,6 +19,7 @@ class CustomUser(AbstractUser):
     )
     role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='marketing')
     company = models.ForeignKey(Company, on_delete=models.CASCADE, null=True, blank=True)
+    phone = models.CharField(max_length=15, blank=True, null=True)
 
     def __str__(self):
         return f"{self.username} ({self.get_role_display()})"
