@@ -65,9 +65,9 @@
                     <td>{{ employee.phone }}</td>
                     <td>{{ employee.is_active|yesno:"Actif,Inactif" }}</td>
                     <td>
-                        <button onclick="editEmployee('{{ employee.id }}')">Modifier</button>
-                        <button onclick="resetPassword('{{ employee.id }}')">Réinitialiser</button>
-                        <button onclick="toggleStatus('{{ employee.id }}')">{{ employee.is_active|yesno:"Désactiver,Activer" }}</button>
+                        <button class="edit-employee" data-employee-id="{{ employee.id }}">Modifier</button>
+                        <button class="reset-password" data-employee-id="{{ employee.id }}">Réinitialiser</button>
+                        <button class="toggle-status" data-employee-id="{{ employee.id }}">{{ employee.is_active|yesno:"Désactiver,Activer" }}</button>
                     </td>
                 </tr>
                 {% endfor %}

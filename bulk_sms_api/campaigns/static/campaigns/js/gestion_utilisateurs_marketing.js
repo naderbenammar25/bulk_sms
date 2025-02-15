@@ -3,30 +3,35 @@ document.addEventListener('DOMContentLoaded', function() {
         window.location.href = "/add_employee/";
     });
 
-    function connectAsEmployee(employeeId) {
-        window.location.href = "/accueil_MK_User/?employee_id=" + employeeId;
-    }
-
-    function editEmployee(employeeId) {
-        window.location.href = "/edit_user/?user_id=" + employeeId;
-    }
-
-    function resetPassword(employeeId) {
-        window.location.href = "/reset_password/?user_id=" + employeeId;
-    }
-
-    function toggleStatus(employeeId) {
-        fetch("/toggle_user_status/" + employeeId + "/", {
-            method: 'POST',
-            headers: {
-                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
-            }
-        }).then(response => {
-            if (response.ok) {
-                location.reload();
-            }
+    document.querySelectorAll('.edit-employee').forEach(button => {
+        button.addEventListener('click', function() {
+            const employeeId = this.dataset.employeeId;
+            window.location.href = "/edit_user/" + employeeId + "/";
         });
-    }
+    });
+
+    document.querySelectorAll('.reset-password').forEach(button => {
+        button.addEventListener('click', function() {
+            const employeeId = this.dataset.employeeId;
+            window.location.href = "/reset_password/" + employeeId + "/";
+        });
+    });
+
+    document.querySelectorAll('.toggle-status').forEach(button => {
+        button.addEventListener('click', function() {
+            const employeeId = this.dataset.employeeId;
+            fetch("/toggle_user_status/" + employeeId + "/", {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                }
+            }).then(response => {
+                if (response.ok) {
+                    location.reload();
+                }
+            });
+        });
+    });
 
     document.getElementById('search').addEventListener('input', function() {
         const searchValue = this.value.toLowerCase();
