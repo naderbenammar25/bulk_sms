@@ -33,7 +33,6 @@ def user_profile(request):
 from django.core.mail import send_mail
 from django.shortcuts import render
 from .models import Company, CustomUser
-
 def register(request):
     if request.method == 'POST':
         company_name = request.POST.get('company_name')
@@ -43,7 +42,13 @@ def register(request):
         tertiary_color = request.POST.get('tertiary_color')
         admin_username = request.POST.get('admin_username')
         admin_email = request.POST.get('admin_email')
+        admin_phone = request.POST.get('admin_phone')
         admin_password = request.POST.get('admin_password')
+        confirm_password = request.POST.get('confirm_password')
+
+        # Vérifier que les mots de passe correspondent
+        if admin_password != confirm_password:
+            return render(request, 'index.html', {'error': 'Les mots de passe ne correspondent pas.'})
 
         # Vérifier que l'utilisateur a sélectionné les couleurs
         if not (primary_color and secondary_color and tertiary_color):
@@ -57,6 +62,7 @@ def register(request):
         admin_user = CustomUser.objects.create_user(
             username=admin_username,
             email=admin_email,
+            phone=admin_phone,
             password=admin_password,
             role='admin',
             company=company,
@@ -164,15 +170,22 @@ def approve_registration(request, user_id):
     user.is_active = True
     user.save()
 
-    # Envoyer un email de confirmation à l'utilisateur
+    password = request.POST.get('password')
+
+
+    # Mail de confirmation à l'utilisateur
     send_mail(
         'Compte approuvé',
-        'Votre compte a été approuvé. Vous pouvez maintenant vous connecter.',
-        'nader@metadia.net',  # Remplacez par votre adresse email
+        f'Bonjour {user.first_name},\n\n'
+        'Votre compte a été approuvé. Vous pouvez maintenant vous connecter avec le lien suivant :\n\n'
+        'Lien de connexion : http://127.0.0.1:8000/login/\n\n'
+        'Cordialement,\n'
+        'Projet PFE',
+        'nader@metadia.net', 
         [user.email],
     )
 
-    return redirect(reverse('admin:auth_user_changelist'))
+    return redirect('/admin/')
 
 @staff_member_required
 def reject_registration(request, user_id):
@@ -254,7 +267,7 @@ def gestion_contacts(request):
 
 @login_required
 def gestion_utilisateurs_marketing(request):
-    employees = CustomUser.objects.filter(role='marketing')
+    employees = CustomUser.objects.filter(company=request.user.company, role='marketing')
     return render(request, 'gestion_utilisateurs_marketing.html', {'employees': employees})
 
 @login_required
@@ -291,6 +304,7 @@ def add_employee(request):
             employee = form.save(commit=False)
             employee.role = 'marketing'
             employee.is_active = True
+            employee.company = request.user.company  # Définir le company_id de l'employé
             employee.set_password(form.cleaned_data['password'])
             employee.save()
 
@@ -298,7 +312,7 @@ def add_employee(request):
             send_mail(
                 'Ouverture de votre compte',
                 f'Bonjour {employee.first_name},\n\nVotre compte a été créé avec succès. Vous pouvez vous connecter avec les informations suivantes :\n\nNom d\'utilisateur : {employee.username}\nMot de passe : {form.cleaned_data["password"]}\n\nLien de connexion : http://127.0.0.1:8000/login/\n\nCordialement,\nL\'équipe',
-                'nader@metadia.netr',
+                'nader@metadia.net',
                 [employee.email],
             )
 

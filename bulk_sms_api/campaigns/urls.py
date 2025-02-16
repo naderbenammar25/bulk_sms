@@ -3,9 +3,10 @@ from .views import index, admin_dashboard, marketing_dashboard, user_login, uplo
 from .views import gestion_employe,toggle_employee_status, get_employees , gestion_contacts, gestion_utilisateurs_marketing, gestion_groupes, gestion_campagnes, visualisation_performances, gestion_feedback, demander_intervention
 from .views import edit_user, reset_password, toggle_user_status, add_employee, accueil_MK_User, employee_actions
 from django.contrib.auth import views as auth_views
-
+from django.contrib import admin
 urlpatterns = [
-     path('', index, name='index'),
+    path('admin/', admin.site.urls),
+    path('', index, name='index'),
     path('gestion_employe/', gestion_employe, name='gestion_employe'),
     path('api/employees/', get_employees, name='get_employees'),
     path('api/employees/<int:user_id>/toggle_status/', toggle_employee_status, name='toggle_employee_status'),
@@ -32,5 +33,6 @@ urlpatterns = [
     path('accueil_MK_User/', accueil_MK_User, name='accueil_MK_User'),
     path('employee_actions/<int:employee_id>/', employee_actions, name='employee_actions'),
     path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
+
 
 ]

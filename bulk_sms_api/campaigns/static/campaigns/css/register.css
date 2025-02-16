@@ -9,7 +9,7 @@ body {
 }
 
 .container {
-    margin-top: 500px;
+    margin-top: 700px;
     background: white;
     padding: 50px;
     border-radius: 8px;
@@ -30,7 +30,7 @@ label {
     display: block;
 }
 
-input[type="text"], input[type="email"], input[type="password"], input[type="file"] {
+input[type="text"],[type="tel"], input[type="email"], input[type="password"], input[type="file"] {
     width: 100%;
     padding: 8px;
     margin-top: 5px;

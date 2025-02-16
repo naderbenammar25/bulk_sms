@@ -6,9 +6,13 @@
     --sidebar-color: #2c3e50;
     --text-color: #333;
     --hover-color: #1abc9c;
+    --header-color: #2c3e50;
+    --table-header-color: #f4f4f4;
+    --table-row-even-color: #f9f9f9;
+    --table-row-hover-color: #f1f1f1;
 }
 
-/* Reset */
+/* Reset et styles de base */
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
@@ -80,24 +84,26 @@ body {
     padding: 20px;
 }
 
+/* Header Bar */
 .header-bar {
-    width: calc(100% - 300px);
+    width: 81%;
     padding: 15px 20px;
-    background-color: rgb(140, 150, 163);
+    background-color: var(--header-color);
     color: #fff;
     position: fixed;
     top: 0;
     left: 270px;
-    z-index: -1;
+    z-index: 1000;
     display: flex;
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    left: 290px;
 }
 
 .header-bar h1 {
     margin: 0;
-    margin-left: 20px;
     font-size: 24px;
 }
 
@@ -120,75 +126,7 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #ffffff;
-}
-
-.sidebar {
-    width: 250px;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: #333;
-    color: #fff;
-    padding: 20px;
-}
-
-.sidebar .logo {
-    max-width: 100px;
-    margin-bottom: 20px;
-}
-
-.sidebar h2 {
-    font-size: 18px;
-    margin-bottom: 20px;
-}
-
-.sidebar nav ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.sidebar nav ul li {
-    margin-bottom: 10px;
-}
-
-.sidebar nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 16px;
-}
-
-.sidebar nav ul li a:hover {
-    text-decoration: underline;
-}
-
-.main-content {
-    margin-left: 270px;
-    padding: 20px;
-}
-
-.header-bar {
-    width: calc(100% - 270px);
-    padding: 10px 20px;
-    color: #fff;
-    background-color: #2c3e50;
-    position: fixed;
-    top: 0;
-    left: 270px;
-    z-index: 1000;
-}
-
-.header-bar h1 {
-    margin: 0;
-    font-size: 24px;
-}
-
+/* Search Bar */
 .search-bar {
     margin-top: 60px;
     display: flex;
@@ -200,21 +138,26 @@ body {
     width: 70%;
     padding: 10px;
     font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
 }
 
 .search-bar button {
     padding: 10px 20px;
     font-size: 16px;
-    background-color: #2c3e50;
+    background-color: var(--header-color);
     color: #fff;
     border: none;
+    border-radius: 4px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .search-bar button:hover {
-    background-color: #1a242f;
+    background-color: var(--hover-color);
 }
 
+/* Filter Bar */
 .filter-bar {
     margin-top: 20px;
 }
@@ -226,8 +169,11 @@ body {
 .filter-bar select {
     padding: 10px;
     font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
 }
 
+/* Table */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -241,37 +187,34 @@ table th, table td {
 }
 
 table th {
-    background-color: #f4f4f4;
+    background-color: var(--table-header-color);
 }
 
 table tr:nth-child(even) {
-    background-color: #f9f9f9;
+    background-color: var(--table-row-even-color);
 }
 
 table tr:hover {
-    background-color: #f1f1f1;
+    background-color: var(--table-row-hover-color);
 }
 
+/* Boutons */
 button {
     padding: 5px 10px;
     font-size: 14px;
-    background-color: #2c3e50;
+    background-color: var(--header-color);
     color: #fff;
     border: none;
+    border-radius: 4px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #1a242f;
+    background-color: var(--hover-color);
 }
 
-.user-info {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-left: auto;
-}
-
+/* Bouton de déconnexion */
 .logout-button {
     background-color: var(--primary-color);
     color: #fff;
@@ -281,12 +224,12 @@ button:hover {
     text-decoration: none;
     font-size: 14px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .logout-button:hover {
     background-color: var(--hover-color);
 }
-
 
 /* Icônes FontAwesome */
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
