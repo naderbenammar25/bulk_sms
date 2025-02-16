@@ -72,7 +72,7 @@ def register(request):
         )
 
         # Envoyer une notification au super administrateur
-        super_admin_email = 'superadmin@example.com'  # Remplacez par l'email du super administrateur
+        super_admin_email = 'nader21benammar@gmail.com'  # Remplacez par l'email du super administrateur
         send_mail(
             'Nouvelle demande d\'inscription',
             f'Une nouvelle demande d\'inscription a été soumise par {admin_username}. Veuillez la traiter.',

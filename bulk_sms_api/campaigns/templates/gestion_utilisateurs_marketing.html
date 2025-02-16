@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestion des Employés</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'campaigns/css/admin_dashboard.css' %}">
-    <link rel="stylesheet" href="{% static 'campaigns/css/gestion_utilisateurs_marketing.css' %}">
+    <link rel="stylesheet" href="{% static 'campaigns/css/admin.css' %}">
     <script src="{% static 'campaigns/js/gestion_utilisateurs_marketing.js' %}" defer></script>
 </head>
 <body>
@@ -29,7 +28,15 @@
     </div>
     <div class="main-content">
         <div class="header-bar">
-            <h1>Gestion des Employés</h1>
+            <h1>Tableau de Bord</h1>
+            <div class="user-info">
+                <span>{{ request.user.username }}</span>
+                <i class="fas fa-user-circle"></i>
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="logout-button">Déconnexion</button>
+                </form>
+            </div>
         </div>
         <div class="search-bar">
             <input type="text" id="search" placeholder="Rechercher...">

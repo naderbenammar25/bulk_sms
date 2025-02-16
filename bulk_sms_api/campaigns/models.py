@@ -14,6 +14,7 @@ class Company(models.Model):
 class CustomUser(AbstractUser):
     id = models.AutoField(primary_key=True)
     ROLE_CHOICES = (
+        ('superadmin', 'Super Administrateur'),
         ('admin', 'Administrateur'),
         ('marketing', 'Employé en Marketing'),
     )
