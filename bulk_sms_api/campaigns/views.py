@@ -563,6 +563,10 @@ def demande_assistance(request):
     return render(request, 'demande_assistance.html')
 
 @login_required
+def suivi_performances(request):
+    return render(request, 'suivi_performances.html')   
+
+@login_required
 def gestion_profile_MK(request):
     return render(request, 'gestion_profile_MK.html')
 

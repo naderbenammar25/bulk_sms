@@ -8,6 +8,27 @@
     <link rel="stylesheet" href="{% static 'campaigns/css/MK_User.css' %}">
     <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
     <style>
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+        }
+        .navbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .headerbar {
+            background-color: #f4f4f4;
+            padding: 10px;
+            text-align: center;
+        }
         .preview-container {
             display: none;
             border: 1px solid #ccc;
@@ -44,6 +65,18 @@
     </style>
 </head>
 <body>
+    <div class="navbar">
+        <a href="{% url 'gestion_profile_admin' %}">Profil</a>
+        <a href="{% url 'securite' %}">Sécurité</a>
+        <a href="{% url 'notifications' %}">Notifications</a>
+        <a href="{% url 'gestion_campagnes' %}">Gestion des Campagnes</a>
+        <a href="{% url 'editeur_contenu' %}">Éditeur de Contenu</a>
+        <a href="{% url 'suivi_performances' %}">Suivi des Performances</a>
+        <a href="{% url 'demande_assistance' %}">Demande d'assistance</a>
+    </div>
+    <div class="headerbar">
+        <h1>Bienvenue à l'éditeur de contenu</h1>
+    </div>
     <div class="container">
         <h1>Éditeur de Contenu</h1>
         <form method="post">
@@ -71,9 +104,14 @@
         </div>
         <div id="preview-container" class="preview-container">
             <h2>Prévisualisation</h2>
-            
+            <div class="header">
+                <img src="{{ logo_url }}" alt="Logo de l'entreprise">
+                <h3>{{ company_name }}</h3>
+            </div>
             <div id="preview-content"></div>
-            
+            <div class="footer">
+                <p>&copy; {{ company_name }} - Tous droits réservés</p>
+            </div>
         </div>
     </div>
     <script>
@@ -108,7 +146,7 @@
                 .then(data => {
                     var chatOutput = document.getElementById('chat-output');
                     chatOutput.innerHTML += `<p><strong>Vous:</strong> ${chatInput}</p>`;
-        
+
                     if (data.generated_content) {
                         chatOutput.innerHTML += `<p><strong>IA:</strong> ${data.generated_content}</p>`;
                     } else if (data.error) {
@@ -116,13 +154,12 @@
                     } else {
                         chatOutput.innerHTML += `<p style="color:red;"><strong>Erreur:</strong> Réponse inattendue</p>`;
                     }
-        
+
                     document.getElementById('chat-input').value = '';
                 })
                 .catch(error => console.error('Erreur:', error));
             }
         }
-        
 
         function insertGeneratedContent() {
             var chatOutput = document.getElementById('chat-output');

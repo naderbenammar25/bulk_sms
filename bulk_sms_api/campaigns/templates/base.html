@@ -1,0 +1,29 @@
+<!-- filepath: /C:/Users/LENOVO/django_projects/bulk_sms/bulk_sms_api/campaigns/templates/base.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Titre par défaut{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'campaigns/css/MK_User.css' %}">
+    <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+</head>
+<body>
+    <div class="navbar">
+        <!-- Contenu de la barre de navigation -->
+    </div>
+    <div class="headerbar">
+        <!-- Contenu de la barre d'en-tête -->
+    </div>
+    <div class="container">
+        {% block content %}
+        <!-- Contenu de la page -->
+        {% endblock %}
+    </div>
+    <script>
+        {% block scripts %}
+        <!-- Scripts supplémentaires -->
+        {% endblock %}
+    </script>
+</body>
+</html>
