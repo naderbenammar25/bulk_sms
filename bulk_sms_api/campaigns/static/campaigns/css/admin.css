@@ -15,7 +15,7 @@
 /* Reset et styles de base */
 body {
     font-family: 'Arial', sans-serif;
-    margin: 0;
+    margin: 50px ;
     padding: 0;
     background-color: var(--background-color);
     color: var(--text-color);
@@ -231,5 +231,115 @@ button:hover {
     background-color: var(--hover-color);
 }
 
+/* Styles pour la page gestion_profile_admin.html */
+
+/* Section principale */
+.main-content {
+    margin-left: 270px;
+    padding: 20px;
+    width: calc(100% - 270px);
+}
+
+.main-content h1 {
+    margin-bottom: 20px;
+}
+
+.section {
+    margin-bottom: 20px;
+}
+
+.section h2 {
+    margin-bottom: 10px;
+}
+
+.section label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.section input, .section select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.edit-button {
+    background-color: #4b464f;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.edit-button:hover {
+    background-color: #272528;
+}
+
+.save-button {
+    background-color: #4b464f;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    margin-top: 20px;
+}
+
+.save-button:hover {
+    background-color: #272528;
+}
+
+.section select {
+    width: auto;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#timezone {
+    width: 20%;
+    position: relative;
+    right: 200px;
+    top: 27px;
+}
+
+#timezone_auto{
+    position: relative;
+    right: 520px;
+    top: 27px;
+}
+
+
+/* Styles pour l'icône de profil */
+.profile-icon {
+    font-size: 24px; /* Taille de l'icône */
+    color: white; /* Couleur de l'icône */
+    margin-right: 10px; /* Espace à droite de l'icône */
+    transition: color 0.3s ease; /* Transition pour le changement de couleur */
+    z-index: 10000; /* Pour afficher l'icône au-dessus des autres éléments */
+    position: relative;
+}
+
+.profile-icon:hover {
+    color: var(--hover-color); /* Couleur de l'icône au survol */
+}
+
+/* Icônes Material Icons */
+.material-icons {
+    vertical-align: middle; /* Aligner verticalement les icônes */
+}
 /* Icônes FontAwesome */
+
+
+#groupe{
+    width: 10%;
+}
+
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');

@@ -1,0 +1,137 @@
+<!-- filepath: /C:/Users/LENOVO/django_projects/bulk_sms/bulk_sms_api/campaigns/templates/editeur_contenu.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Éditeur de Contenu</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'campaigns/css/MK_User.css' %}">
+    <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+    <style>
+        .preview-container {
+            display: none;
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .header, .footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #f4f4f4;
+            margin-bottom: 20px;
+        }
+        .header img {
+            max-height: 50px;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #777;
+        }
+        .chat-container {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .chat-input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+        }
+        .chat-button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Éditeur de Contenu</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="title">Titre</label>
+                <input type="text" id="title" name="title" required>
+            </div>
+            <div class="form-group">
+                <label for="html_content">Contenu HTML</label>
+                <textarea id="html_content" name="html_content" required></textarea>
+                <script>
+                    CKEDITOR.replace('html_content');
+                </script>
+            </div>
+            <button type="button" onclick="previewContent()">Prévisualiser</button>
+            <button type="submit">Enregistrer</button>
+        </form>
+        <div class="chat-container">
+            <h2>Discussion avec l'IA</h2>
+            <div id="chat-output"></div>
+            <textarea id="chat-input" class="chat-input" placeholder="Posez une question à l'IA..."></textarea>
+            <button class="chat-button" onclick="sendMessage()">Envoyer</button>
+            <button class="chat-button" onclick="insertGeneratedContent()">Insérer le Contenu Généré</button>
+        </div>
+        <div id="preview-container" class="preview-container">
+            <h2>Prévisualisation</h2>
+            
+            <div id="preview-content"></div>
+            
+        </div>
+    </div>
+    <script>
+        function previewContent() {
+            var content = CKEDITOR.instances.html_content.getData();
+            var previewContent = `
+                <div class="header">
+                    <img src="{{ logo_url }}" alt="Logo de l'entreprise">
+                    <h3>{{ company_name }}</h3>
+                </div>
+                ${content}
+                <div class="footer">
+                    <p>&copy; {{ company_name }} - Tous droits réservés</p>
+                </div>
+            `;
+            document.getElementById('preview-content').innerHTML = previewContent;
+            document.getElementById('preview-container').style.display = 'block';
+        }
+
+        function sendMessage() {
+            var chatInput = document.getElementById('chat-input').value;
+            if (chatInput) {
+                fetch('/generate_content/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    },
+                    body: JSON.stringify({ prompt: chatInput })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    var chatOutput = document.getElementById('chat-output');
+                    chatOutput.innerHTML += `<p><strong>Vous:</strong> ${chatInput}</p>`;
+        
+                    if (data.generated_content) {
+                        chatOutput.innerHTML += `<p><strong>IA:</strong> ${data.generated_content}</p>`;
+                    } else if (data.error) {
+                        chatOutput.innerHTML += `<p style="color:red;"><strong>Erreur IA:</strong> ${data.error}</p>`;
+                    } else {
+                        chatOutput.innerHTML += `<p style="color:red;"><strong>Erreur:</strong> Réponse inattendue</p>`;
+                    }
+        
+                    document.getElementById('chat-input').value = '';
+                })
+                .catch(error => console.error('Erreur:', error));
+            }
+        }
+        
+
+        function insertGeneratedContent() {
+            var chatOutput = document.getElementById('chat-output');
+            var lastMessage = chatOutput.querySelector('p:last-child');  // Récupère le dernier message de l'IA
+            if (lastMessage) {
+                var generatedContent = lastMessage.textContent.replace('IA:', '').trim();
+                CKEDITOR.instances.html_content.insertHtml(generatedContent);  // Insère le contenu dans l'éditeur
+            }
+        }
+    </script>
+</body>
+</html>

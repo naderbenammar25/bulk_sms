@@ -1,0 +1,128 @@
+<!-- filepath: /C:/Users/LENOVO/django_projects/bulk_sms/bulk_sms_api/campaigns/templates/gestion_contacts.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Contacts</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'campaigns/css/admin.css' %}">
+    <script src="{% static 'campaigns/js/admin_dashboard.js' %}" defer></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --background-color: #f4f7f6;
+            --sidebar-color: #2c3e50;
+            --text-color: #333;
+            --hover-color: #2980b9;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        .actions button {
+            margin-right: 5px;
+        }
+        .import-section {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <img src="{% static 'campaigns/images/logo.png' %}" alt="Company Logo" class="logo">
+            <h2>Mass Mailing</h2>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{% url 'admin_dashboard' %}"><i class="material-icons">home</i> Accueil</a></li>
+                <li><a href="{% url 'gestion_contacts' %}"><i class="material-icons">contacts</i> Gestion des Contacts</a></li>
+                <li><a href="{% url 'gestion_utilisateurs_marketing' %}"><i class="material-icons">group</i> Gestion des Utilisateurs Marketing</a></li>
+                <li><a href="{% url 'gestion_groupes' %}"><i class="material-icons">layers</i> Gestion des Groupes</a></li>
+                <li><a href="{% url 'gestion_campagnes' %}"><i class="material-icons">campaign</i> Gestion des Campagnes</a></li>
+                <li><a href="{% url 'visualisation_performances' %}"><i class="material-icons">bar_chart</i> Visualisation des Performances</a></li>
+                <li><a href="{% url 'gestion_feedback' %}"><i class="material-icons">feedback</i> Gestion de Feedback</a></li>
+                <li><a href="{% url 'demander_intervention' %}"><i class="material-icons">build</i> Demander une Intervention</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="main-content">
+        <div class="header-bar">
+            <h1>Gestion des Contacts</h1>
+            <div class="user-info">
+                <span>{{ request.user.username }}</span>
+                <a href="{% url 'gestion_profile_admin' %}"><i class="material-icons">account_circle</i></a>
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="logout-button">Déconnexion</button>
+                </form>
+            </div>
+        </div>
+        <div class="content">
+            <h2>Liste des Contacts</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Email</th>
+                        <th>Téléphone</th>
+                        <th>Groupe</th>
+                        <th>Statut</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Les contacts seront affichés ici -->
+                    {% for contact in contacts %}
+                    <tr>
+                        <td>{{ contact.first_name }}</td>
+                        <td>{{ contact.last_name }}</td>
+                        <td>{{ contact.email }}</td>
+                        <td>{{ contact.phone }}</td>
+                        <td>{{ contact.group.name }}</td>
+                        <td>{{ contact.status }}</td>
+                        <td class="actions">
+                            <button class="edit-button">Modifier</button>
+                            <button class="associate-button">Associer</button>
+                            <button class="status-button">{% if contact.statut == 'Actif' %}Désactiver{% else %}Activer{% endif %}</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <div class="import-section">
+                <h2>Importer des Contacts</h2>
+                <form method="post" action="{% url 'import_contacts' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <label for="groupe">Groupe</label>
+                    <select id="groupe" name="groupe">
+                        {% for groupe in groupes %}
+                        <option value="{{ groupe.id }}">{{ groupe.name }}</option>
+                        {% endfor %}
+                    </select>
+                    <label for="csv_file">Fichier CSV</label>
+                    <input type="file" id="csv_file" name="csv_file" accept=".csv" required>
+                    <button type="submit" class="save-button">Confirmer</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

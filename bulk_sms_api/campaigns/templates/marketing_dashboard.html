@@ -1,10 +1,73 @@
+<!-- filepath: /C:/Users/LENOVO/django_projects/bulk_sms/bulk_sms_api/campaigns/templates/marketing_dashboard.html -->
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-    <title>Marketing Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil Utilisateur Marketing</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'campaigns/css/MK_User.css' %}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --background-color: #f4f7f6;
+            --sidebar-color: #2c3e50;
+            --text-color: #333;
+            --hover-color: #2980b9;
+        }
+    </style>
 </head>
 <body>
-    <h1>Marketing Dashboard</h1>
-    <p>Welcome, {{ user.username }}!</p>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <img src="{{ logo_url }}" alt="Company Logo" class="logo">
+            <h2>Mass Mailing</h2>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{% url 'marketing_dashboard' %}"><i class="fas fa-user-circle"></i>Accueil</a></li>
+                <li><a href="{% url 'securite' %}"><i class="fas fa-shield-alt"></i> Sécurité</a></li>
+                <li><a href="{% url 'notifications' %}"><i class="fas fa-bell"></i> Notifications</a></li>
+                <li><a href="{% url 'gestion_campagnes_mk' %}"><i class="fas fa-bullhorn"></i> Gestion des Campagnes</a></li>
+                <li><a href="{% url 'editeur_contenu' %}"><i class="fas fa-edit"></i> Éditeur de Contenu</a></li>
+                <li><a href="{% url 'demande_assistance' %}"><i class="fas fa-tools"></i> Demande d'assistance</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="main-content">
+        <div class="header-bar">
+            <h1>Accueil Utilisateur Marketing</h1>
+            <div class="user-info">
+                {% if request.session.admin_username and request.session.employee_username %}
+                    <span>{{ request.session.admin_username }} connecté en tant que {{ request.session.employee_username }}</span>
+                {% else %}
+                    <span>{{ request.user.username }}</span>
+                {% endif %}
+                <a href="{% url 'gestion_profile_MK' %}"><i class="material-icons">account_circle</i></a>
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="logout-button">Déconnexion</button>
+                </form>
+            </div>
+        </div>
+        <div class="content">
+            <h2>Bienvenue, {{ request.user.first_name }} {{ request.user.last_name }}</h2>
+            <p>Utilisez le menu de navigation pour accéder aux différentes sections de l'application.</p>
+            <!-- Débogage temporaire -->
+            <pre>
+                Admin Username: {{ request.session.admin_username }}
+                Employee Username: {{ request.session.employee_username }}
+            </pre>
+            <!-- Liste des éléments de la session -->
+            <h3>Éléments de la session</h3>
+            <ul>
+                {% for key, value in request.session.items %}
+                    <li>{{ key }}: {{ value }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
 </body>
 </html>

@@ -1,10 +1,17 @@
+<!-- filepath: /C:/Users/LENOVO/django_projects/bulk_sms/bulk_sms_api/campaigns/templates/login.html -->
 <!DOCTYPE html>
 <html>
 <head>
     <title>Login</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'campaigns/css/register.css' %}">
+    <script src="{% static 'campaigns/js/register.js' %}" defer></script>
 </head>
 <body>
-    <h1>Login</h1>
+    <image src="{% static 'campaigns/images/orateur.png' %}" alt="orateur" class="LoginBackground">
+    <div class="floating-mails-container"></div>
+    <div class="login_form">
+    <h1 class="titreLogin">Login</h1>
     <form method="post">
         {% csrf_token %}
         <label for="username">Username:</label>
@@ -16,5 +23,7 @@
     {% if error %}
         <p style="color: red;">{{ error }}</p>
     {% endif %}
+    <p class="mdp_oublie"><a href="{% url 'password_reset' %}">Vous avez oublié votre mot de passe ?</a></p>
+</div>
 </body>
 </html>

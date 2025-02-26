@@ -1,0 +1,102 @@
+<!-- filepath: /C:/Users/LENOVO/django_projects/bulk_sms/bulk_sms_api/campaigns/templates/gestion_profile_MK.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion de Profil - Utilisateur Marketing</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'campaigns/css/MK_User.css' %}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="{% static 'campaigns/js/MK_User.js' %}" defer></script>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --background-color: #f4f7f6;
+            --sidebar-color: #2c3e50;
+            --text-color: #333;
+            --hover-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <img src="{% static 'campaigns/images/logo.png' %}" alt="Company Logo" class="logo">
+            <h2>Mass Mailing</h2>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{% url 'marketing_dashboard' %}"><i class="material-icons">home</i> Accueil</a></li>
+                <li><a href="{% url 'securite' %}"><i class="material-icons">security</i> Sécurité</a></li>
+                <li><a href="{% url 'notifications' %}"><i class="material-icons">notifications</i> Notifications</a></li>
+                <li><a href="{% url 'gestion_campagnes' %}"><i class="material-icons">campaign</i> Gestion des Campagnes</a></li>
+                <li><a href="{% url 'editeur_contenu' %}"><i class="material-icons">edit</i> Éditeur de Contenu</a></li>
+                <li><a href="{% url 'demande_assistance' %}"><i class="material-icons">build</i> Demande d'assistance</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="main-content">
+        <div class="header-bar">
+            <h1>Gestion de Profil</h1>
+            <div class="user-info">
+                <span>{{ request.user.username }}</span>
+                <a href="{% url 'gestion_profile_MK' %}"><i class="material-icons">account_circle</i></a>
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="logout-button">Déconnexion</button>
+                </form>
+            </div>
+        </div>
+        <form method="post" action="{% url 'update_profile_MK' %}">
+            {% csrf_token %}
+            <div class="section">
+                <h2>Informations Personnelles</h2>
+                <label for="username">Nom d'utilisateur</label>
+                <input type="text" id="username" name="username" value="{{ request.user.username }}" placeholder="Nom d'utilisateur" disabled>
+                <button type="button" class="edit-button">Modifier</button>
+
+                <label for="email">Adresse Mail</label>
+                <input type="email" id="email" name="email" value="{{ request.user.email }}" placeholder="Adresse Mail" disabled>
+                <button type="button" class="edit-button">Modifier</button>
+
+                <label for="phone">Numéro de téléphone</label>
+                <input type="tel" id="phone" name="phone" value="{{ request.user.phone }}" placeholder="Numéro de téléphone" disabled>
+                <button type="button" class="edit-button">Modifier</button>
+            </div>
+
+            <div class="section">
+                <h2>Langues et Dates</h2>
+                <label for="language">Langue</label>
+                <select id="language" name="language">
+                    <option value="Français" {% if request.user.language == "Français" %}selected{% endif %}>Français</option>
+                    <option value="Anglais" {% if request.user.language == "Anglais" %}selected{% endif %}>Anglais</option>
+                    <option value="Espagnol" {% if request.user.language == "Espagnol" %}selected{% endif %}>Espagnol</option>
+                    <!-- Ajoutez d'autres langues ici -->
+                </select>
+
+                <label for="date_format">Format Dates</label>
+                <select id="date_format" name="date_format">
+                    <option value="JJ-MM-YYYY" {% if request.user.date_format == "JJ-MM-YYYY" %}selected{% endif %}>JJ-MM-YYYY</option>
+                    <option value="MM-JJ-YYYY" {% if request.user.date_format == "MM-JJ-YYYY" %}selected{% endif %}>MM-JJ-YYYY</option>
+                    <option value="YYYY-MM-DD" {% if request.user.date_format == "YYYY-MM-DD" %}selected{% endif %}>YYYY-MM-DD</option>
+                    <!-- Ajoutez d'autres formats de date ici -->
+                </select>
+
+                <label for="timezone">Fuseau horaire</label>
+                <input type="checkbox" id="timezone_auto" name="timezone_auto" {% if request.user.timezone == "Automatique" %}checked{% endif %}>
+                <label for="timezone_auto">Automatique</label>
+                <input type="hidden" id="detected_timezone" name="detected_timezone" value="{{ detected_timezone }}">
+                <select id="timezone" name="timezone" {% if request.user.timezone == "Automatique" %}disabled{% endif %}>
+                    {% for tz in timezones %}
+                        <option value="{{ tz }}" {% if request.user.timezone == tz %}selected{% endif %}>{{ tz }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <button type="submit" class="save-button">Enregistrer</button>
+        </form>
+    </div>
+</body>
+</html>

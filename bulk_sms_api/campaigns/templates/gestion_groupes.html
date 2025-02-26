@@ -1,0 +1,145 @@
+<!-- filepath: /C:/Users/LENOVO/django_projects/bulk_sms/bulk_sms_api/campaigns/templates/gestion_groupes.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Groupes</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'campaigns/css/admin.css' %}">
+    <script src="{% static 'campaigns/js/gestion_groupes.js' %}" defer></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --background-color: #f4f7f6;
+            --sidebar-color: #2c3e50;
+            --text-color: #333;
+            --hover-color: #2980b9;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        .actions button {
+            margin-right: 5px;
+        }
+        .add-group-section, .merge-group-section {
+            margin-top: 20px;
+        }
+        .remove-from-merge {
+            margin-left: 10px;
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .remove-from-merge:hover {
+            background-color: darkred;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <img src="{{ logo_url }}" alt="Company Logo" class="logo">
+            <h2>Mass Mailing - {{ company.name }}</h2>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{% url 'admin_dashboard' %}"><i class="material-icons">home</i> Accueil</a></li>
+                <li><a href="{% url 'gestion_contacts' %}"><i class="material-icons">contacts</i> Gestion des Contacts</a></li>
+                <li><a href="{% url 'gestion_utilisateurs_marketing' %}"><i class="material-icons">group</i> Gestion des Utilisateurs Marketing</a></li>
+                <li><a href="{% url 'gestion_groupes' %}"><i class="material-icons">layers</i> Gestion des Groupes</a></li>
+                <li><a href="{% url 'gestion_campagnes' %}"><i class="material-icons">campaign</i> Gestion des Campagnes</a></li>
+                <li><a href="{% url 'visualisation_performances' %}"><i class="material-icons">bar_chart</i> Visualisation des Performances</a></li>
+                <li><a href="{% url 'gestion_feedback' %}"><i class="material-icons">feedback</i> Gestion de Feedback</a></li>
+                <li><a href="{% url 'demander_intervention' %}"><i class="material-icons">build</i> Demander une Intervention</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="main-content">
+        <div class="header-bar">
+            <h1>Gestion des Groupes</h1>
+            <div class="user-info">
+                <span>{{ request.user.username }}</span>
+                <a href="{% url 'gestion_profile_admin' %}"><i class="material-icons profile-icon">account_circle</i></a>
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="logout-button">Déconnexion</button>
+                </form>
+            </div>
+        </div>
+        <div class="content">
+            <h2>Liste des Groupes</h2>
+            <input type="text" id="search-bar" placeholder="Rechercher un groupe...">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nom du groupe</th>
+                        <th>Nombre de contacts</th>
+                        <th>Date de création</th>
+                        <th>Statut</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Les groupes seront affichés ici -->
+                    {% for group in groups %}
+                    <tr>
+                        <td>{{ group.name }} <i class="material-icons add-to-merge" data-group-id="{{ group.id }}">add</i></td>
+                        <td>{{ group.contacts.count }}</td>
+                        <td>{{ group.created_at }}</td>
+                        <td>{{ group.status }}</td>
+                        <td class="actions">
+                            <button class="edit-button">Modifier</button>
+                            <button class="manage-contacts-button">Gérer contacts</button>
+                            <button class="status-button">{% if group.status == 'Actif' %}Désactiver{% else %}Activer{% endif %}</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <div class="add-group-section">
+                <h2>Ajouter un Groupe</h2>
+                <form method="post" action="{% url 'add_group' %}">
+                    {% csrf_token %}
+                    <label for="group_name">Nom du groupe</label>
+                    <input type="text" id="group_name" name="group_name" required>
+                    <button type="submit" class="save-button">Ajouter</button>
+                </form>
+            </div>
+
+            <div class="merge-group-section">
+                <h2>Fusionner des Groupes</h2>
+                <div id="merge-list">
+                    <!-- Les groupes à fusionner seront affichés ici -->
+                </div>
+                <form method="post" action="{% url 'merge_groups' %}">
+                    {% csrf_token %}
+                    <label for="new_group_name">Nom du nouveau groupe</label>
+                    <input type="text" id="new_group_name" name="new_group_name" required>
+                    <input type="hidden" id="groups_to_merge" name="groups_to_merge">
+                    <button type="submit" class="save-button">Fusionner</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -126,6 +126,13 @@ button:hover {
     transform: rotate(-45deg);
 }
 
+
+.titreLogin {
+    margin-top: -235px;
+    position: relative;
+    left: 85px;
+}
+
 /* Animation */
 @keyframes floatMails {
     0% {
@@ -139,4 +146,32 @@ button:hover {
         transform: translateY(-10vh) translateX(calc(100vw * var(--random-x))) rotate(360deg);
         opacity: 0;
     }
+}
+.mdp_oublie {
+    color: #4b464f;
+    text-decoration: none;
+    font-size: 16px;
+    margin-top: 10px;
+    display: block;
+    text-decoration: underline;
+    position: relative;
+    top : 20px;
+    right: 0px;
+
+}
+
+.login_form {
+    position: relative;
+    right: 100px;
+    top: 50px;
+    
+}
+
+.LoginBackground{
+    width: auto;
+    height: 100%;
+    position: relative;
+    right: 350px;
+    top: 0px;
+    overflow: hidden;
 }

@@ -1,0 +1,19 @@
+<!-- filepath: /C:/Users/LENOVO/django_projects/bulk_sms/bulk_sms_api/campaigns/templates/campaign_detail.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détails de la Campagne</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'campaigns/css/admin.css' %}">
+</head>
+<body>
+    <h1>Détails de la Campagne</h1>
+    <ul>
+        {% for action in campaign_actions %}
+            <li>{{ action.user.username }} - {{ action.action }} - {{ action.timestamp }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
