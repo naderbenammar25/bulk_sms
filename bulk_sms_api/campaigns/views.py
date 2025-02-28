@@ -283,10 +283,17 @@ def admin_dashboard(request):
 
 @login_required
 def gestion_contacts(request):
-    contacts = Contact.objects.filter(company=request.user.company)
-    groupes = Group.objects.filter(company=request.user.company)
-    return render(request, 'gestion_contacts.html', {'contacts': contacts, 'groupes': groupes})
-
+    group_id = request.GET.get('group_id')
+    if group_id:
+        contacts = Contact.objects.filter(group_id=group_id)
+    else:
+        contacts = Contact.objects.all()
+    groupes = Group.objects.all()
+    context = {
+        'contacts': contacts,
+        'groupes': groupes,
+    }
+    return render(request, 'gestion_contacts.html', context)
 @login_required
 def gestion_utilisateurs_marketing(request):
     employees = CustomUser.objects.filter(company=request.user.company, role='marketing')
@@ -367,26 +374,78 @@ def gestion_groupes(request):
 def gestion_campagnes(request):
     return render(request, 'gestion_campagnes_admin.html')
 
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.utils import timezone
+from .models import Campaign, Content, Group
+
 @login_required
 def gestion_campagnes_mk(request):
-    if request.method == 'POST':
-        name = request.POST.get('name')
-        description = request.POST.get('description')
-        group_id = request.POST.get('group')
-        content_id = request.POST.get('content')
-        group = get_object_or_404(Group, id=group_id)
-        content = get_object_or_404(Content, id=content_id)
-        Campaign.objects.create(
-            name=name,
-            description=description,
-            group=group,
-            message=content.html_content
-        )
-        messages.success(request, 'Campagne créée avec succès.')
-        return redirect('gestion_campagnes')
-    groups = Group.objects.filter(company=request.user.company)
+    campaigns = Campaign.objects.all()
     contents = Content.objects.all()
-    return render(request, 'gestion_campagnes_MK.html', {'groups': groups, 'contents': contents})
+    groups = Group.objects.all()
+    total_campaigns = campaigns.count()
+    ongoing_campaigns = campaigns.filter(status='en cours').count()
+    scheduled_campaigns = campaigns.filter(status='planifiée').count()
+    completed_campaigns = campaigns.filter(status='terminée').count()
+
+    if request.method == 'POST':
+        action = request.POST.get('action')
+        campaign_id = request.POST.get('campaign_id')
+        campaign_title = request.POST.get('campaign_title')
+        campaign_content = request.POST.get('campaign_content')
+        campaign_message = request.POST.get('campaign_message')
+        target_groups = request.POST.get('target_groups')
+        launch_date = request.POST.get('launch_date')
+        duration = request.POST.get('duration')
+        messages_per_period = request.POST.get('messages_per_period')
+        campaign_status = request.POST.get('campaign_status')
+
+        if campaign_id:
+            campaign = get_object_or_404(Campaign, id=campaign_id)
+            campaign.name = campaign_title
+            campaign.group_id = target_groups
+            campaign.message = campaign_message if not campaign_content else Content.objects.get(id=campaign_content).html_content
+            campaign.launch_date = launch_date
+            campaign.duration = int(duration)
+            campaign.messages_per_period = int(messages_per_period)
+            campaign.status = campaign_status
+
+            if action == 'update':
+                campaign.save()
+                return redirect('gestion_campagnes_mk')
+        else:
+            campaign = Campaign(
+                name=campaign_title,
+                group_id=target_groups,
+                message=campaign_message if not campaign_content else Content.objects.get(id=campaign_content).html_content,
+                launch_date=launch_date,
+                duration=int(duration),
+                messages_per_period=int(messages_per_period),
+                status=campaign_status
+            )
+
+            if action == 'save_draft':
+                campaign.status = 'brouillon'
+            elif action == 'launch_now':
+                campaign.status = 'en cours'
+                campaign.launch_date = timezone.now()
+            elif action == 'schedule':
+                campaign.status = 'planifiée'
+
+            campaign.save()
+            return redirect('gestion_campagnes_mk')
+
+    context = {
+        'campaigns': campaigns,
+        'contents': contents,
+        'groups': groups,
+        'total_campaigns': total_campaigns,
+        'ongoing_campaigns': ongoing_campaigns,
+        'scheduled_campaigns': scheduled_campaigns,
+        'completed_campaigns': completed_campaigns,
+    }
+    return render(request, 'gestion_campagnes_MK.html', context)
 
 def visualisation_performances(request):
     return render(request, 'visualisation_performances.html')
@@ -614,6 +673,8 @@ def import_contacts(request):
         messages.success(request, 'Les contacts ont été importés avec succès.')
         return redirect('gestion_contacts')
     return redirect('gestion_contacts')
+
+
 
 @login_required
 def add_group(request):

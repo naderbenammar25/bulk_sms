@@ -51,3 +51,67 @@ document.addEventListener('DOMContentLoaded', function() {
         timezoneSelect.classList.add('disabled');
     }
 });
+
+
+    document.getElementById('campaign-content').addEventListener('change', function() {
+        var messageField = document.getElementById('campaign-message');
+        if (this.value) {
+            messageField.disabled = true;
+        } else {
+            messageField.disabled = false;
+        }
+    });
+
+    
+
+    document.querySelectorAll('.edit-button').forEach(function(button) {
+        button.addEventListener('click', function() {
+            var campaignId = this.dataset.id;
+            var campaignTitle = this.dataset.title;
+            var campaignContent = this.dataset.content;
+            var campaignMessage = this.dataset.message;
+            var targetGroups = this.dataset.groups;
+            var launchDate = this.dataset.launch_date;
+            var campaignStatus = this.dataset.status;
+
+            document.getElementById('edit-campaign-id').value = campaignId;
+            document.getElementById('edit-campaign-title').value = campaignTitle;
+            document.getElementById('edit-campaign-content').value = campaignContent;
+            document.getElementById('edit-campaign-message').value = campaignMessage;
+            document.getElementById('edit-target-groups').value = targetGroups;
+            document.getElementById('edit-launch-date').value = launchDate;
+            document.getElementById('edit-campaign-status').value = campaignStatus;
+
+            var form = document.getElementById('edit-campaign-form');
+            form.style.display = 'block';
+        });
+    });
+
+
+        document.getElementById('campaign-content').addEventListener('change', function() {
+            var messageField = document.getElementById('campaign-message');
+            if (this.value) {
+                messageField.disabled = true;
+            } else {
+                messageField.disabled = false;
+            }
+        });
+
+        document.getElementById('create-campaign-button').addEventListener('click', function() {
+            var form = document.getElementById('create-campaign-form');
+            if (form.style.display === 'none' || form.style.display === '') {
+                form.style.display = 'block';
+            } else {
+                form.style.display = 'none';
+            }
+        });
+
+
+        document.getElementById('edit-campaign-content').addEventListener('change', function() {
+            var editMessageField = document.getElementById('edit-campaign-message');
+            if (this.value) {
+                editMessageField.disabled = true;
+            } else {
+                editMessageField.disabled = false;
+            }
+        });
