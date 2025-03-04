@@ -1,0 +1,93 @@
+<!-- filepath: /C:/Users/LENOVO/django_projects/bulk_sms/bulk_sms_api/campaigns/templates/creation_campagne.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créer une Campagne</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'campaigns/css/creation_campagne.css' %}">
+    <script src="{% static 'campaigns/js/creation_campagne.js' %}" defer></script>
+</head>
+<body>
+    <div class="main-content">
+        <h2>Créer une Campagne</h2>
+        <form id="campaign-form" method="post" action="{% url 'create_campaign' %}">
+            {% csrf_token %}
+            <div id="step1">
+                <label for="campaign-title">Titre de la Campagne</label>
+                <input type="text" id="campaign-title" name="campaign_title" required>
+                
+                <button type="button" data-next-step="2">Suivant</button>
+            </div>
+            
+            <div id="step2" style="display:none;">
+                <label for="campaign-type">Type de Campagne</label>
+                <select id="campaign-type" name="campaign_type" required>
+                    <option value="brouillon">Brouillon</option>
+                    <option value="planifié">Planifié</option>
+                    <option value="lancement_rapide">Lancement Rapide</option>
+                </select>
+                
+                <label for="campaign-content">Contenu de la Campagne</label>
+                <select id="campaign-content" name="campaign_content">
+                    <option value="">Sélectionner un contenu existant</option>
+                    {% for content in contents %}
+                        <option value="{{ content.id }}">{{ content.title }}</option>
+                    {% endfor %}    
+                </select>
+                <textarea id="campaign-message" name="campaign_message" placeholder="Ou rédigez un message simple..."></textarea>
+                
+                <button type="button" data-prev-step="1">Précédent</button>
+                <button type="button" data-next-step="3">Suivant</button>
+            </div>
+            
+            <div id="step3" style="display:none;">
+                <label for="launch-date">Date et Heure de Lancement</label>
+                <input type="datetime-local" id="launch-date" name="launch_date" required>
+                
+                <label for="target-groups">Groupes Cibles</label>
+                <select id="target-groups" name="target_groups" required>
+                    <option value="">Sélectionner un groupe</option>
+                    {% for group in groups %}
+                    <option value="{{ group.id }}">{{ group.name }}</option>
+                    {% endfor %}                    
+                </select>
+                
+                <button type="button" data-prev-step="2">Précédent</button>
+                <button type="button" data-next-step="4">Suivant</button>
+            </div>
+            
+            <div id="step4" style="display:none;">
+                <label for="duration">Durée de la Campagne</label>
+                <input type="number" id="duration" name="duration" required>
+                <select id="duration-unit" name="duration_unit" required>
+                    <option value="jours">Jours</option>
+                    <option value="mois">Mois</option>
+                    <option value="annees">Années</option>
+                </select>
+                
+                <label for="messages-per-period">Nombre de Messages par Période</label>
+                <input type="number" id="messages-per-period" name="messages_per_period" required>
+                <select id="period-unit" name="period_unit" required>
+                    <option value="semaine">Semaine</option>
+                    <option value="mois">Mois</option>
+                    <option value="trimestre">Trimestre</option>
+                    <option value="semestre">Semestre</option>
+                </select>
+                
+                <button type="button" data-prev-step="3">Précédent</button>
+                <button type="button" id="finish-button">Terminer</button>
+            </div>
+
+            <div id="confirmation-step" style="display:none;">
+                <h3>Confirmation de la Campagne</h3>
+                <p id="campaign-preview"></p>
+                <p id="confirmation-message"></p>
+                <button type="button" data-prev-step="4">Précédent</button>
+                <button type="submit" id="confirm-button">Confirmer et Lancer</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

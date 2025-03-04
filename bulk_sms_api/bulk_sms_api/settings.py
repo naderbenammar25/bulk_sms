@@ -50,8 +50,11 @@ INSTALLED_APPS = [
     'webpack_loader',
     'rest_framework',
     'rest_framework_simplejwt',
-]
+    'django.contrib.sites',
 
+]
+#définir l'ID du site actuel
+SITE_ID = 1
 WEBPACK_LOADER = {
     'DEFAULT': {
         'BUNDLE_DIR_NAME': 'frontend/build/',  # must end with a slash

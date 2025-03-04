@@ -115,3 +115,62 @@ document.addEventListener('DOMContentLoaded', function() {
                 editMessageField.disabled = false;
             }
         });
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const statusSelect = document.getElementById('campaign-status');
+            const launchDateInput = document.getElementById('launch-date');
+            const durationInput = document.getElementById('duration');
+        
+            if (statusSelect && launchDateInput && durationInput) {
+                function toggleDateFields() {
+                    if (statusSelect.value === 'brouillon') {
+                        launchDateInput.disabled = true;
+                        durationInput.disabled = true;
+                    } else {
+                        launchDateInput.disabled = false;
+                        durationInput.disabled = false;
+                    }
+                }
+        
+                statusSelect.addEventListener('change', toggleDateFields);
+                toggleDateFields(); // Initial call to set the correct state
+            }
+        
+            const editButtons = document.querySelectorAll('.edit-button');
+            const editForm = document.getElementById('edit-campaign-form');
+            const editCampaignId = document.getElementById('edit-campaign-id');
+            const editCampaignTitle = document.getElementById('edit-campaign-title');
+            const editCampaignContent = document.getElementById('edit-campaign-content');
+            const editCampaignMessage = document.getElementById('edit-campaign-message');
+            const editTargetGroups = document.getElementById('edit-target-groups');
+            const editLaunchDate = document.getElementById('edit-launch-date');
+            const editDuration = document.getElementById('edit-duration');
+            const editMessagesPerPeriod = document.getElementById('edit-messages-per-period');
+        
+            if (editButtons && editForm && editCampaignId && editCampaignTitle && editCampaignContent && editCampaignMessage && editTargetGroups && editLaunchDate && editDuration && editMessagesPerPeriod) {
+                editButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        const campaignId = this.getAttribute('data-id');
+                        const campaignTitle = this.getAttribute('data-title');
+                        const campaignContent = this.getAttribute('data-content');
+                        const campaignMessage = this.getAttribute('data-message');
+                        const targetGroups = this.getAttribute('data-groups');
+                        const launchDate = this.getAttribute('data-launch_date');
+                        const duration = this.getAttribute('data-duration');
+                        const messagesPerPeriod = this.getAttribute('data-messages_per_period');
+        
+                        editCampaignId.value = campaignId;
+                        editCampaignTitle.value = campaignTitle;
+                        editCampaignContent.value = campaignContent;
+                        editCampaignMessage.value = campaignMessage;
+                        editTargetGroups.value = targetGroups;
+                        editLaunchDate.value = launchDate;
+                        editDuration.value = duration;
+                        editMessagesPerPeriod.value = messagesPerPeriod;
+        
+                        editForm.style.display = 'block';
+                    });
+                });
+            }
+        });

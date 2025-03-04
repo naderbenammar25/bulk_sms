@@ -79,7 +79,7 @@
     </div>
     <div class="container">
         <h1>Éditeur de Contenu</h1>
-        <form method="post">
+        <form method="post" id="content-form" onsubmit="prepareContent()">
             {% csrf_token %}
             <div class="form-group">
                 <label for="title">Titre</label>
@@ -110,20 +110,38 @@
         </div>
     </div>
     <script>
+        var logo_url = "{{ logo_url }}";
+        var company_name = "{{ company_name }}";
+
         function previewContent() {
             var content = CKEDITOR.instances.html_content.getData();
             var previewContent = `
                 <div class="header">
-                    <img src="{{ logo_url }}" alt="Logo de l'entreprise">
-                    <h3>{{ company_name }}</h3>
+                    <img src="${logo_url}" alt="Logo de l'entreprise">
+                    <h3>${company_name}</h3>
                 </div>
                 ${content}
                 <div class="footer">
-                    <p>&copy; {{ company_name }} - Tous droits réservés</p>
+                    <p>&copy; ${company_name} - Tous droits réservés</p>
                 </div>
             `;
             document.getElementById('preview-content').innerHTML = previewContent;
             document.getElementById('preview-container').style.display = 'block';
+        }
+
+        function prepareContent() {
+            var content = CKEDITOR.instances.html_content.getData();
+            var fullContent = `
+                <div class="header">
+                    <img src="${logo_url}" alt="Logo de l'entreprise">
+                    <h3>${company_name}</h3>
+                </div>
+                ${content}
+                <div class="footer">
+                    <p>&copy; ${company_name} - Tous droits réservés</p>
+                </div>
+            `;
+            document.getElementById('html_content').value = fullContent;
         }
 
         function sendMessage() {

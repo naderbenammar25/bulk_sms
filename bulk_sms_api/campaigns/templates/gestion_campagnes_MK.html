@@ -1,3 +1,4 @@
+<!-- filepath: /C:/Users/LENOVO/django_projects/bulk_sms/bulk_sms_api/campaigns/templates/gestion_campagnes_MK.html -->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -7,7 +8,7 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'campaigns/css/MK_User.css' %}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script src="{% static 'campaigns/js/MK_User.js' %}" defer ></script>
+    <script src="{% static 'campaigns/js/MK_User.js' %}" defer></script>
     <style>
         :root {
             --primary-color: #3498db;
@@ -17,7 +18,10 @@
             --text-color: #333;
             --hover-color: #2980b9;
         }
-        
+        .campaign-list {
+            max-height: 400px; /* Limiter la hauteur du tableau */
+            overflow-y: auto; /* Ajouter une barre de défilement verticale */
+        }
     </style>
 </head>
 <body>
@@ -55,150 +59,75 @@
         </div>
         <div class="content">
             <div class="search-bar">
-                <input type="text" placeholder="Rechercher des campagnes...">
-                <button>Rechercher</button>
-                <button id="create-campaign-button">Créer une Campagne</button>
+                <form method="get" action="{% url 'gestion_campagnes_mk' %}">
+                    <input type="text" name="search" placeholder="Rechercher des campagnes..." value="{{ request.GET.search }}">
+                    <button type="submit">Rechercher</button>
+                </form>
+                <button id="create-campaign-button" onclick="window.location.href='{% url 'create_campaign' %}'">Créer une Campagne</button>
             </div>
-            <!-- filepath: /C:/Users/LENOVO/django_projects/bulk_sms/bulk_sms_api/campaigns/templates/gestion_campagnes_MK.html -->
-<div id="edit-campaign-form" class="campaign-form" style="display:none;">
-    <h2>Modifier une Campagne</h2>
-    <form method="post" action="{% url 'gestion_campagnes_mk' %}">
-        {% csrf_token %}
-        <input type="hidden" id="edit-campaign-id" name="campaign_id">
-        
-        <label for="edit-campaign-title">Titre de la Campagne</label>
-        <input type="text" id="edit-campaign-title" name="campaign_title" required>
-        
-        <label for="edit-campaign-content">Contenu de la Campagne</label>
-        <select id="edit-campaign-content" name="campaign_content">
-            <option value="">Sélectionner un contenu existant</option>
-            {% for content in contents %}
-                <option value="{{ content.id }}">{{ content.title }}</option>
-            {% endfor %}    
-        </select>
-        <textarea id="edit-campaign-message" name="campaign_message" placeholder="Ou rédigez un message simple..."></textarea>
-        
-        <label for="edit-target-groups">Groupes Cibles</label>
-        <select id="edit-target-groups" name="target_groups" required>
-            <option value="">Sélectionner un groupe</option>
-            {% for group in groups %}
-            <option value="{{ group.id }}">{{ group.name }}</option>
-            {% endfor %}                    
-        </select>
-        
-        <label for="edit-launch-date">Date et Heure de Lancement</label>
-        <input type="datetime-local" id="edit-launch-date" name="launch_date" required>
-        
-        <label for="edit-duration">Durée de la Campagne (jours)</label>
-        <input type="number" id="edit-duration" name="duration" required>
-        
-        <label for="edit-messages-per-period">Nombre de Messages par Période</label>
-        <input type="number" id="edit-messages-per-period" name="messages_per_period" required>
-        
-        <label for="edit-campaign-status">Statut</label>
-        <select id="edit-campaign-status" name="campaign_status" required>
-            <option value="brouillon">Brouillon</option>
-            <option value="planifiée">Planifiée</option>
-            <option value="en cours">En cours</option>
-            <option value="suspendue">Suspendue</option>
-            <option value="terminée">Terminée</option>
-            <option value="historisée">Historisée</option>
-        </select>
-        
-        <button type="submit" name="action" value="update">Mettre à jour</button>
-    </form>
-</div>
 
-<div id="create-campaign-form" class="campaign-form" style="display:none;">
-    <h2>Créer une Campagne</h2>
-    <form method="post" action="{% url 'gestion_campagnes_mk' %}">
-        {% csrf_token %}
-        <label for="campaign-title">Titre de la Campagne</label>
-        <input type="text" id="campaign-title" name="campaign_title" required>
-        
-        <label for="campaign-content">Contenu de la Campagne</label>
-        <select id="campaign-content" name="campaign_content">
-            <option value="">Sélectionner un contenu existant</option>
-            {% for content in contents %}
-                <option value="{{ content.id }}">{{ content.title }}</option>
-            {% endfor %}    
-        </select>
-        <textarea id="campaign-message" name="campaign_message" placeholder="Ou rédigez un message simple..."></textarea>
-        
-        <label for="target-groups">Groupes Cibles</label>
-        <select id="target-groups" name="target_groups" required>
-            <option value="">Sélectionner un groupe</option>
-            {% for group in groups %}
-            <option value="{{ group.id }}">{{ group.name }}</option>
-            {% endfor %}                    
-        </select>
-        
-        <label for="launch-date">Date et Heure de Lancement</label>
-        <input type="datetime-local" id="launch-date" name="launch_date" required>
-        
-        <label for="duration">Durée de la Campagne (jours)</label>
-        <input type="number" id="duration" name="duration" required>
-        
-        <label for="messages-per-period">Nombre de Messages par Période</label>
-        <input type="number" id="messages-per-period" name="messages_per_period" required>
-        
-        <label for="campaign-status">Statut</label>
-        <select id="campaign-status" name="campaign_status" required>
-            <option value="brouillon">Brouillon</option>
-            <option value="planifiée">Planifiée</option>
-            <option value="en cours">En cours</option>
-            <option value="suspendue">Suspendue</option>
-            <option value="terminée">Terminée</option>
-            <option value="historisée">Historisée</option>
-        </select>
-        
-        <button type="submit" name="action" value="save_draft">Enregistrer comme Brouillon</button>
-        <button type="submit" name="action" value="launch_now">Lancer la Campagne</button>
-        <button type="submit" name="action" value="schedule">Planifier la Campagne</button>
-    </form>
-</div>
-<!-- filepath: /C:/Users/LENOVO/django_projects/bulk_sms/bulk_sms_api/campaigns/templates/gestion_campagnes_MK.html -->
-<div class="campaign-list">
-    <h2>Liste des Campagnes</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Titre</th>
-                <th>Groupes Cibles</th>
-                <th>Statut</th>
-                <th>Date de Lancement</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Boucle pour afficher les campagnes -->
-            {% for campaign in campaigns %}
-            <tr>
-                <td>{{ campaign.name }}</td>
-                <td>{{ campaign.group.name }}</td>
-                <td>{{ campaign.get_status_display }}</td>
-                <td>{{ campaign.launch_date }}</td>
-                <td class="actions">
-                    <button class="edit-button" 
-                            data-id="{{ campaign.id }}" 
-                            data-title="{{ campaign.name }}" 
-                            data-content="{{ campaign.content_id }}" 
-                            data-message="{{ campaign.message }}" 
-                            data-groups="{{ campaign.group_id }}" 
-                            data-launch_date="{{ campaign.launch_date|date:'Y-m-d\TH:i' }}" 
-                            data-duration="{{ campaign.duration }}" 
-                            data-messages_per_period="{{ campaign.messages_per_period }}" 
-                            data-status="{{ campaign.status }}">
-                        Modifier
-                    </button>
-                    <button>Suspendre/Reprendre</button>
-                    <button>Supprimer</button>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
+            <div class="filter-bar">
+                <form method="get" action="{% url 'gestion_campagnes_mk' %}">
+                    <label for="status-filter">Filtrer par statut :</label>
+                    <select id="status-filter" name="status">
+                        <option value="">Tous</option>
+                        <option value="brouillon">Brouillon</option>
+                        <option value="planifiée">Planifiée</option>
+                        <option value="en cours">En cours</option>
+                        <option value="suspendue">Suspendue</option>
+                        <option value="terminée">Terminée</option>
+                        <option value="historisée">Historisée</option>
+                    </select>
+                    <button type="submit">Filtrer</button>
+                </form>
+            </div>
+
+            <div class="campaign-list">
+                <h2>Liste des Campagnes</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Titre</th>
+                            <th>Groupes Cibles</th>
+                            <th>Statut</th>
+                            <th>Date de Lancement</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Boucle pour afficher les campagnes -->
+                        {% for campaign in campaigns %}
+                        <tr>
+                            <td>{{ campaign.name }}</td>
+                            <td>{{ campaign.group.name }}</td>
+                            <td>{{ campaign.get_status_display }}</td>
+                            <td>{{ campaign.launch_date }}</td>
+                            <td class="actions">
+                                <button class="edit-button" 
+                                        data-id="{{ campaign.id }}" 
+                                        data-title="{{ campaign.name }}" 
+                                        data-content="{{ campaign.content_id }}" 
+                                        data-message="{{ campaign.message }}" 
+                                        data-groups="{{ campaign.group_id }}" 
+                                        data-launch_date="{{ campaign.launch_date|date:'Y-m-d\TH:i' }}" 
+                                        data-duration="{{ campaign.duration }}" 
+                                        data-messages_per_period="{{ campaign.messages_per_period }}">
+                                    Modifier
+                                </button>
+                                {% if campaign.status == 'brouillon' %}
+                                <form method="post" action="{% url 'launch_campaign' campaign.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit">Lancer</button>
+                                </form>
+                                {% endif %}
+                                <button>Suspendre/Reprendre</button>
+                                <button>Supprimer</button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
             <div class="stats">
                 <h3>Statistiques Rapides</h3>
                 <p>Nombre total de campagnes : {{ total_campaigns }}</p>
@@ -208,7 +137,5 @@
             </div>
         </div>
     </div>
-
-    
 </body>
 </html>

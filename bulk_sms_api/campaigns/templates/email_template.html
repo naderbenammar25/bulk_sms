@@ -1,0 +1,30 @@
+<!-- filepath: /C:/Users/LENOVO/django_projects/bulk_sms/bulk_sms_api/templates/emails/email_template.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ subject }}</title>
+    <style>
+        /* Ajoutez ici vos styles CSS pour l'email */
+        .header, .footer {
+            text-align: center;
+            padding: 10px;
+        }
+        .content {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="{{ logo_url }}" alt="Logo de l'entreprise" style="max-width: 150px;">
+        <h1>{{ company_name }}</h1>
+    </div>
+    <div class="content">
+        {{ message|safe }}
+    </div>
+    <div class="footer">
+        <p>&copy; {{ year }} {{ company_name }}. Tous droits réservés.</p>
+    </div>
+</body>
+</html>

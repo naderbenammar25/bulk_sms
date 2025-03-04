@@ -2,6 +2,14 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
 
+class Content(models.Model):
+    title = models.CharField(max_length=255)
+    html_content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+
 class Company(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100, unique=True)
@@ -60,6 +68,7 @@ class Contact(models.Model):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name} ({self.email})"
+from django.db import models
 
 class Campaign(models.Model):
     STATUS_CHOICES = (
@@ -69,6 +78,12 @@ class Campaign(models.Model):
         ('suspendue', 'Suspendue'),
         ('terminée', 'Terminée'),
         ('historisée', 'Historisée'),
+    )
+
+    TYPE_CHOICES = (
+        ('brouillon', 'Brouillon'),
+        ('planifié', 'Planifié'),
+        ('lancement_rapide', 'Lancement Rapide'),
     )
 
     id = models.AutoField(primary_key=True)
@@ -81,6 +96,10 @@ class Campaign(models.Model):
     duration = models.IntegerField(help_text="Durée de la campagne en jours")  # Durée de la campagne en jours
     messages_per_period = models.IntegerField(help_text="Nombre de messages par période")  # Nombre de messages par période
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='brouillon')  # Statut de la campagne
+    campaign_type = models.CharField(max_length=20, choices=TYPE_CHOICES, default='brouillon')  # Type de la campagne
+    content = models.ForeignKey(Content, on_delete=models.SET_NULL, null=True, blank=True)  # Contenu de la campagne
+    duration_unit = models.CharField(max_length=20, default='jours')  # Unité de durée
+    period_unit = models.CharField(max_length=20, default='semaine')  # Unité de période
 
     def __str__(self):
         return f"Campaign to {self.group.name} on {self.created_at}"
@@ -94,10 +113,3 @@ class CampaignAction(models.Model):
     def __str__(self):
         return f'{self.user.username} - {self.action} - {self.timestamp}'
 
-class Content(models.Model):
-    title = models.CharField(max_length=255)
-    html_content = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.title

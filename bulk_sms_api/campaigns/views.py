@@ -29,7 +29,13 @@ import requests
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 import json
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
 
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.utils import timezone
+from .models import Campaign, Content, Group
 
 User = get_user_model()
 
@@ -374,14 +380,29 @@ def gestion_groupes(request):
 def gestion_campagnes(request):
     return render(request, 'gestion_campagnes_admin.html')
 
+
+
+
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from .models import Campaign, Content, Group
 
+from django.db.models import Q
+
 @login_required
 def gestion_campagnes_mk(request):
+    status_filter = request.GET.get('status')
+    search_query = request.GET.get('search')
+
     campaigns = Campaign.objects.all()
+
+    if status_filter:
+        campaigns = campaigns.filter(status=status_filter)
+
+    if search_query:
+        campaigns = campaigns.filter(Q(name__icontains=search_query))
+
     contents = Content.objects.all()
     groups = Group.objects.all()
     total_campaigns = campaigns.count()
@@ -389,55 +410,8 @@ def gestion_campagnes_mk(request):
     scheduled_campaigns = campaigns.filter(status='planifiée').count()
     completed_campaigns = campaigns.filter(status='terminée').count()
 
-    if request.method == 'POST':
-        action = request.POST.get('action')
-        campaign_id = request.POST.get('campaign_id')
-        campaign_title = request.POST.get('campaign_title')
-        campaign_content = request.POST.get('campaign_content')
-        campaign_message = request.POST.get('campaign_message')
-        target_groups = request.POST.get('target_groups')
-        launch_date = request.POST.get('launch_date')
-        duration = request.POST.get('duration')
-        messages_per_period = request.POST.get('messages_per_period')
-        campaign_status = request.POST.get('campaign_status')
-
-        if campaign_id:
-            campaign = get_object_or_404(Campaign, id=campaign_id)
-            campaign.name = campaign_title
-            campaign.group_id = target_groups
-            campaign.message = campaign_message if not campaign_content else Content.objects.get(id=campaign_content).html_content
-            campaign.launch_date = launch_date
-            campaign.duration = int(duration)
-            campaign.messages_per_period = int(messages_per_period)
-            campaign.status = campaign_status
-
-            if action == 'update':
-                campaign.save()
-                return redirect('gestion_campagnes_mk')
-        else:
-            campaign = Campaign(
-                name=campaign_title,
-                group_id=target_groups,
-                message=campaign_message if not campaign_content else Content.objects.get(id=campaign_content).html_content,
-                launch_date=launch_date,
-                duration=int(duration),
-                messages_per_period=int(messages_per_period),
-                status=campaign_status
-            )
-
-            if action == 'save_draft':
-                campaign.status = 'brouillon'
-            elif action == 'launch_now':
-                campaign.status = 'en cours'
-                campaign.launch_date = timezone.now()
-            elif action == 'schedule':
-                campaign.status = 'planifiée'
-
-            campaign.save()
-            return redirect('gestion_campagnes_mk')
-
     context = {
-        'campaigns': campaigns,
+        'campaigns': campaigns[:10],  # Limiter l'affichage à 10 campagnes
         'contents': contents,
         'groups': groups,
         'total_campaigns': total_campaigns,
@@ -446,6 +420,83 @@ def gestion_campagnes_mk(request):
         'completed_campaigns': completed_campaigns,
     }
     return render(request, 'gestion_campagnes_MK.html', context)
+
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.utils import timezone
+from .models import Campaign, Content, Group
+from django.contrib import messages
+
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.utils import timezone
+from .models import Campaign, Content, Group
+from django.contrib import messages
+
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.utils import timezone
+from .models import Campaign, Content, Group
+from django.contrib import messages
+
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.utils import timezone
+from .models import Campaign, Content, Group
+from django.contrib import messages
+
+@login_required
+def create_campaign(request):
+    if request.method == 'POST':
+        title = request.POST.get('campaign_title')
+        campaign_type = request.POST.get('campaign_type')
+        content_id = request.POST.get('campaign_content')
+        message = request.POST.get('campaign_message')
+        launch_date = request.POST.get('launch_date')
+        target_group_id = request.POST.get('target_groups')
+        duration = request.POST.get('duration')
+        duration_unit = request.POST.get('duration_unit')
+        messages_per_period = request.POST.get('messages_per_period')
+        period_unit = request.POST.get('period_unit')
+
+        content = Content.objects.get(id=content_id) if content_id else None
+        target_group = Group.objects.get(id=target_group_id)
+
+        if content:
+            message = content.html_content  # Utiliser le contenu existant si sélectionné
+
+        if campaign_type == 'lancement_rapide':
+            launch_date = timezone.now()
+            duration = 1  # Valeur par défaut pour la durée
+            duration_unit = 'jours'  # Valeur par défaut pour l'unité de durée
+            messages_per_period = 1  # Valeur par défaut pour le nombre de messages par période
+            period_unit = 'semaine'  # Valeur par défaut pour l'unité de période
+
+        campaign = Campaign.objects.create(
+            name=title,
+            campaign_type=campaign_type,
+            content=content,
+            message=message,
+            launch_date=launch_date,
+            group=target_group,
+            duration=duration,
+            duration_unit=duration_unit,
+            messages_per_period=messages_per_period,
+            period_unit=period_unit,
+            status='terminée' if campaign_type == 'lancement_rapide' else 'brouillon'
+        )
+
+        if campaign_type == 'lancement_rapide':
+            # Lancer la campagne immédiatement
+            launch_fast_campaign(request, campaign.id)
+
+        return redirect('gestion_campagnes_mk')
+
+    contents = Content.objects.all()
+    groups = Group.objects.all()
+    return render(request, 'creation_campagne.html', {'contents': contents, 'groups': groups})
+
+
 
 def visualisation_performances(request):
     return render(request, 'visualisation_performances.html')
@@ -603,20 +654,21 @@ def editeur_contenu(request):
     if request.method == 'POST':
         title = request.POST.get('title')
         html_content = request.POST.get('html_content')
+
+        # Enregistrer le contenu avec l'en-tête et le pied de page
         Content.objects.create(title=title, html_content=html_content)
         messages.success(request, 'Contenu créé avec succès.')
         return redirect('marketing_dashboard')
-    
+
     user = request.user
     company = user.company  # Assurez-vous que l'utilisateur a une relation avec l'entreprise
     logo_url = company.logo.url if company.logo else None  # Assurez-vous que l'entreprise a un logo
     company_name = company.name if company else "Nom de l'entreprise"
-    
+
     return render(request, 'editeur_contenu.html', {
         'logo_url': logo_url,
         'company_name': company_name,
     })
-
 @login_required
 def demande_assistance(request):
     return render(request, 'demande_assistance.html')
@@ -749,3 +801,101 @@ def generate_content(request):
             return JsonResponse({'error': str(e)}, status=500)
     return JsonResponse({'error': 'Invalid request'}, status=400)
 
+
+
+
+
+
+
+from django.contrib.sites.models import Site
+
+@login_required
+def launch_campaign(request, campaign_id):
+    campaign = get_object_or_404(Campaign, id=campaign_id)
+    if campaign.status == 'brouillon':
+        campaign.status = 'en cours'
+        campaign.launch_date = timezone.now()
+        campaign.save()
+
+        # Récupérer les informations de l'entreprise
+        company = request.user.company
+        logo_url = request.build_absolute_uri(company.logo.url) if company.logo else ''
+        company_name = company.name if company else 'Nom de l\'entreprise'
+
+        # Envoyer des emails aux contacts associés au groupe choisi
+        contacts = campaign.group.contacts.all()
+        for contact in contacts:
+            subject = f"Campagne: {campaign.name}"
+            message = campaign.message
+            html_content = f"""
+                <div class="header">
+                    <img src="{logo_url}" alt="Logo de l'entreprise">
+                    <h3>{company_name}</h3>
+                </div>
+                {message}
+                <div class="footer">
+                    <p>&copy; {company_name} - Tous droits réservés</p>
+                </div>
+            """
+
+            email = EmailMultiAlternatives(
+                subject=subject,
+                body=message,
+                from_email=settings.EMAIL_HOST_USER,
+                to=[contact.email],
+            )
+            email.attach_alternative(html_content, "text/html")
+            email.send()
+
+    return redirect('gestion_campagnes_mk')
+
+
+
+from django.core.mail import EmailMultiAlternatives
+from django.conf import settings
+import logging
+
+logger = logging.getLogger(__name__)
+
+@login_required
+def launch_fast_campaign(request, campaign_id):
+    campaign = get_object_or_404(Campaign, id=campaign_id)
+    campaign.status = 'terminée'
+    campaign.launch_date = timezone.now()
+    campaign.save()
+
+    # Récupérer les informations de l'entreprise
+    company = request.user.company
+    logo_url = request.build_absolute_uri(company.logo.url) if company.logo else ''
+    company_name = company.name if company else 'Nom de l\'entreprise'
+
+    # Envoyer des emails aux contacts associés au groupe choisi
+    contacts = campaign.group.contacts.all()
+    for contact in contacts:
+        subject = f"Campagne: {campaign.name}"
+        message = campaign.message
+        html_content = f"""
+            <div class="header">
+                <img src="{logo_url}" alt="Logo de l'entreprise">
+                <h3>{company_name}</h3>
+            </div>
+            {message}
+            <div class="footer">
+                <p>&copy; {company_name} - Tous droits réservés</p>
+            </div>
+        """
+
+        try:
+            email = EmailMultiAlternatives(
+                subject=subject,
+                body=message,
+                from_email=settings.EMAIL_HOST_USER,
+                to=[contact.email],
+            )
+            email.attach_alternative(html_content, "text/html")
+            email.send()
+            logger.info(f"Email sent to {contact.email}")
+        except Exception as e:
+            logger.error(f"Failed to send email to {contact.email}: {e}")
+
+    return redirect('gestion_campagnes_mk')
