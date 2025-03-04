@@ -9,6 +9,16 @@
     <link rel="stylesheet" href="{% static 'campaigns/css/admin.css' %}">
     <script src="{% static 'campaigns/js/gestion_utilisateurs_marketing.js' %}" defer></script>
 </head>
+<style>
+    :root {
+        --primary-color: {{ colors.0 }};
+        --secondary-color: {{ colors.1 }};
+        --background-color: #f4f7f6;
+        --sidebar-color: #2c3e50;
+        --text-color: #333;
+        --hover-color: {{ colors.0 }};
+    }
+</style>    
 <body>
     <div class="sidebar">
         <img src="{{ logo_url }}" alt="Company Logo" class="logo">

@@ -12,16 +12,38 @@
 <body>
     <div class="main-content">
         <h2>Créer une Campagne</h2>
+        <div class="step-indicator">
+            <div class="step-item active" data-step="1">
+                <div class="step-circle">1</div>
+                <div class="step-title">Titre</div>
+            </div>
+            <div class="step-item" data-step="2">
+                <div class="step-circle">2</div>
+                <div class="step-title">Type & Contenu</div>
+            </div>
+            <div class="step-item" data-step="3">
+                <div class="step-circle">3</div>
+                <div class="step-title">Lancement & Groupes</div>
+            </div>
+            <div class="step-item" data-step="4">
+                <div class="step-circle">4</div>
+                <div class="step-title">Durée & Messages</div>
+            </div>
+            <div class="step-item" data-step="confirmation-step">
+                <div class="step-circle">5</div>
+                <div class="step-title">Confirmation</div>
+            </div>
+        </div>
         <form id="campaign-form" method="post" action="{% url 'create_campaign' %}">
             {% csrf_token %}
-            <div id="step1">
+            <div id="step1" class="step active">
                 <label for="campaign-title">Titre de la Campagne</label>
                 <input type="text" id="campaign-title" name="campaign_title" required>
                 
                 <button type="button" data-next-step="2">Suivant</button>
             </div>
             
-            <div id="step2" style="display:none;">
+            <div id="step2" class="step">
                 <label for="campaign-type">Type de Campagne</label>
                 <select id="campaign-type" name="campaign_type" required>
                     <option value="brouillon">Brouillon</option>
@@ -42,7 +64,7 @@
                 <button type="button" data-next-step="3">Suivant</button>
             </div>
             
-            <div id="step3" style="display:none;">
+            <div id="step3" class="step">
                 <label for="launch-date">Date et Heure de Lancement</label>
                 <input type="datetime-local" id="launch-date" name="launch_date" required>
                 
@@ -58,7 +80,7 @@
                 <button type="button" data-next-step="4">Suivant</button>
             </div>
             
-            <div id="step4" style="display:none;">
+            <div id="step4" class="step">
                 <label for="duration">Durée de la Campagne</label>
                 <input type="number" id="duration" name="duration" required>
                 <select id="duration-unit" name="duration_unit" required>
@@ -80,7 +102,7 @@
                 <button type="button" id="finish-button">Terminer</button>
             </div>
 
-            <div id="confirmation-step" style="display:none;">
+            <div id="confirmation-step" class="step">
                 <h3>Confirmation de la Campagne</h3>
                 <p id="campaign-preview"></p>
                 <p id="confirmation-message"></p>

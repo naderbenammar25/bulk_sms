@@ -4,13 +4,22 @@ document.addEventListener('DOMContentLoaded', function() {
         steps.forEach(s => {
             const element = document.getElementById(s);
             if (element) {
-                element.style.display = 'none';
+                element.classList.remove('active', 'inactive');
+                if (s === 'step' + step || s === step) {
+                    element.classList.add('active');
+                } else {
+                    element.classList.add('inactive');
+                }
             }
         });
-        const currentStep = document.getElementById('step' + step) || document.getElementById(step);
-        if (currentStep) {
-            currentStep.style.display = 'block';
-        }
+
+        // Mettre à jour l'indicateur d'étapes
+        document.querySelectorAll('.step-item').forEach(item => {
+            item.classList.remove('active');
+            if (item.getAttribute('data-step') === step.toString() || item.getAttribute('data-step') === 'step' + step) {
+                item.classList.add('active');
+            }
+        });
     }
 
     // Initial call to show the first step

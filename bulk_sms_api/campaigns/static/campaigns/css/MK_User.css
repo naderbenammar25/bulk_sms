@@ -1,15 +1,34 @@
+:root {
+    --primary-color: #3498db; /* Couleur principale de l'entreprise */
+    --secondary-color: #2ecc71; /* Couleur secondaire de l'entreprise */
+    --background-color: #f4f7f6; /* Couleur de fond */
+    --sidebar-color: #2c3e50; /* Couleur de la barre latérale */
+    --text-color: #333; /* Couleur du texte principal */
+    --hover-color: #2980b9; /* Couleur au survol */
+    --active-color: #e74c3c; /* Couleur pour les éléments actifs */
+    --border-color: #ddd; /* Couleur des bordures */
+    --shadow-color: rgba(0, 0, 0, 0.1); /* Couleur des ombres */
+    --transition-speed: 0.3s; /* Vitesse des transitions */
+}
+
 /* Styles généraux */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     background-color: var(--background-color);
     color: var(--text-color);
     margin: 0;
     padding: 0;
+    line-height: 1.6;
 }
 
 a {
     text-decoration: none;
     color: inherit;
+    transition: color var(--transition-speed) ease;
+}
+
+a:hover {
+    color: var(--primary-color);
 }
 
 ul {
@@ -19,9 +38,14 @@ ul {
 
 button {
     cursor: pointer;
+    transition: background-color var(--transition-speed) ease, transform 0.2s ease;
 }
 
-/* Styles pour la barre latérale */
+button:hover {
+    transform: translateY(-2px);
+}
+
+/* Barre latérale */
 .sidebar {
     width: 250px;
     height: 100vh;
@@ -33,6 +57,7 @@ button {
     flex-direction: column;
     align-items: center;
     padding-top: 20px;
+    box-shadow: 2px 0 10px var(--shadow-color);
 }
 
 .sidebar-header {
@@ -50,6 +75,7 @@ button {
     color: white;
     font-size: 18px;
     margin: 0;
+    font-weight: 600;
 }
 
 .sidebar nav ul {
@@ -66,7 +92,7 @@ button {
     padding: 15px 20px;
     color: white;
     font-size: 16px;
-    transition: background-color 0.3s ease;
+    transition: background-color var(--transition-speed) ease;
 }
 
 .sidebar nav ul li a:hover {
@@ -77,10 +103,12 @@ button {
     margin-right: 10px;
 }
 
-/* Styles pour le contenu principal */
+/* Contenu principal */
 .main-content {
     margin-left: 250px;
-    padding: 20px;
+    padding: 30px;
+    background-color: var(--background-color);
+    min-height: 100vh;
 }
 
 .header-bar {
@@ -89,13 +117,15 @@ button {
     align-items: center;
     background-color: var(--primary-color);
     color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px var(--shadow-color);
 }
 
 .header-bar h1 {
     margin: 0;
     font-size: 24px;
+    font-weight: 600;
 }
 
 .user-info {
@@ -105,256 +135,181 @@ button {
 
 .user-info span {
     margin-right: 10px;
-}
-
-.user-info a {
-    color: white;
-    margin-right: 10px;
+    font-size: 16px;
 }
 
 .logout-button {
     background-color: var(--secondary-color);
     color: white;
     border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
 }
 
 .logout-button:hover {
     background-color: var(--hover-color);
 }
 
+/* Sections du contenu */
 .content {
     margin-top: 20px;
 }
 
 .content h2 {
     font-size: 22px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+    font-weight: 600;
 }
 
 .content p {
     font-size: 16px;
+    color: var(--text-color);
 }
 
-
-
-
-/* ////////////////  gestion_profile_MK  /////////////////// */
-
-
-.main-content {
-    margin-left: 270px;
-    padding: 20px;
-    width: calc(100% - 270px);
-}
-
-.main-content h1 {
-    margin-bottom: 20px;
-}
-
-.section {
-    margin-bottom: 20px;
-}
-
-.section h2 {
-    margin-bottom: 10px;
-}
-
-.section label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-.section input, .section select {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.edit-button {
-    background-color: #4b464f;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-bottom: 10px;
-}
-
-.edit-button:hover {
-    background-color: #272528;
-}
-
-.save-button {
-    background-color: #4b464f;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    display: block;
-    margin-top: 20px;
-}
-
-.save-button:hover {
-    background-color: #272528;
-}
-
-.section select {
-    width: auto;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-#timezone {
-    width: 20%;
-    position: relative;
-    top: 27px;
-}
-
-#timezone_auto{
-    position: relative;
-    right: 520px;
-    top: 27px;
-}
-
-
-/* Styles pour l'icône de profil */
-.profile-icon {
-    font-size: 24px; /* Taille de l'icône */
-    color: white; /* Couleur de l'icône */
-    margin-right: 10px; /* Espace à droite de l'icône */
-    transition: color 0.3s ease; /* Transition pour le changement de couleur */
-    z-index: 10000; /* Pour afficher l'icône au-dessus des autres éléments */
-    position: relative;
-}
-
-.profile-icon:hover {
-    color: var(--hover-color); /* Couleur de l'icône au survol */
-}
-
-/* Icônes Material Icons */
-.material-icons {
-    vertical-align: middle; /* Aligner verticalement les icônes */
-}
-
-
-
-
-
-
-
-
-
-
-/* Styles pour la page Sécurité */
-.device-list {
-    margin-top: 20px;
-}
-
-.device {
-    background-color: #f4f7f6;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-bottom: 10px;
-}
-
-.device p {
-    margin: 5px 0;
-}
-
-.save-button {
-    background-color: #4b464f;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    display: block;
-    margin-top: 20px;
-}
-.save-button:hover {
-    background-color: #272528;
-}
-
-
-
+/* Formulaire de campagne */
 .campaign-form {
-    margin: 20px;
+    margin: 20px 0;
     padding: 20px;
     background: white;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px var(--shadow-color);
 }
+
 .campaign-form label {
     display: block;
     margin-bottom: 8px;
     font-weight: bold;
+    color: var(--text-color);
 }
+
 .campaign-form input,
 .campaign-form select,
 .campaign-form textarea {
     width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
 }
+
+.campaign-form input:focus,
+.campaign-form select:focus,
+.campaign-form textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 8px rgba(52, 152, 219, 0.3);
+    outline: none;
+}
+
 .campaign-form button {
     padding: 10px 20px;
     background-color: var(--primary-color);
     color: white;
     border: none;
-    border-radius: 4px;
-    cursor: pointer;
+    border-radius: 6px;
+    font-size: 16px;
 }
+
 .campaign-form button:hover {
     background-color: var(--hover-color);
 }
+
+/* Liste des campagnes */
 .campaign-list {
-    margin: 20px;
+    margin: 20px 0;
     padding: 20px;
     background: white;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px var(--shadow-color);
 }
+
 .campaign-list table {
     width: 100%;
     border-collapse: collapse;
 }
-.campaign-list th, .campaign-list td {
-    padding: 10px;
-    border: 1px solid #ccc;
+
+.campaign-list th,
+.campaign-list td {
+    padding: 12px;
+    border: 1px solid var(--border-color);
     text-align: left;
 }
+
 .campaign-list th {
     background-color: var(--primary-color);
     color: white;
+    font-weight: 600;
 }
+
 .campaign-list td {
     background-color: #f9f9f9;
 }
+
 .campaign-list .actions button {
     margin-right: 5px;
+    padding: 6px 12px;
+    font-size: 14px;
 }
+
+/* Statistiques */
 .stats {
-    margin: 20px;
+    margin: 20px 0;
     padding: 20px;
     background: white;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px var(--shadow-color);
 }
+
 .stats h3 {
     margin-bottom: 10px;
+    color: var(--primary-color);
+    font-weight: 600;
 }
+
 .stats p {
     margin: 5px 0;
+    color: var(--text-color);
+}
+
+/* Gestion du profil */
+.profile-icon {
+    font-size: 24px;
+    color: white;
+    margin-right: 10px;
+    transition: color var(--transition-speed) ease;
+}
+
+.profile-icon:hover {
+    color: var(--hover-color);
+}
+
+.material-icons {
+    vertical-align: middle;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding: 10px;
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding: 20px;
+    }
+
+    .header-bar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .user-info {
+        margin-top: 10px;
+    }
 }

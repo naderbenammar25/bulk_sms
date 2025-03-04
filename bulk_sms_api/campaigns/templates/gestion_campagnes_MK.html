@@ -11,12 +11,12 @@
     <script src="{% static 'campaigns/js/MK_User.js' %}" defer></script>
     <style>
         :root {
-            --primary-color: #3498db;
-            --secondary-color: #2ecc71;
+            --primary-color: {{ colors.0 }};
+            --secondary-color: {{ colors.1 }};
             --background-color: #f4f7f6;
             --sidebar-color: #2c3e50;
             --text-color: #333;
-            --hover-color: #2980b9;
+            --hover-color: {{ colors.0 }};
         }
         .campaign-list {
             max-height: 400px; /* Limiter la hauteur du tableau */
@@ -81,9 +81,9 @@
                     <button type="submit">Filtrer</button>
                 </form>
             </div>
+            <h2>Liste des Campagnes</h2>
 
             <div class="campaign-list">
-                <h2>Liste des Campagnes</h2>
                 <table>
                     <thead>
                         <tr>
@@ -103,25 +103,30 @@
                             <td>{{ campaign.get_status_display }}</td>
                             <td>{{ campaign.launch_date }}</td>
                             <td class="actions">
-                                <button class="edit-button" 
-                                        data-id="{{ campaign.id }}" 
-                                        data-title="{{ campaign.name }}" 
-                                        data-content="{{ campaign.content_id }}" 
-                                        data-message="{{ campaign.message }}" 
-                                        data-groups="{{ campaign.group_id }}" 
-                                        data-launch_date="{{ campaign.launch_date|date:'Y-m-d\TH:i' }}" 
-                                        data-duration="{{ campaign.duration }}" 
-                                        data-messages_per_period="{{ campaign.messages_per_period }}">
-                                    Modifier
-                                </button>
-                                {% if campaign.status == 'brouillon' %}
-                                <form method="post" action="{% url 'launch_campaign' campaign.id %}">
-                                    {% csrf_token %}
-                                    <button type="submit">Lancer</button>
-                                </form>
+                                {% if campaign.status == 'terminée' %}
+                                    <button class="relancer-button" data-id="{{ campaign.id }}">Relancer</button>
+                                    <button class="details-button" data-id="{{ campaign.id }}">Voir détails</button>
+                                {% else %}
+                                    <button class="edit-button" 
+                                            data-id="{{ campaign.id }}" 
+                                            data-title="{{ campaign.name }}" 
+                                            data-content="{{ campaign.content_id }}" 
+                                            data-message="{{ campaign.message }}" 
+                                            data-groups="{{ campaign.group_id }}" 
+                                            data-launch_date="{{ campaign.launch_date|date:'Y-m-d\TH:i' }}" 
+                                            data-duration="{{ campaign.duration }}" 
+                                            data-messages_per_period="{{ campaign.messages_per_period }}">
+                                        Modifier
+                                    </button>
+                                    {% if campaign.status == 'brouillon' %}
+                                    <form method="post" action="{% url 'launch_campaign' campaign.id %}">
+                                        {% csrf_token %}
+                                        <button type="submit">Lancer</button>
+                                    </form>
+                                    {% endif %}
+                                    <button>Suspendre/Reprendre</button>
+                                    <button>Supprimer</button>
                                 {% endif %}
-                                <button>Suspendre/Reprendre</button>
-                                <button>Supprimer</button>
                             </td>
                         </tr>
                         {% endfor %}
