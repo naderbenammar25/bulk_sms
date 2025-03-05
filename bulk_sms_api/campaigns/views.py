@@ -899,3 +899,4 @@ def launch_fast_campaign(request, campaign_id):
             logger.error(f"Failed to send email to {contact.email}: {e}")
 
     return redirect('gestion_campagnes_mk')
+
