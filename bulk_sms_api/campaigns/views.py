@@ -37,6 +37,14 @@ from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from .models import Campaign, Content, Group
 
+from django.contrib.auth import login as auth_login, logout as auth_logout
+from django.shortcuts import redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from .models import CustomUser
+
 User = get_user_model()
 
 @api_view(['GET'])
@@ -175,6 +183,8 @@ def user_login(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
+            user.is_logged_in = True
+            user.save()
             if user.role == 'admin':
                 return redirect('admin_dashboard')
             elif user.role == 'marketing':
@@ -183,7 +193,13 @@ def user_login(request):
             return render(request, 'login.html', {'error': 'Invalid username or password'})
     return render(request, 'login.html')
 
-
+def custom_logout(request):
+    user = request.user
+    if user.is_authenticated:
+        user.is_logged_in = False
+        user.save()
+    auth_logout(request)
+    return redirect('login')
 
 @login_required
 def marketing_dashboard(request):
@@ -300,10 +316,17 @@ def gestion_contacts(request):
         'groupes': groupes,
     }
     return render(request, 'gestion_contacts.html', context)
+
 @login_required
 def gestion_utilisateurs_marketing(request):
-    employees = CustomUser.objects.filter(company=request.user.company, role='marketing')
-    return render(request, 'gestion_utilisateurs_marketing.html', {'employees': employees})
+    company_id = request.user.company_id  # Assurez-vous que l'utilisateur a un attribut company_id
+    employees = CustomUser.objects.filter(role='marketing', company_id=company_id)
+    active_employees = employees.filter(is_logged_in=True)
+    context = {
+        'employees': employees,
+        'active_employees': active_employees,
+    }
+    return render(request, 'gestion_utilisateurs_marketing.html', context)
 
 @login_required
 def edit_user(request, user_id):
@@ -899,4 +922,6 @@ def launch_fast_campaign(request, campaign_id):
             logger.error(f"Failed to send email to {contact.email}: {e}")
 
     return redirect('gestion_campagnes_mk')
+
+
 

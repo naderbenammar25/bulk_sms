@@ -18,27 +18,16 @@
             --text-color: #333;
             --hover-color: {{ colors.0 }};
         }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        table, th, td {
-            border: 1px solid #ddd;
-        }
-        th, td {
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: var(--primary-color);
-            color: white;
-        }
+        
         .actions button {
             margin-right: 5px;
         }
         .import-section {
             margin-top: 20px;
+        }
+        .contact-list {
+            max-height: 400px; /* Limiter la hauteur du tableau */
+            overflow-y: auto; /* Ajouter une barre de défilement verticale */
         }
     </style>
 </head>
@@ -85,37 +74,39 @@
                 </select>
                 <button type="submit">Filtrer</button>
             </form>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Nom</th>
-                        <th>Prénom</th>
-                        <th>Email</th>
-                        <th>Téléphone</th>
-                        <th>Groupe</th>
-                        <th>Statut</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Les contacts seront affichés ici -->
-                    {% for contact in contacts %}
-                    <tr>
-                        <td>{{ contact.first_name }}</td>
-                        <td>{{ contact.last_name }}</td>
-                        <td>{{ contact.email }}</td>
-                        <td>{{ contact.phone }}</td>
-                        <td>{{ contact.group.name }}</td>
-                        <td>{{ contact.status }}</td>
-                        <td class="actions">
-                            <button class="edit-button">Modifier</button>
-                            <button class="associate-button">Associer</button>
-                            <button class="status-button">{% if contact.status == 'Actif' %}Désactiver{% else %}Activer{% endif %}</button>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            <div class="contact-list">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                            <th>Email</th>
+                            <th>Téléphone</th>
+                            <th>Groupe</th>
+                            <th>Statut</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Les contacts seront affichés ici -->
+                        {% for contact in contacts %}
+                        <tr>
+                            <td>{{ contact.first_name }}</td>
+                            <td>{{ contact.last_name }}</td>
+                            <td>{{ contact.email }}</td>
+                            <td>{{ contact.phone }}</td>
+                            <td>{{ contact.group.name }}</td>
+                            <td>{{ contact.status }}</td>
+                            <td class="actions">
+                                <button class="edit-button">Modifier</button>
+                                <button class="associate-button">Associer</button>
+                                <button class="status-button">{% if contact.status == 'Actif' %}Désactiver{% else %}Activer{% endif %}</button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
 
             <div class="import-section">
                 <h2>Importer des Contacts</h2>

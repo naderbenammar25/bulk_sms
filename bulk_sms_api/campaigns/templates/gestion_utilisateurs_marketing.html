@@ -8,17 +8,17 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'campaigns/css/admin.css' %}">
     <script src="{% static 'campaigns/js/gestion_utilisateurs_marketing.js' %}" defer></script>
+    <style>
+        :root {
+            --primary-color: {{ colors.0 }};
+            --secondary-color: {{ colors.1 }};
+            --background-color: #f4f7f6;
+            --sidebar-color: #2c3e50;
+            --text-color: #333;
+            --hover-color: {{ colors.0 }};
+        }
+    </style>
 </head>
-<style>
-    :root {
-        --primary-color: {{ colors.0 }};
-        --secondary-color: {{ colors.1 }};
-        --background-color: #f4f7f6;
-        --sidebar-color: #2c3e50;
-        --text-color: #333;
-        --hover-color: {{ colors.0 }};
-    }
-</style>    
 <body>
     <div class="sidebar">
         <img src="{{ logo_url }}" alt="Company Logo" class="logo">
@@ -72,6 +72,7 @@
                     <th>Email</th>
                     <th>Téléphone</th>
                     <th>Status</th>
+                    <th>Dernière Connexion</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -84,12 +85,32 @@
                     </td>
                     <td>{{ employee.email }}</td>
                     <td>{{ employee.phone }}</td>
-                    <td>{{ employee.is_active|yesno:"Actif,Inactif" }}</td>
+                    <td>{{ employee.is_logged_in|yesno:"Connecté,Déconnecté" }}</td>
+                    <td>{{ employee.last_login }}</td>
                     <td>
                         <button class="edit-employee" data-employee-id="{{ employee.id }}">Modifier</button>
                         <button class="reset-password" data-employee-id="{{ employee.id }}">Réinitialiser</button>
                         <button class="toggle-status" data-employee-id="{{ employee.id }}">{{ employee.is_active|yesno:"Désactiver,Activer" }}</button>
                     </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <h2>Activités des Employés</h2>
+        <table id="employee-activities-table">
+            <thead>
+                <tr>
+                    <th>Nom & Prénom</th>
+                    <th>Status</th>
+                    <th>Dernière Connexion</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for employee in active_employees %}
+                <tr>
+                    <td>{{ employee.first_name }} {{ employee.last_name }}</td>
+                    <td>{{ employee.is_logged_in|yesno:"Connecté,Déconnecté" }}</td>
+                    <td>{{ employee.last_login }}</td>
                 </tr>
                 {% endfor %}
             </tbody>

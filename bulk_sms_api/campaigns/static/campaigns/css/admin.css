@@ -7,7 +7,7 @@
     --text-color: #333;
     --hover-color: #1abc9c;
     --header-color: #2c3e50;
-    --table-header-color: #f4f4f4;
+    --table-header-color: {{ colors.0 }};
     --table-row-even-color: #f9f9f9;
     --table-row-hover-color: #f1f1f1;
     --shadow-color: rgba(0, 0, 0, 0.1);
@@ -55,7 +55,6 @@ button:hover {
     position: fixed;
     top: 0;
     left: 0;
-    background-color: var(--sidebar-color);
     color: #fff;
     padding: 20px;
     box-shadow: 2px 0 5px var(--shadow-color);
@@ -76,7 +75,7 @@ button:hover {
 .sidebar h2 {
     font-size: 18px;
     margin: 0;
-    color: #fff;
+    color: black;
     font-weight: 600;
 }
 
@@ -90,7 +89,7 @@ button:hover {
 }
 
 .sidebar nav ul li a {
-    color: #fff;
+    color: black;
     text-decoration: none;
     font-size: 16px;
     display: flex;
@@ -118,13 +117,13 @@ button:hover {
 
 /* Header Bar */
 .header-bar {
-    width: calc(100% - 250px);
+    width: calc(100% - 320px);
     padding: 15px 20px;
-    background-color: var(--header-color);
-    color: #fff;
+
+    background-color:#6a666663 ;
     position: fixed;
     top: 0;
-    left: 250px;
+    left: 290px;
     z-index: 1000;
     display: flex;
     justify-content: space-between;
@@ -136,6 +135,7 @@ button:hover {
     margin: 0;
     font-size: 24px;
     font-weight: 600;
+    color: var(--primary-color);
 }
 
 .user-info {
@@ -151,10 +151,7 @@ button:hover {
 /* Contenu principal */
 .content {
     margin-top: 80px; /* Pour éviter que le contenu ne soit caché sous la barre d'en-tête */
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px var(--shadow-color);
+    top: 100px;
 }
 
 /* Search Bar */
@@ -163,6 +160,9 @@ button:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 50%;
+    position: relative;
+    left: 200px;
 }
 
 .search-bar input {
@@ -218,11 +218,13 @@ button:hover {
     outline: none;
 }
 
+
 /* Table */
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+   
 }
 
 table th, table td {
@@ -243,6 +245,13 @@ table tr:nth-child(even) {
 table tr:hover {
     background-color: var(--table-row-hover-color);
 }
+
+
+thead{
+    background-color: var(--primary-color);
+    color: white;
+}
+
 
 /* Boutons */
 button {
@@ -380,13 +389,14 @@ button:hover {
 /* Styles pour le slider */
 .slider {
     position: relative;
-    bottom: 100px;
     max-width: 80%;
     margin: 20px auto;
     overflow: hidden;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    height: 350px;
+    height: 450px;
+
+
 }
 
 .slides {
@@ -396,12 +406,12 @@ button:hover {
 
 .slide {
     min-width: 100%;
-    box-sizing: border-box;
     position: relative;
 }
 
 .slide img {
     width: 100%;
+    height: auto;
     display: block;
     border-radius: 8px;
 }
@@ -430,4 +440,21 @@ button:hover {
 
 .next {
     right: 10px;
+}
+
+
+
+
+
+
+/* gest contacts */
+
+
+.content{
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    position: relative;
+    left: 100px;
 }

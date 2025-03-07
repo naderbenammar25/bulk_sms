@@ -11,13 +11,13 @@
     <script src="{% static 'campaigns/js/MK_User.js' %}" defer></script>
     <style>
         :root {
-            --primary-color: #3498db;
-            --secondary-color: #2ecc71;
+            --primary-color: {{ colors.0 }};
+            --secondary-color: {{ colors.1 }};
             --background-color: #f4f7f6;
-            --sidebar-color: #2c3e50;
             --text-color: #333;
-            --hover-color: #2980b9;
+            --hover-color: {{ colors.0 }};
         }
+        
     </style>
 </head>
 <body>
@@ -51,7 +51,7 @@
         </div>
         <form method="post" action="{% url 'update_profile_MK' %}">
             {% csrf_token %}
-            <div class="section">
+            <div class="informationsPersonnelles">
                 <h2>Informations Personnelles</h2>
                 <label for="username">Nom d'utilisateur</label>
                 <input type="text" id="username" name="username" value="{{ request.user.username }}" placeholder="Nom d'utilisateur" disabled>

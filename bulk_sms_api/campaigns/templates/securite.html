@@ -48,7 +48,7 @@
                 <li><a href="{% url 'marketing_dashboard' %}"><i class="material-icons">home</i> Accueil</a></li>
                 <li><a href="{% url 'securite' %}"><i class="material-icons">security</i> Sécurité</a></li>
                 <li><a href="{% url 'notifications' %}"><i class="material-icons">notifications</i> Notifications</a></li>
-                <li><a href="{% url 'gestion_campagnes' %}"><i class="material-icons">campaign</i> Gestion des Campagnes</a></li>
+                <li><a href="{% url 'gestion_campagnes_mk' %}"><i class="material-icons">campaign</i> Gestion des Campagnes</a></li>
                 <li><a href="{% url 'editeur_contenu' %}"><i class="material-icons">edit</i> Éditeur de Contenu</a></li>
                 <li><a href="{% url 'demande_assistance' %}"><i class="material-icons">build</i> Demande d'assistance</a></li>
             </ul>
@@ -60,7 +60,7 @@
             <div class="user-info">
                 <span>{{ request.user.username }}</span>
                 <a href="{% url 'gestion_profile_MK' %}"><i class="material-icons">account_circle</i></a>
-                <form method="post" action="{% url 'logout' %}">
+                <form class = "logoutForm" method="post" action="{% url 'logout' %}">
                     {% csrf_token %}
                     <button type="submit" class="logout-button">Déconnexion</button>
                 </form>

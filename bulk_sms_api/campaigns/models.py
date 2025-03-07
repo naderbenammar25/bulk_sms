@@ -22,6 +22,7 @@ class Company(models.Model):
 
 class CustomUser(AbstractUser):
     id = models.AutoField(primary_key=True)
+    is_logged_in = models.BooleanField(default=False)
     ROLE_CHOICES = (
         ('superadmin', 'Super Administrateur'),
         ('admin', 'Administrateur'),
@@ -33,6 +34,7 @@ class CustomUser(AbstractUser):
     timezone = models.CharField(max_length=50, default='UTC')
     language = models.CharField(max_length=50, default='Français')
     date_format = models.CharField(max_length=20, default='JJ-MM-YYYY')
+
     def __str__(self):
         return f"{self.username} ({self.get_role_display()})"
 

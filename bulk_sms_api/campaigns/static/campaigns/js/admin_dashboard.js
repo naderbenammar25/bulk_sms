@@ -52,11 +52,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-
-
-
-
-
 // Fonction pour afficher/masquer des sections
 document.addEventListener('DOMContentLoaded', function () {
     const editButtons = document.querySelectorAll('.edit-button');
@@ -86,6 +81,10 @@ document.addEventListener('DOMContentLoaded', function () {
     // Ajouter une animation de chargement lors de la soumission du formulaire
     const forms = document.querySelectorAll('form');
     forms.forEach(form => {
+        // Exclure le formulaire de déconnexion
+        if (form.querySelector('button[type="submit"]').classList.contains('logout-button')) {
+            return;
+        }
         form.addEventListener('submit', function (e) {
             e.preventDefault();
             const submitButton = form.querySelector('button[type="submit"]');
@@ -97,10 +96,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
-
-
-
-
 
 /* slider /////////////*/
 document.addEventListener('DOMContentLoaded', function () {

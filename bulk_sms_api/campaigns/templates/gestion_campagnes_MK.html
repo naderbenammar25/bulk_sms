@@ -50,20 +50,23 @@
                 {% else %}
                     <span>{{ request.user.username }}</span>
                 {% endif %}
-                <a href="{% url 'gestion_profile_MK' %}"><i class="material-icons">account_circle</i></a>
-                <form method="post" action="{% url 'logout' %}">
+                <a href="{% url 'gestion_profile_MK' %}"><i class="material-icons" id = "accountCircle">account_circle</i></a>
+                <form class = "logoutForm" method="post" action="{% url 'logout' %}">
                     {% csrf_token %}
                     <button type="submit" class="logout-button">Déconnexion</button>
                 </form>
             </div>
         </div>
         <div class="content">
+            <button id="create-campaign-button" onclick="window.location.href='{% url 'create_campaign' %}'">
+                <i class="material-icons">add</i> Créer une Campagne
+            </button>
             <div class="search-bar">
-                <form method="get" action="{% url 'gestion_campagnes_mk' %}">
-                    <input type="text" name="search" placeholder="Rechercher des campagnes..." value="{{ request.GET.search }}">
+                <form class="rechercheForm" method="get" action="{% url 'gestion_campagnes_mk' %}">
+                    <label for="search">rechercher par titre :</label>
+                    <input class="inputRecherche" type="text" name="search" placeholder="Rechercher des campagnes..." value="{{ request.GET.search }}">
                     <button type="submit">Rechercher</button>
                 </form>
-                <button id="create-campaign-button" onclick="window.location.href='{% url 'create_campaign' %}'">Créer une Campagne</button>
             </div>
 
             <div class="filter-bar">
@@ -81,7 +84,16 @@
                     <button type="submit">Filtrer</button>
                 </form>
             </div>
-            <h2>Liste des Campagnes</h2>
+
+            <div class="stats">
+                <h3>Statistiques Rapides</h3>
+                <p>Nombre total de campagnes : {{ total_campaigns }}</p>
+                <p>Nombre de campagnes en cours : {{ ongoing_campaigns }}</p>
+                <p>Nombre de campagnes planifiées : {{ scheduled_campaigns }}</p>
+                <p>Nombre de campagnes terminées : {{ completed_campaigns }}</p>
+            </div>
+            
+            <h2 class="titreListeCampagnes">Liste des Campagnes</h2>
 
             <div class="campaign-list">
                 <table>
@@ -133,13 +145,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="stats">
-                <h3>Statistiques Rapides</h3>
-                <p>Nombre total de campagnes : {{ total_campaigns }}</p>
-                <p>Nombre de campagnes en cours : {{ ongoing_campaigns }}</p>
-                <p>Nombre de campagnes planifiées : {{ scheduled_campaigns }}</p>
-                <p>Nombre de campagnes terminées : {{ completed_campaigns }}</p>
-            </div>
+            
         </div>
     </div>
 </body>

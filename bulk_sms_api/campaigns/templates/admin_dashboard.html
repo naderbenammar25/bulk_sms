@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="{% static 'campaigns/css/admin.css' %}">
     <script src="{% static 'campaigns/js/admin_dashboard.js' %}" defer></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
     <style>
         :root {
             --primary-color: {{ colors.0 }};
@@ -44,8 +43,12 @@
         <div class="header-bar">
             <h1>Tableau de Bord</h1>
             <div class="user-info">
-                <span>{{ request.user.username }}</span>
-                <a href="{% url 'gestion_profile_admin' %}"><i class="material-icons profile-icon">account_circle</i></a>
+                {% if request.session.admin_username and request.session.employee_username %}
+                    <span>{{ request.session.admin_username }} connecté en tant que {{ request.session.employee_username }}</span>
+                {% else %}
+                    <span>{{ request.user.username }}</span>
+                {% endif %}
+                <i class="fas fa-user-circle"></i>
                 <form method="post" action="{% url 'logout' %}">
                     {% csrf_token %}
                     <button type="submit" class="logout-button">Déconnexion</button>
@@ -53,25 +56,23 @@
             </div>
         </div>
         <div class="content">
-            <div class="content">
-                <!-- Slider Section -->
-                <div class="slider">
-                    <div class="slides">
-                        <div class="slide active">
-                            <img src="{% static 'campaigns/images/slider1.jpg' %}" alt="Slide 1">
-                        </div>
-                        <div class="slide">
-                            <img src="{% static 'campaigns/images/slider2.png' %}" alt="Slide 2">
-                        </div>
-                        <div class="slide">
-                            <img src="{% static 'campaigns/images/slider3.jpg' %}" alt="Slide 3">
-                        </div>
-                        <!-- Ajoutez plus d'images si nécessaire -->
+            <!-- Slider Section -->
+            <div class="slider">
+                <div class="slides">
+                    <div class="slide active">
+                        <img src="{% static 'campaigns/images/slider3.jpg' %}" alt="Slide 3">
                     </div>
-                    <!-- Boutons de navigation -->
-                    <button class="prev" aria-label="Previous Slide">&#10094;</button>
-                    <button class="next" aria-label="Next Slide">&#10095;</button>
+                    <div class="slide">
+                        <img src="{% static 'campaigns/images/slider2.png' %}" alt="Slide 2">
+                    </div>
+                    <div class="slide">
+                        <img src="{% static 'campaigns/images/slider1.jpg' %}" alt="Slide 1">
+                    </div>
+                    <!-- Ajoutez plus d'images si nécessaire -->
                 </div>
+                <!-- Boutons de navigation -->
+                <button class="prev" aria-label="Previous Slide">&#10094;</button>
+                <button class="next" aria-label="Next Slide">&#10095;</button>
             </div>
         </div>
     </div>

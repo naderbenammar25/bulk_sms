@@ -8,7 +8,6 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'campaigns/css/MK_User.css' %}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <style>
         :root {
@@ -48,7 +47,7 @@
                     <span>{{ request.user.username }}</span>
                 {% endif %}
                 <a href="{% url 'gestion_profile_MK' %}"><i class="material-icons">account_circle</i></a>
-                <form method="post" action="{% url 'logout' %}">
+                <form class = "logoutForm" method="post" action="{% url 'logout' %}">
                     {% csrf_token %}
                     <button type="submit" class="logout-button">Déconnexion</button>
                 </form>
