@@ -8,6 +8,7 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'campaigns/css/admin.css' %}">
     <script src="{% static 'campaigns/js/gestion_utilisateurs_marketing.js' %}" defer></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
         :root {
             --primary-color: {{ colors.0 }};
@@ -23,16 +24,16 @@
     <div class="sidebar">
         <img src="{{ logo_url }}" alt="Company Logo" class="logo">
         <h2>Mass Mailing - {{ company.name }}</h2>
-        <nav>
+         <nav>
             <ul>
-                <li><a href="{% url 'admin_dashboard' %}">Accueil</a></li>
-                <li><a href="{% url 'gestion_contacts' %}">Gestion des contacts</a></li>
-                <li><a href="{% url 'gestion_utilisateurs_marketing' %}">Gestion des utilisateurs marketing</a></li>
-                <li><a href="{% url 'gestion_groupes' %}">Gestion des groupes</a></li>
-                <li><a href="{% url 'gestion_campagnes' %}">Gestion des campagnes</a></li>
-                <li><a href="{% url 'visualisation_performances' %}">Visualisation des performances</a></li>
-                <li><a href="{% url 'gestion_feedback' %}">Gestion de feedback</a></li>
-                <li><a href="{% url 'demander_intervention' %}">Demander une intervention</a></li>
+                <li><a href="{% url 'admin_dashboard' %}"><i class="material-icons">home</i> Accueil</a></li>
+                <li><a href="{% url 'gestion_contacts' %}"><i class="material-icons">contacts</i> Gestion des Contacts</a></li>
+                <li><a href="{% url 'gestion_utilisateurs_marketing' %}"><i class="material-icons">group</i> Gestion des Utilisateurs Marketing</a></li>
+                <li><a href="{% url 'gestion_groupes' %}"><i class="material-icons">layers</i> Gestion des Groupes</a></li>
+                <li><a href="{% url 'gestion_campagnes_admin' %}"><i class="material-icons">campaign</i> Gestion des Campagnes</a></li>
+                <li><a href="{% url 'visualisation_performances' %}"><i class="material-icons">bar_chart</i> Visualisation des Performances</a></li>
+                <li><a href="{% url 'gestion_feedback' %}"><i class="material-icons">feedback</i> Gestion de Feedback</a></li>
+                <li><a href="{% url 'demander_intervention' %}"><i class="material-icons">build</i> Demander une Intervention</a></li>
             </ul>
         </nav>
     </div>

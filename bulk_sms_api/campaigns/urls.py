@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import index, admin_dashboard, marketing_dashboard, user_login, upload_csv, list_groups, send_emails, register, approve_registration, reject_registration
 from .views import gestion_employe, toggle_employee_status, get_employees, gestion_contacts, gestion_utilisateurs_marketing, gestion_groupes, gestion_campagnes, visualisation_performances, gestion_feedback, demander_intervention
-from .views import edit_user, reset_password, toggle_user_status, add_employee, accueil_MK_User, employee_actions, connect_as_employee, gestion_profile_admin, update_profile , create_campaign, custom_logout
+from .views import edit_user, reset_password, toggle_user_status, add_employee, accueil_MK_User, employee_actions, connect_as_employee, gestion_profile_admin, update_profile , create_campaign, custom_logout, gestion_campagnes_admin
 from .views import securite, notifications, editeur_contenu, demande_assistance, gestion_profile_MK, update_profile_MK, update_password , import_contacts, add_group, merge_groups,gestion_campagnes_mk, generate_content, suivi_performances, launch_campaign
 from django.contrib.auth import views as auth_views
 from django.contrib import admin
@@ -24,7 +24,6 @@ urlpatterns = [
     path('gestion_contacts/', gestion_contacts, name='gestion_contacts'),
     path('gestion_utilisateurs_marketing/', gestion_utilisateurs_marketing, name='gestion_utilisateurs_marketing'),
     path('gestion_groupes/', gestion_groupes, name='gestion_groupes'),
-    path('gestion_campagnes/', gestion_campagnes, name='gestion_campagnes'),
     path('visualisation_performances/', visualisation_performances, name='visualisation_performances'),
     path('gestion_feedback/', gestion_feedback, name='gestion_feedback'),
     path('demander_intervention/', demander_intervention, name='demander_intervention'),
@@ -41,7 +40,6 @@ urlpatterns = [
     path('marketing_dashboard/', marketing_dashboard, name='marketing_dashboard'),
     path('securite/', securite, name='securite'),
     path('notifications/', notifications, name='notifications'),
-    path('gestion_campagnes/', gestion_campagnes, name='gestion_campagnes'),
     path('editeur_contenu/', editeur_contenu, name='editeur_contenu'),
     path('generate_content/', generate_content, name='generate_content'),
     path('demande_assistance/', demande_assistance, name='demande_assistance'),
@@ -51,6 +49,8 @@ urlpatterns = [
     path('add_group/', add_group, name='add_group'),
     path('merge_groups/', merge_groups, name='merge_groups'),
     path('gestion_campagnes_mk/', gestion_campagnes_mk, name='gestion_campagnes_mk'),
+    path('gestion_campagnes_admin/', gestion_campagnes_admin, name='gestion_campagnes_admin'),
+
     path('suivi_performances/', suivi_performances, name='suivi_performances'),
     path('launch_campaign/<int:campaign_id>/', launch_campaign, name='launch_campaign'),
     path('create_campaign/', create_campaign, name='create_campaign'),

@@ -1,0 +1,107 @@
+<!-- filepath: /C:/Users/LENOVO/django_projects/bulk_sms/bulk_sms_api/campaigns/templates/gestion_campagnes_admin.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Campagnes - Administrateur</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'campaigns/css/admin.css' %}">
+    <script src="{% static 'campaigns/js/gestion_campagnes_admin.js' %}" defer></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: {{ colors.0 }};
+            --secondary-color: {{ colors.1 }};
+            --background-color: #f4f7f6;
+            --sidebar-color: #2c3e50;
+            --text-color: #333;
+            --hover-color: {{ colors.0 }};
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <img src="{{ logo_url }}" alt="Company Logo" class="logo">
+            <h2>Mass Mailing - {{ company.name }}</h2>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{% url 'admin_dashboard' %}"><i class="material-icons">home</i> Accueil</a></li>
+                <li><a href="{% url 'gestion_contacts' %}"><i class="material-icons">contacts</i> Gestion des Contacts</a></li>
+                <li><a href="{% url 'gestion_utilisateurs_marketing' %}"><i class="material-icons">group</i> Gestion des Utilisateurs Marketing</a></li>
+                <li><a href="{% url 'gestion_groupes' %}"><i class="material-icons">layers</i> Gestion des Groupes</a></li>
+                <li><a href="{% url 'gestion_campagnes_admin' %}"><i class="material-icons">campaign</i> Gestion des Campagnes</a></li>
+                <li><a href="{% url 'visualisation_performances' %}"><i class="material-icons">bar_chart</i> Visualisation des Performances</a></li>
+                <li><a href="{% url 'gestion_feedback' %}"><i class="material-icons">feedback</i> Gestion de Feedback</a></li>
+                <li><a href="{% url 'demander_intervention' %}"><i class="material-icons">build</i> Demander une Intervention</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="main-content">
+        <div class="header-bar">
+            <h1>Gestion des Campagnes</h1>
+            <div class="user-info">
+                <span>{{ request.user.username }}</span>
+                <i class="fas fa-user-circle"></i>
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="logout-button">Déconnexion</button>
+                </form>
+            </div>
+        </div>
+        <div class="content">
+            <div class="search-bar">
+                <form class="rechercheForm" method="get" action="{% url 'gestion_campagnes_admin' %}">
+                    <label for="search">Rechercher par titre :</label>
+                    <input class="inputRecherche" type="text" name="search" placeholder="Rechercher des campagnes..." value="{{ request.GET.search }}">
+                    <button type="submit">Rechercher</button>
+                </form>
+            </div>
+            <div class="filter-bar">
+                <form method="get" action="{% url 'gestion_campagnes_admin' %}">
+                    <label for="status-filter">Filtrer par statut :</label>
+                    <select id="status-filter" name="status">
+                        <option value="">Tous</option>
+                        <option value="brouillon">Brouillon</option>
+                        <option value="planifiée">Planifiée</option>
+                        <option value="en cours">En cours</option>
+                        <option value="suspendue">Suspendue</option>
+                        <option value="terminée">Terminée</option>
+                        <option value="historisée">Historisée</option>
+                    </select>
+                    <button type="submit">Filtrer</button>
+                </form>
+            </div>
+            <table id="campaigns-table">
+                <thead>
+                    <tr>
+                        <th>Titre</th>
+                        <th>Type</th>
+                        <th>Statut</th>
+                        <th>Date de lancement</th>
+                        <th>Groupe cible</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for campaign in campaigns %}
+                    <tr>
+                        <td>{{ campaign.name }}</td>
+                        <td>{{ campaign.campaign_type }}</td>
+                        <td>{{ campaign.status }}</td>
+                        <td>{{ campaign.launch_date }}</td>
+                        <td>{{ campaign.group.name }}</td>
+                        <td>
+                            <button class="edit-campaign" data-campaign-id="{{ campaign.id }}">Modifier</button>
+                            <button class="delete-campaign" data-campaign-id="{{ campaign.id }}">Supprimer</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

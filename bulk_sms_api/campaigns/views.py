@@ -299,12 +299,28 @@ def toggle_employee_status(request, user_id):
     return Response(serializer.data)
 
 
-@login_required
 def admin_dashboard(request):
-    return render(request, 'admin_dashboard.html')
+    company = request.user.company
+    colors = company.color.split(',')
+    primary_color = colors[0]
+    secondary_color = colors[1]
+    tertiary_color = colors[2]
+
+    context = {
+        'company': company,
+        'primary_color': primary_color,
+        'secondary_color': secondary_color,
+        'tertiary_color': tertiary_color,
+    }
+    return render(request, 'admin_dashboard.html', context)
 
 @login_required
 def gestion_contacts(request):
+    company = request.user.company
+    colors = company.color.split(',')
+    primary_color = colors[0]
+    secondary_color = colors[1]
+    tertiary_color = colors[2]
     group_id = request.GET.get('group_id')
     if group_id:
         contacts = Contact.objects.filter(group_id=group_id)
@@ -314,17 +330,30 @@ def gestion_contacts(request):
     context = {
         'contacts': contacts,
         'groupes': groupes,
+        'company': company,
+        'primary_color': primary_color,
+        'secondary_color': secondary_color,
+        'tertiary_color': tertiary_color,
     }
     return render(request, 'gestion_contacts.html', context)
 
 @login_required
 def gestion_utilisateurs_marketing(request):
+    company = request.user.company
+    colors = company.color.split(',')
+    primary_color = colors[0]
+    secondary_color = colors[1]
+    tertiary_color = colors[2]
     company_id = request.user.company_id  # Assurez-vous que l'utilisateur a un attribut company_id
     employees = CustomUser.objects.filter(role='marketing', company_id=company_id)
     active_employees = employees.filter(is_logged_in=True)
     context = {
         'employees': employees,
         'active_employees': active_employees,
+        'company': company,
+        'primary_color': primary_color,
+        'secondary_color': secondary_color,
+        'tertiary_color': tertiary_color,
     }
     return render(request, 'gestion_utilisateurs_marketing.html', context)
 
@@ -397,11 +426,22 @@ def employee_actions(request, employee_id):
 
 @login_required
 def gestion_groupes(request):
+    company = request.user.company
+    colors = company.color.split(',')
+    primary_color = colors[0]
+    secondary_color = colors[1]
+    tertiary_color = colors[2]
     groups = Group.objects.filter(company=request.user.company)
-    return render(request, 'gestion_groupes.html', {'groups': groups})
+    context = {
+        'company': company,
+        'primary_color': primary_color,
+        'secondary_color': secondary_color,
+        'tertiary_color': tertiary_color,
+        'groups': groups,
+    }
+    return render(request, 'gestion_groupes.html', context)
 
-def gestion_campagnes(request):
-    return render(request, 'gestion_campagnes_admin.html')
+
 
 
 
@@ -443,6 +483,39 @@ def gestion_campagnes_mk(request):
         'completed_campaigns': completed_campaigns,
     }
     return render(request, 'gestion_campagnes_MK.html', context)
+
+@login_required
+def gestion_campagnes_admin(request):
+    status_filter = request.GET.get('status')
+    search_query = request.GET.get('search')
+
+    campaigns = Campaign.objects.all()
+
+    if status_filter:
+        campaigns = campaigns.filter(status=status_filter)
+
+    if search_query:
+        campaigns = campaigns.filter(Q(name__icontains=search_query))
+
+    contents = Content.objects.all()
+    groups = Group.objects.all()
+    total_campaigns = campaigns.count()
+    ongoing_campaigns = campaigns.filter(status='en cours').count()
+    scheduled_campaigns = campaigns.filter(status='planifiée').count()
+    completed_campaigns = campaigns.filter(status='terminée').count()
+
+    context = {
+        'campaigns': campaigns[:10],  # Limiter l'affichage à 10 campagnes
+        'contents': contents,
+        'groups': groups,
+        'total_campaigns': total_campaigns,
+        'ongoing_campaigns': ongoing_campaigns,
+        'scheduled_campaigns': scheduled_campaigns,
+        'completed_campaigns': completed_campaigns,
+    }
+    return render(request, 'gestion_campagnes_admin.html', context)
+
+
 
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required

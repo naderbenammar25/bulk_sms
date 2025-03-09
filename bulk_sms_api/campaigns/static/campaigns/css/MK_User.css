@@ -4,7 +4,7 @@
     --background-color: #f4f7f6;
     --sidebar-color: #2c3e50;
     --text-color: #333;
-    --hover-color: #1abc9c;
+    --hover-color:#ffffff;
     --header-color: #2c3e50;
     --table-header-color: {{ colors.0 }};
     --table-row-even-color: #f9f9f9;
@@ -413,6 +413,9 @@ width: 47%;
 .material-icons {
     vertical-align: middle;
 }
+.material-icons:hover {
+    color: white;
+}
 
 
 
@@ -514,8 +517,8 @@ input[type="checkbox"] {
     transition: background-color var(--transition-speed) ease;
     margin-left: 70px;
     position: relative;
-    left: 300px;
-    width: 200px;
+    width: 1040px;
+    right: 70px;
 }
 
 

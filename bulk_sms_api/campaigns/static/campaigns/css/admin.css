@@ -2,11 +2,11 @@
 :root {
     --primary-color: {{ colors.0 }}; /* Couleur principale */
     --secondary-color: {{ colors.1 }}; /* Couleur secondaire */
+    --hover-color: {{ colors.1 }};
     --background-color: #f4f7f6;
     --sidebar-color: #2c3e50;
     --text-color: #333;
-    --hover-color: #1abc9c;
-    --header-color: #2c3e50;
+    
     --table-header-color: {{ colors.0 }};
     --table-row-even-color: #f9f9f9;
     --table-row-hover-color: #f1f1f1;
@@ -25,6 +25,7 @@ body {
 }
 
 a {
+    
     text-decoration: none;
     color: inherit;
     transition: color var(--transition-speed) ease;
@@ -119,8 +120,7 @@ button:hover {
 .header-bar {
     width: calc(100% - 320px);
     padding: 15px 20px;
-
-    background-color:#6a666663 ;
+    background-color: var(--secondary-color);
     position: fixed;
     top: 0;
     left: 290px;
@@ -457,4 +457,14 @@ button:hover {
     gap: 20px;
     position: relative;
     left: 100px;
+}
+
+
+
+/* page gestion utilisateurs marketing*/
+
+#employees-table, #employee-activities-table {
+    width: 90%;
+    margin-left: 80px;  
+
 }
