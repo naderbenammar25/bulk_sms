@@ -51,6 +51,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'django.contrib.sites',
+    'ml_model',
+
 
 ]
 #définir l'ID du site actuel
@@ -107,7 +109,7 @@ WSGI_APPLICATION = 'bulk_sms_api.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mass_mailing_db',  # Nom de la base de données que vous avez créée
+        'NAME': 'new_mass_mailing_db',  # Nom de la base de données que vous avez créée
         'USER': 'postgres',  # Votre nom d'utilisateur PostgreSQL
         'PASSWORD': 'user01',  # Votre mot de passe PostgreSQL
         'HOST': 'localhost',

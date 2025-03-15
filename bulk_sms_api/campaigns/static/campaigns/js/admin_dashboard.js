@@ -78,23 +78,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Ajouter une animation de chargement lors de la soumission du formulaire
-    const forms = document.querySelectorAll('form');
-    forms.forEach(form => {
-        // Exclure le formulaire de déconnexion
-        if (form.querySelector('button[type="submit"]').classList.contains('logout-button')) {
-            return;
-        }
-        form.addEventListener('submit', function (e) {
-            e.preventDefault();
-            const submitButton = form.querySelector('button[type="submit"]');
-            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> En cours...';
-            setTimeout(() => {
-                submitButton.innerHTML = 'Soumettre';
-                alert('Formulaire soumis avec succès !');
-            }, 2000);
-        });
-    });
+    
 });
 
 /* slider /////////////*/

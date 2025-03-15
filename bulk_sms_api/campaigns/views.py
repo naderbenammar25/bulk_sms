@@ -474,7 +474,7 @@ def gestion_campagnes_mk(request):
     completed_campaigns = campaigns.filter(status='terminée').count()
 
     context = {
-        'campaigns': campaigns[:10],  # Limiter l'affichage à 10 campagnes
+        'campaigns': campaigns, 
         'contents': contents,
         'groups': groups,
         'total_campaigns': total_campaigns,
@@ -898,12 +898,11 @@ def generate_content(request):
     return JsonResponse({'error': 'Invalid request'}, status=400)
 
 
+from django.utils.crypto import get_random_string
+from .models import EmailTracking  # Garder l'importation
+import logging
 
-
-
-
-
-from django.contrib.sites.models import Site
+logger = logging.getLogger(__name__)
 
 @login_required
 def launch_campaign(request, campaign_id):
@@ -923,16 +922,30 @@ def launch_campaign(request, campaign_id):
         for contact in contacts:
             subject = f"Campagne: {campaign.name}"
             message = campaign.message
+            tracking_id = get_random_string(32)
+            tracking_pixel_url = f"{request.build_absolute_uri('/track_email/')}{tracking_id}/"
             html_content = f"""
                 <div class="header">
                     <img src="{logo_url}" alt="Logo de l'entreprise">
                     <h3>{company_name}</h3>
                 </div>
                 {message}
+                <img src="{tracking_pixel_url}" width="1" height="1" />
                 <div class="footer">
                     <p>&copy; {company_name} - Tous droits réservés</p>
                 </div>
             """
+
+            # Enregistrer les informations de suivi dans la base de données
+            EmailTracking.objects.create(
+                EVENT_DATE=timezone.now(),
+                EVENT_TYPE='Sent',
+                MessageHash=tracking_id,
+                ContactHash=contact,  # Utiliser l'objet contact directement
+                COMMUNICATION_NAME=campaign.name,
+                COMMUNICATION_SUBJECT=subject,
+                CAMPAIGN_NAME=campaign.name
+            )
 
             email = EmailMultiAlternatives(
                 subject=subject,
@@ -942,16 +955,36 @@ def launch_campaign(request, campaign_id):
             )
             email.attach_alternative(html_content, "text/html")
             email.send()
+            logger.info(f"Email sent to {contact.email} with tracking ID {tracking_id}")
 
     return redirect('gestion_campagnes_mk')
 
-
-
-from django.core.mail import EmailMultiAlternatives
-from django.conf import settings
+from .models import EmailTracking
 import logging
 
 logger = logging.getLogger(__name__)
+from django.utils.timezone import now
+
+def email_tracking_pixel(request, tracking_id):
+    email_tracking = get_object_or_404(EmailTracking, tracking_id=tracking_id)
+    if not email_tracking.opened_at:
+        email_tracking.opened_at = now()
+        email_tracking.save()
+        logger.info(f"Email with tracking ID {tracking_id} opened at {email_tracking.opened_at}")
+
+    # Retourner une image transparente de 1x1 pixel
+    pixel = b'\x47\x49\x46\x38\x39\x61\x01\x00\x01\x00\x80\x00\x00\x00\x00\x00\xff\xff\xff\x21\xf9\x04\x01\x00\x00\x00\x00\x2c\x00\x00\x00\x00\x01\x00\x01\x00\x00\x02\x02\x4c\x01\x00\x3b'
+    return HttpResponse(pixel, content_type='image/gif')
+
+
+import logging
+
+logger = logging.getLogger(__name__)
+
+# Assurez-vous que le niveau de journalisation est défini sur DEBUG
+logging.basicConfig(level=logging.DEBUG)
+
+
 
 @login_required
 def launch_fast_campaign(request, campaign_id):
@@ -995,6 +1028,11 @@ def launch_fast_campaign(request, campaign_id):
             logger.error(f"Failed to send email to {contact.email}: {e}")
 
     return redirect('gestion_campagnes_mk')
+
+
+
+
+
 
 
 

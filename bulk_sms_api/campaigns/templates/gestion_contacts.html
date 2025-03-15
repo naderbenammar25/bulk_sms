@@ -112,7 +112,7 @@
                 <h2>Importer des Contacts</h2>
                 <form method="post" action="{% url 'import_contacts' %}" enctype="multipart/form-data">
                     {% csrf_token %}
-                    <label for="groupe">Groupe</label>
+                    <label for="groupe">Groupe</label> 
                     <select id="groupe" name="groupe">
                         {% for groupe in groupes %}
                         <option value="{{ groupe.id }}">{{ groupe.name }}</option>

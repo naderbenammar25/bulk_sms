@@ -70,7 +70,6 @@ class Contact(models.Model):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name} ({self.email})"
-from django.db import models
 
 class Campaign(models.Model):
     STATUS_CHOICES = (
@@ -115,3 +114,14 @@ class CampaignAction(models.Model):
     def __str__(self):
         return f'{self.user.username} - {self.action} - {self.timestamp}'
 
+class EmailTracking(models.Model):
+    EVENT_DATE = models.DateTimeField(auto_now_add=True)
+    EVENT_TYPE = models.CharField(max_length=50, default='Sent')
+    MessageHash = models.CharField(max_length=255)
+    ContactHash = models.ForeignKey('Contact', on_delete=models.CASCADE)  # Utiliser une clé étrangère pour ContactHash
+    COMMUNICATION_NAME = models.CharField(max_length=255, default='Default Communication Name')
+    COMMUNICATION_SUBJECT = models.CharField(max_length=255, default='Default Communication Subject')
+    CAMPAIGN_NAME = models.CharField(max_length=255, default='Default Campaign Name')
+    
+    def __str__(self):
+        return f"{self.COMMUNICATION_NAME} - {self.ContactHash} - {self.EVENT_DATE}"
