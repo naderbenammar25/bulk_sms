@@ -8,13 +8,30 @@ from sklearn.ensemble import RandomForestRegressor
 import warnings
 import time
 import random
+import psycopg2
+import datetime
+import numpy as np
 
 warnings.filterwarnings('ignore')
 
-# Charger les données du fichier CSV
-data = pd.read_csv("synthetic_dataset_remake.csv")
+def load_data_from_db():
+    conn = psycopg2.connect(
+        dbname="new_mass_mailing_db",
+        user="postgres",
+        password="user01",
+        host="localhost",
+        port="5432"
+    )
+    query = "SELECT * FROM campaigns_emailtracking2"
+    data = pd.read_sql_query(query, conn)
+    conn.close()
+    print("Colonnes du DataFrame chargé :", data.columns)
+    return data
+
+data = load_data_from_db()
+
 # Convertir le format datetime
-data['EVENT_DATE'] = pd.to_datetime(data['EVENT_DATE'], format='%Y-%m-%d %H:%M:%S')
+data['event_date'] = pd.to_datetime(data['event_date'], format='%Y-%m-%d %H:%M:%S')
 
 # Ajouter la colonne du jour de la semaine
 day_of_week = []
@@ -567,8 +584,7 @@ def create_dataset(data, sent_open_hour_range, open_click_hour_range, column_nam
     return df, X, y
 
 if __name__ == "__main__":
-    data = pd.read_csv("synthetic_dataset.csv")
-    # convert datetime format
+    data = load_data_from_db()    # convert datetime format
     data['EVENT_DATE'] = pd.to_datetime(data['EVENT_DATE'], format='%Y-%m-%d %H:%M:%S')
     # add the day of the week column
     day_of_week = []
