@@ -25,20 +25,21 @@ def load_data_from_db():
     query = "SELECT * FROM campaigns_emailtracking2"
     data = pd.read_sql_query(query, conn)
     conn.close()
+    
+    # Afficher les colonnes et les 10 premières lignes du dataset
     print("Colonnes du DataFrame chargé :", data.columns)
+    print("Premières lignes du dataset chargé :")
+    print(data.head(10))
+    
     return data
 
 data = load_data_from_db()
 
 # Convertir le format datetime
-data['event_date'] = pd.to_datetime(data['event_date'], format='%Y-%m-%d %H:%M:%S')
+data['EVENT_DATE'] = pd.to_datetime(data['EVENT_DATE'], format='%Y-%m-%d %H:%M:%S')
 
 # Ajouter la colonne du jour de la semaine
-day_of_week = []
-for i in range(len(data)):
-    day_of_week.append(data["EVENT_DATE"][i].day_name())
-data['day_of_week'] = pd.DataFrame(day_of_week)
-
+data['day_of_week'] = data['EVENT_DATE'].dt.day_name()
 def sent_date_to_min(sents):
     ''' Given the sent date, return the overall minutes.'''
     return sents.hour * 60 + sents.minute
@@ -583,6 +584,51 @@ def create_dataset(data, sent_open_hour_range, open_click_hour_range, column_nam
     X = df.drop(['MessageHash', 'ContactHash', 'Label', 'COMMUNICATION_NAME'], axis=1)
     return df, X, y
 
+    ##############statsmodels####################
+def get_statistics(data):
+    # Normaliser les valeurs dans EVENT_TYPE (tout en minuscules et sans espaces)
+    data['EVENT_TYPE'] = data['EVENT_TYPE'].str.lower().str.strip()
+
+    # Calculer les totaux
+    total_sent = len(data[data['EVENT_TYPE'] == 'sent'])
+    total_opened = len(data[data['EVENT_TYPE'] == 'open'])
+    total_clicked = len(data[data['EVENT_TYPE'] == 'click'])
+    total_unsubscribed = len(data[data['EVENT_TYPE'] == 'unsubscribed'])
+    total_bounced = len(data[data['EVENT_TYPE'] == 'bounced'])
+    total_complaints = len(data[data['EVENT_TYPE'] == 'complaint'])
+
+    # Calculer les taux
+    open_rate = (total_opened / total_sent) * 100 if total_sent > 0 else 0
+    click_rate = (total_clicked / total_sent) * 100 if total_sent > 0 else 0
+    unsubscribe_rate = (total_unsubscribed / total_sent) * 100 if total_sent > 0 else 0
+
+    # Calculer les distributions horaires
+    open_distribution = data[data['EVENT_TYPE'] == 'open']['EVENT_DATE'].dt.hour.value_counts().sort_index()
+    click_distribution = data[data['EVENT_TYPE'] == 'click']['EVENT_DATE'].dt.hour.value_counts().sort_index()
+    unsubscribe_distribution = data[data['EVENT_TYPE'] == 'unsubscribed']['EVENT_DATE'].dt.hour.value_counts().sort_index()
+
+    # Calculer la distribution par jour de la semaine
+    day_of_week_distribution = data['EVENT_DATE'].dt.day_name().value_counts()
+
+    # Calculer la distribution par campagne
+    campaign_distribution = data['CAMPAIGN_NAME'].value_counts()
+
+    return {
+        'total_sent': total_sent,
+        'total_opened': total_opened,
+        'total_clicked': total_clicked,
+        'total_unsubscribed': total_unsubscribed,
+        'total_bounced': total_bounced,
+        'total_complaints': total_complaints,
+        'open_rate': open_rate,
+        'click_rate': click_rate,
+        'unsubscribe_rate': unsubscribe_rate,
+        'open_distribution': open_distribution,
+        'click_distribution': click_distribution,
+        'unsubscribe_distribution': unsubscribe_distribution,
+        'day_of_week_distribution': day_of_week_distribution,
+        'campaign_distribution': campaign_distribution,
+    }
 if __name__ == "__main__":
     data = load_data_from_db()    # convert datetime format
     data['EVENT_DATE'] = pd.to_datetime(data['EVENT_DATE'], format='%Y-%m-%d %H:%M:%S')

@@ -22,6 +22,8 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('campaigns.urls')),  # Inclure les URLs de l'application campaigns
+    path('django_plotly_dash/', include('django_plotly_dash.urls')),  # Ajoutez cette ligne
+
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

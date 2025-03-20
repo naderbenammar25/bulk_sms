@@ -128,3 +128,109 @@ document.addEventListener('DOMContentLoaded', function () {
     // Démarrer le défilement automatique au chargement de la page
     startAutoSlide();
 });
+
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    const openCtx = document.getElementById('openChart').getContext('2d');
+    const unsubscribeCtx = document.getElementById('unsubscribeChart').getContext('2d');
+    const rateCtx = document.getElementById('rateChart').getContext('2d');
+    const messageCtx = document.getElementById('messageChart').getContext('2d');
+
+    const openData = {
+        labels: Object.keys(openDistribution),
+        datasets: [{
+            label: 'Ouvertures',
+            data: Object.values(openDistribution),
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1
+        }]
+    };
+
+    const unsubscribeData = {
+        labels: Object.keys(unsubscribeDistribution),
+        datasets: [{
+            label: 'Désabonnements',
+            data: Object.values(unsubscribeDistribution),
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgba(255, 99, 132, 1)',
+            borderWidth: 1
+        }]
+    };
+
+    const rateData = {
+        labels: ['Taux d\'Ouverture', 'Taux de Désabonnement'],
+        datasets: [{
+            label: 'Taux',
+            data: [openRate, unsubscribeRate],
+            backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(255, 99, 132, 0.2)'],
+            borderColor: ['rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)'],
+            borderWidth: 1
+        }]
+    };
+
+    const messageData = {
+        labels: ['Messages Envoyés', 'Messages Ouverts', 'Messages Désabonnés'],
+        datasets: [{
+            label: 'Messages',
+            data: [totalSent, totalOpened, totalUnsubscribed],
+            backgroundColor: ['rgba(54, 162, 235, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(255, 99, 132, 0.2)'],
+            borderColor: ['rgba(54, 162, 235, 1)', 'rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)'],
+            borderWidth: 1
+        }]
+    };
+
+    new Chart(openCtx, {
+        type: 'bar',
+        data: openData,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    new Chart(unsubscribeCtx, {
+        type: 'bar',
+        data: unsubscribeData,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    new Chart(rateCtx, {
+        type: 'pie',
+        data: rateData,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                }
+            }
+        }
+    });
+
+    new Chart(messageCtx, {
+        type: 'doughnut',
+        data: messageData,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                }
+            }
+        }
+    });
+});

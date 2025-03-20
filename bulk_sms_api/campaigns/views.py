@@ -45,6 +45,12 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import CustomUser
 
+
+## importations pour les statistiques
+from ml_model.regressor_sto_model import get_statistics
+import pandas as pd
+from ml_model.regressor_sto_model import load_data_from_db
+
 User = get_user_model()
 
 @api_view(['GET'])
@@ -298,21 +304,12 @@ def toggle_employee_status(request, user_id):
     serializer = CustomUserSerializer(user)
     return Response(serializer.data)
 
+from ml_model import dash_apps  # 
 
+@login_required
 def admin_dashboard(request):
-    company = request.user.company
-    colors = company.color.split(',')
-    primary_color = colors[0]
-    secondary_color = colors[1]
-    tertiary_color = colors[2]
-
-    context = {
-        'company': company,
-        'primary_color': primary_color,
-        'secondary_color': secondary_color,
-        'tertiary_color': tertiary_color,
-    }
-    return render(request, 'admin_dashboard.html', context)
+  
+    return render(request, 'admin_dashboard.html')
 
 @login_required
 def gestion_contacts(request):
