@@ -1,0 +1,745 @@
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\regressor_sto_model.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\regressor_sto_model.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\regressor_sto_model.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\regressor_sto_model.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\regressor_sto_model.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\regressor_sto_model.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\regressor_sto_model.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\regressor_sto_model.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\regressor_sto_model.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\regressor_sto_model.py changed, reloading.
+INFO:dash.dash:Dash is running on http://127.0.0.1:8050/
+
+WARNING:django.request:Not Found: /favicon.ico
+INFO:dash.dash:Dash is running on http://127.0.0.1:8050/
+
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\regressor_sto_model.py changed, reloading.
+INFO:dash.dash:Dash is running on http://127.0.0.1:8050/
+
+INFO:dash.dash:Dash is running on http://127.0.0.1:8050/
+
+INFO:dash.dash:Dash is running on http://127.0.0.1:8050/
+
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:dash.dash:Dash is running on http://127.0.0.1:8050/
+
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\regressor_sto_model.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:dash.dash:Dash is running on http://127.0.0.1:8050/
+
+INFO:dash.dash:Dash is running on http://127.0.0.1:8050/
+
+WARNING:django.request:Not Found: /favicon.ico
+INFO:dash.dash:Dash is running on http://127.0.0.1:8050/
+
+ERROR:django.request:Internal Server Error: /gestion_profile_admin/
+Traceback (most recent call last):
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\campaigns\views.py", line 646, in gestion_profile_admin
+    return render(request, 'gestion_profile_admin.html', {
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\template\base.py", line 1008, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'gestion_campagnes' not found. 'gestion_campagnes' is not a valid view function or pattern name.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\bulk_sms_api\settings.py changed, reloading.
+INFO:dash.dash:Dash is running on http://127.0.0.1:8050/
+
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\bulk_sms_api\settings.py changed, reloading.
+INFO:dash.dash:Dash is running on http://127.0.0.1:8050/
+
+WARNING:django.request:Not Found: /favicon.ico
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\regressor_sto_model.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:dash.dash:Dash is running on http://127.0.0.1:8050/
+
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:dash.dash:Dash is running on http://127.0.0.1:8050/
+
+WARNING:django.request:Not Found: /favicon.ico
+INFO:dash.dash:Dash is running on http://127.0.0.1:8050/
+
+WARNING:django.request:Not Found: /favicon.ico
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:dash.dash:Dash is running on http://127.0.0.1:8050/
+
+WARNING:django.request:Not Found: /favicon.ico
+INFO:dash.dash:Dash is running on http://127.0.0.1:8050/
+
+WARNING:django.request:Not Found: /favicon.ico
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+ERROR:werkzeug:Error on request:
+Traceback (most recent call last):
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\pandas\core\indexes\base.py", line 3805, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "index.pyx", line 167, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 196, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\\_libs\\hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\\_libs\\hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'Label'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\dash\dash.py", line 1376, in dispatch
+    ctx.run(
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\dash\_callback.py", line 507, in add_context
+    raise err
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\dash\_callback.py", line 496, in add_context
+    output_value = _invoke_callback(func, *func_args, **func_kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\dash\_callback.py", line 43, in _invoke_callback
+    return func(*args, **kwargs)  # %% callback invoked %%
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py", line 42, in display_page
+    return predictions_page(data)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py", line 216, in predictions_page
+  File "C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\regressor_sto_model.py", line 579, in create_dataset
+    df['Label'] = df['Label'] / max_y
+                  ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\pandas\core\frame.py", line 4102, in __getitem__
+    indexer = self.columns.get_loc(key)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\pandas\core\indexes\base.py", line 3812, in get_loc
+    raise KeyError(key) from err
+KeyError: 'Label'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\werkzeug\debug\__init__.py", line 343, in debug_application
+    app_iter = self.app(environ, start_response)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\flask\app.py", line 1498, in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\flask\app.py", line 1476, in wsgi_app
+    response = self.handle_exception(e)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\flask\app.py", line 772, in handle_user_exception
+    return self.ensure_sync(handler)(e)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\dash\dash.py", line 1880, in _wrap_errors
+    tb = _get_traceback(secret, error)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\dash\dash.py", line 186, in _get_traceback
+    ).render_debugger_html(True, secret, True)
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\werkzeug\debug\tbtools.py", line 346, in render_debugger_html
+    "summary": self.render_traceback_html(include_title=False),
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\werkzeug\debug\tbtools.py", line 295, in render_traceback_html
+    row_parts.append(f"<li{info}>{frame.render_html(mark_library)}")
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\werkzeug\debug\tbtools.py", line 428, in render_html
+    render_line(lines[line_idx], "current")
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+IndexError: list index out of range
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\werkzeug\serving.py", line 370, in run_wsgi
+    execute(self.server.app)
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\werkzeug\serving.py", line 333, in execute
+    for data in application_iter:
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\werkzeug\debug\__init__.py", line 358, in debug_application
+    html = tb.render_debugger_html(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\werkzeug\debug\tbtools.py", line 346, in render_debugger_html
+    "summary": self.render_traceback_html(include_title=False),
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\werkzeug\debug\tbtools.py", line 295, in render_traceback_html
+    row_parts.append(f"<li{info}>{frame.render_html(mark_library)}")
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\werkzeug\debug\tbtools.py", line 428, in render_html
+    render_line(lines[line_idx], "current")
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+IndexError: list index out of range
+INFO:dash.dash:Dash is running on http://127.0.0.1:8050/
+
+WARNING:django.request:Not Found: /favicon.ico
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+WARNING:django.security.csrf:Forbidden (CSRF token from POST incorrect.): /login/
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+WARNING:django.request:Not Found: /favicon.ico
+INFO:dash.dash:Dash is running on http://127.0.0.1:8050/
+
+WARNING:django.request:Not Found: /favicon.ico
+INFO:dash.dash:Dash is running on http://127.0.0.1:8050/
+
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\regressor_sto_model.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\regressor_sto_model.py changed, reloading.
+INFO:dash.dash:Dash is running on http://127.0.0.1:8050/
+
+WARNING:django.request:Not Found: /favicon.ico
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:dash.dash:Dash is running on http://127.0.0.1:8050/
+
+WARNING:django.request:Not Found: /favicon.ico
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+ERROR:werkzeug:Error on request:
+Traceback (most recent call last):
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\dash\dash.py", line 1376, in dispatch
+    ctx.run(
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\dash\_callback.py", line 507, in add_context
+    raise err
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\dash\_callback.py", line 496, in add_context
+    output_value = _invoke_callback(func, *func_args, **func_kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\dash\_callback.py", line 43, in _invoke_callback
+    return func(*args, **kwargs)  # %% callback invoked %%
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py", line 41, in display_page
+    html.Div("Taux de bounce", className="kpi-label")
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py", line 283, in predictions_page
+  File "C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\regressor_sto_model.py", line 579, in create_dataset
+    raise KeyError("La colonne 'Label' est manquante dans le DataFrame.")
+KeyError: "La colonne 'Label' est manquante dans le DataFrame."
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\werkzeug\debug\__init__.py", line 343, in debug_application
+    app_iter = self.app(environ, start_response)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\flask\app.py", line 1498, in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\flask\app.py", line 1476, in wsgi_app
+    response = self.handle_exception(e)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\flask\app.py", line 772, in handle_user_exception
+    return self.ensure_sync(handler)(e)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\dash\dash.py", line 1880, in _wrap_errors
+    tb = _get_traceback(secret, error)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\dash\dash.py", line 186, in _get_traceback
+    ).render_debugger_html(True, secret, True)
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\werkzeug\debug\tbtools.py", line 346, in render_debugger_html
+    "summary": self.render_traceback_html(include_title=False),
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\werkzeug\debug\tbtools.py", line 295, in render_traceback_html
+    row_parts.append(f"<li{info}>{frame.render_html(mark_library)}")
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\werkzeug\debug\tbtools.py", line 428, in render_html
+    render_line(lines[line_idx], "current")
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+IndexError: list index out of range
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\werkzeug\serving.py", line 370, in run_wsgi
+    execute(self.server.app)
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\werkzeug\serving.py", line 333, in execute
+    for data in application_iter:
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\werkzeug\debug\__init__.py", line 358, in debug_application
+    html = tb.render_debugger_html(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\werkzeug\debug\tbtools.py", line 346, in render_debugger_html
+    "summary": self.render_traceback_html(include_title=False),
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\werkzeug\debug\tbtools.py", line 295, in render_traceback_html
+    row_parts.append(f"<li{info}>{frame.render_html(mark_library)}")
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\werkzeug\debug\tbtools.py", line 428, in render_html
+    render_line(lines[line_idx], "current")
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+IndexError: list index out of range
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+ERROR:werkzeug:Error on request:
+Traceback (most recent call last):
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\dash\dash.py", line 1376, in dispatch
+    ctx.run(
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\dash\_callback.py", line 507, in add_context
+    raise err
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\dash\_callback.py", line 496, in add_context
+    output_value = _invoke_callback(func, *func_args, **func_kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\dash\_callback.py", line 43, in _invoke_callback
+    return func(*args, **kwargs)  # %% callback invoked %%
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py", line 41, in display_page
+    html.Div("Taux de bounce", className="kpi-label")
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py", line 283, in predictions_page
+  File "C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\regressor_sto_model.py", line 579, in create_dataset
+    raise KeyError("La colonne 'Label' est manquante dans le DataFrame.")
+KeyError: "La colonne 'Label' est manquante dans le DataFrame."
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\werkzeug\debug\__init__.py", line 343, in debug_application
+    app_iter = self.app(environ, start_response)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\flask\app.py", line 1498, in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\flask\app.py", line 1476, in wsgi_app
+    response = self.handle_exception(e)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\flask\app.py", line 772, in handle_user_exception
+    return self.ensure_sync(handler)(e)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\dash\dash.py", line 1880, in _wrap_errors
+    tb = _get_traceback(secret, error)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\dash\dash.py", line 186, in _get_traceback
+    ).render_debugger_html(True, secret, True)
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\werkzeug\debug\tbtools.py", line 346, in render_debugger_html
+    "summary": self.render_traceback_html(include_title=False),
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\werkzeug\debug\tbtools.py", line 295, in render_traceback_html
+    row_parts.append(f"<li{info}>{frame.render_html(mark_library)}")
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\werkzeug\debug\tbtools.py", line 428, in render_html
+    render_line(lines[line_idx], "current")
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+IndexError: list index out of range
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\werkzeug\serving.py", line 370, in run_wsgi
+    execute(self.server.app)
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\werkzeug\serving.py", line 333, in execute
+    for data in application_iter:
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\werkzeug\debug\__init__.py", line 358, in debug_application
+    html = tb.render_debugger_html(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\werkzeug\debug\tbtools.py", line 346, in render_debugger_html
+    "summary": self.render_traceback_html(include_title=False),
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\werkzeug\debug\tbtools.py", line 295, in render_traceback_html
+    row_parts.append(f"<li{info}>{frame.render_html(mark_library)}")
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\werkzeug\debug\tbtools.py", line 428, in render_html
+    render_line(lines[line_idx], "current")
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+IndexError: list index out of range
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+ERROR:werkzeug:Error on request:
+Traceback (most recent call last):
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\dash\dash.py", line 1376, in dispatch
+    ctx.run(
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\dash\_callback.py", line 507, in add_context
+    raise err
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\dash\_callback.py", line 496, in add_context
+    output_value = _invoke_callback(func, *func_args, **func_kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\dash\_callback.py", line 43, in _invoke_callback
+    return func(*args, **kwargs)  # %% callback invoked %%
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py", line 41, in display_page
+    html.Div("Taux de bounce", className="kpi-label")
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py", line 283, in predictions_page
+  File "C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\regressor_sto_model.py", line 579, in create_dataset
+    raise KeyError("La colonne 'Label' est manquante dans le DataFrame.")
+KeyError: "La colonne 'Label' est manquante dans le DataFrame."
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\werkzeug\debug\__init__.py", line 343, in debug_application
+    app_iter = self.app(environ, start_response)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\flask\app.py", line 1498, in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\flask\app.py", line 1476, in wsgi_app
+    response = self.handle_exception(e)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\flask\app.py", line 772, in handle_user_exception
+    return self.ensure_sync(handler)(e)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\dash\dash.py", line 1880, in _wrap_errors
+    tb = _get_traceback(secret, error)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\dash\dash.py", line 186, in _get_traceback
+    ).render_debugger_html(True, secret, True)
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\werkzeug\debug\tbtools.py", line 346, in render_debugger_html
+    "summary": self.render_traceback_html(include_title=False),
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\werkzeug\debug\tbtools.py", line 295, in render_traceback_html
+    row_parts.append(f"<li{info}>{frame.render_html(mark_library)}")
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\werkzeug\debug\tbtools.py", line 428, in render_html
+    render_line(lines[line_idx], "current")
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+IndexError: list index out of range
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\werkzeug\serving.py", line 370, in run_wsgi
+    execute(self.server.app)
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\werkzeug\serving.py", line 333, in execute
+    for data in application_iter:
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\werkzeug\debug\__init__.py", line 358, in debug_application
+    html = tb.render_debugger_html(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\werkzeug\debug\tbtools.py", line 346, in render_debugger_html
+    "summary": self.render_traceback_html(include_title=False),
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\werkzeug\debug\tbtools.py", line 295, in render_traceback_html
+    row_parts.append(f"<li{info}>{frame.render_html(mark_library)}")
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\werkzeug\debug\tbtools.py", line 428, in render_html
+    render_line(lines[line_idx], "current")
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+IndexError: list index out of range
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:dash.dash:Dash is running on http://127.0.0.1:8050/
+
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:dash.dash:Dash is running on http://127.0.0.1:8050/
+
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:dash.dash:Dash is running on http://127.0.0.1:8050/
+
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+WARNING:django.request:Not Found: /kpi-cards
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:dash.dash:Dash is running on http://127.0.0.1:8050/
+
+WARNING:django.request:Not Found: /favicon.ico
+INFO:dash.dash:Dash is running on http://127.0.0.1:8050/
+
+ERROR:django.request:Internal Server Error: /add_group/
+Traceback (most recent call last):
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.UniqueViolation: ERREUR:  la valeur d'une clé dupliquée rompt la contrainte unique « campaigns_group_name_key »
+DETAIL:  La clé « (name)=(te$) » existe déjà.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\campaigns\views.py", line 828, in add_group
+    Group.objects.create(name=group_name, company=request.user.company)
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\db\models\query.py", line 679, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\db\models\base.py", line 892, in save
+    self.save_base(
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\db\models\base.py", line 998, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\db\models\base.py", line 1161, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\db\models\base.py", line 1202, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\db\models\query.py", line 1847, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\db\models\sql\compiler.py", line 1836, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: ERREUR:  la valeur d'une clé dupliquée rompt la contrainte unique « campaigns_group_name_key »
+DETAIL:  La clé « (name)=(te$) » existe déjà.
+
+ERROR:django.request:Internal Server Error: /add_group/
+Traceback (most recent call last):
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.UniqueViolation: ERREUR:  la valeur d'une clé dupliquée rompt la contrainte unique « campaigns_group_name_key »
+DETAIL:  La clé « (name)=(te$) » existe déjà.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\campaigns\views.py", line 828, in add_group
+    Group.objects.create(name=group_name, company=request.user.company)
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\db\models\query.py", line 679, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\db\models\base.py", line 892, in save
+    self.save_base(
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\db\models\base.py", line 998, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\db\models\base.py", line 1161, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\db\models\base.py", line 1202, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\db\models\query.py", line 1847, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\db\models\sql\compiler.py", line 1836, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: ERREUR:  la valeur d'une clé dupliquée rompt la contrainte unique « campaigns_group_name_key »
+DETAIL:  La clé « (name)=(te$) » existe déjà.
+
+WARNING:django.request:Not Found: /favicon.ico
+INFO:dash.dash:Dash is running on http://127.0.0.1:8050/
+
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:dash.dash:Dash is running on http://127.0.0.1:8050/
+
+INFO:dash.dash:Dash is running on http://127.0.0.1:8050/
+
+INFO:dash.dash:Dash is running on http://127.0.0.1:8050/
+
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:dash.dash:Dash is running on http://127.0.0.1:8050/
+
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:dash.dash:Dash is running on http://127.0.0.1:8050/
+
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:dash.dash:Dash is running on http://127.0.0.1:8050/
+
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:dash.dash:Dash is running on http://127.0.0.1:8050/
+
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:dash.dash:Dash is running on http://127.0.0.1:8050/
+
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+WARNING:django.request:Not Found: /favicon.ico
+INFO:dash.dash:Dash is running on http://127.0.0.1:8050/
+
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:dash.dash:Dash is running on http://127.0.0.1:8050/
+
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py changed, reloading.
+WARNING:django.request:Not Found: /favicon.ico
