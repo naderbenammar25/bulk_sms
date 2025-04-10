@@ -41,7 +41,6 @@ urlpatterns = [
     path('securite/', securite, name='securite'),
     path('notifications/', notifications, name='notifications'),
     path('editeur_contenu/', editeur_contenu, name='editeur_contenu'),
-    path('generate_content/', generate_content, name='generate_content'),
     path('demande_assistance/', demande_assistance, name='demande_assistance'),
     path('gestion_profile_MK/', gestion_profile_MK, name='gestion_profile_MK'),
     path('update_profile_MK/', update_profile_MK, name='update_profile_MK'),
@@ -52,6 +51,7 @@ urlpatterns = [
     path('gestion_campagnes_admin/', gestion_campagnes_admin, name='gestion_campagnes_admin'),
     path('launch_campaign/<int:campaign_id>/', launch_campaign, name='launch_campaign'),
     path('track_email/<str:tracking_id>/', email_tracking_pixel, name='email_tracking_pixel'),
+    path('generate_content/', generate_content, name='generate_content'),
 
     path('suivi_performances/', suivi_performances, name='suivi_performances'),
     path('create_campaign/', create_campaign, name='create_campaign'),

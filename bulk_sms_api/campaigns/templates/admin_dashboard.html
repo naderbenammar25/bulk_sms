@@ -35,7 +35,7 @@
             width: 70%;
             position: relative;
             left: 350px;
-            top: 100px;
+            bottom: 50px;
         }
 
         .kpi-row {
@@ -44,20 +44,7 @@
             gap: 1rem;
         }
 
-        .kpi-card {
-            background-color: var(--card-bg);
-            border-radius: 8px;
-            padding: 1.5rem;
-            box-shadow: var(--shadow);
-            flex: 1;
-            text-align: center;
-            transform: translateY(0);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .kpi-card:hover {
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            transform: translateY(-10px); /* Move the card slightly upward on hover */
-        }
+        
 
         
 
@@ -73,11 +60,12 @@
             padding: 1rem;
             box-shadow: var(--shadow);
             flex: 1;
+            height: 600px; 
         }
 
         iframe {
             width: 100%;
-            height: 400px;
+            height: 600px;
             border: none;
             border-radius: 8px;
         }
@@ -114,6 +102,7 @@
     font-weight: 600;
     color: var(--primary-color);
     position: relative;
+    top : 100px;
     
 }
 
@@ -142,9 +131,13 @@
     gap: 10px;
     margin: 20px 0;
     padding: 10px;
-    background-color: var(--card-bg);
+    background-color: rgba(255, 16, 16, 0);
+    
     border-radius: 8px;
     box-shadow: var(--shadow);
+    position: relative;
+    top: 30px;
+    width: 100%;
 }
 
 .dashboard-navigation a {
@@ -174,6 +167,39 @@
 }
 
 
+.header-bar{
+    height: 35px;
+}
+
+.kpi-card {
+    flex: 1;
+    min-width: 200px;
+    height: 150px; /* Assurez-vous que la hauteur est définie */
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 2px solid;
+    position: relative; /* Ajouté pour positionner l'iframe */
+    overflow: hidden; /* Empêche le débordement */
+}
+
+
+.kpi-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+}
+
+
+.kpi-card iframe {
+    position: absolute; /* Permet à l'iframe de remplir le parent */
+    top: 0;
+    left: 0;
+    width: 100%; /* Remplit toute la largeur */
+    height: 100%; /* Remplit toute la hauteur */
+    border: none; /* Supprime les bordures */
+    border-radius: 10px; /* Applique le même arrondi que le parent */
+}
 
 
     </style>
@@ -216,7 +242,7 @@
 
     <!-- Dashboard Container -->
     <div class="dashboard-container">
-        <h1 class="dash_title" >Tableau de Bord - Délivrabilité des Emails</h1>  
+        <h1 class="dash_title" >Statistiques de Délivrabilité des Emails</h1>  
         {{ dash_app|safe }}
      
         <!-- Dashboard Navigation -->

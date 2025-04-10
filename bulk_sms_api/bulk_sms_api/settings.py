@@ -14,7 +14,7 @@ from pathlib import Path
 import os
 
 GEMINI_API_KEY = 'AIzaSyCz0PG1OKKUqxK8XIZax1RX75Gu6NCjSWk'
-
+DEEPSEEK_API_KEY = 'sk-66c88cb81ed946228f69eb82a3e66d46'
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'django_plotly_dash.apps.DjangoPlotlyDashConfig',
     'dpd_static_support',
     'channels',
+    'corsheaders',
 
 
 
@@ -84,7 +85,19 @@ MIDDLEWARE = [
     'campaigns.middleware.TimezoneMiddleware',
     'django_plotly_dash.middleware.BaseMiddleware',
     'django_plotly_dash.middleware.ExternalRedirectionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+
 ]
+
+
+CORS_ALLOW_ALL_ORIGINS = True
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+    # Ajoutez votre domaine de production ici
+]
+
 
 ROOT_URLCONF = 'bulk_sms_api.urls'
 

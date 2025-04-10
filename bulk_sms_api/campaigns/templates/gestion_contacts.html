@@ -29,6 +29,22 @@
             max-height: 400px; /* Limiter la hauteur du tableau */
             overflow-y: auto; /* Ajouter une barre de défilement verticale */
         }
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            color: #fff;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            background-image: url("{% static 'campaigns/images/sideBar_back.png' %}");
+            background-size: cover; /* L'image couvre tout l'espace */
+            background-repeat: no-repeat; /* Pas de répétition */
+            background-position: center; /* Centrer l'image */
+        }
     </style>
 </head>
 <body>

@@ -853,46 +853,87 @@ def merge_groups(request):
         return redirect('gestion_groupes')
     return redirect('gestion_groupes')
 
+# campaigns/views.py
 import json
+import requests
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth.decorators import login_required
 from django.conf import settings
-from google.cloud import aiplatform
 
-# Initialisation de Vertex AI avec le bon projet
-aiplatform.init(project="django mass mailing web app")  # Remplace par ton vrai ID Google Cloud
+import logging
+logger = logging.getLogger(__name__)
 
 @csrf_exempt
 def generate_content(request):
     if request.method == 'POST':
         try:
+            # Log la requête entrante
+            logger.info(f"Requête reçue - Body: {request.body}")
+            
             data = json.loads(request.body)
             prompt = data.get('prompt', '')
-
-            # Utilisez l'API Gemini pour générer du contenu
-            api_url = "https://api.gemini.com/generate"  # Remplacez par l'URL réelle de l'API
-            api_key = settings.GEMINI_API_KEY
-
-            response = requests.post(api_url, json={
-                "prompt": prompt,
-                "max_tokens": 500
-            }, headers={
-                "Authorization": f"Bearer {api_key}",
-                "Content-Type": "application/json"
+            
+            if not prompt:
+                return JsonResponse({'error': 'Prompt manquant'}, status=400)
+            
+            # Configuration de l'appel API
+            api_url = "https://api.deepseek.com/v1/chat/completions"
+            headers = {
+                "Authorization": f"Bearer {settings.DEEPSEEK_API_KEY}",
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            }
+            
+            payload = {
+                "model": "deepseek-chat",
+                "messages": [{
+                    "role": "user",
+                    "content": f"Tu es un assistant marketing spécialisé dans la rédaction de campagnes email. {prompt}"
+                }],
+                "temperature": 0.7,
+                "max_tokens": 1000
+            }
+            
+            # Log avant l'appel API
+            logger.debug(f"Envoi à DeepSeek - Payload: {payload}")
+            
+            response = requests.post(api_url, headers=headers, json=payload, timeout=30)
+            
+            # Log la réponse brute
+            logger.debug(f"Réponse DeepSeek - Status: {response.status_code}, Body: {response.text}")
+            
+            response.raise_for_status()
+            response_data = response.json()
+            
+            if not response_data.get('choices'):
+                raise ValueError("Structure de réponse inattendue de l'API DeepSeek")
+            
+            generated_content = response_data['choices'][0]['message']['content']
+            
+            return JsonResponse({
+                'generated_content': generated_content,
+                'usage': response_data.get('usage', {})
             })
-
-            print("Réponse de l'API Gemini:", response.json())  # Affichez la réponse brute dans la console
-
-            if response.status_code == 200:
-                generated_content = response.json().get('generated_text', '')
-                return JsonResponse({'generated_content': generated_content})
-            else:
-                return JsonResponse({'error': 'Failed to generate content'}, status=500)
+            
+        except json.JSONDecodeError as e:
+            logger.error(f"Erreur JSON: {str(e)}")
+            return JsonResponse({'error': 'Données JSON invalides'}, status=400)
+            
+        except requests.exceptions.RequestException as e:
+            logger.error(f"Erreur requête API: {str(e)}")
+            return JsonResponse({
+                'error': f"Erreur de communication avec l'API DeepSeek",
+                'details': str(e)
+            }, status=502)
+            
         except Exception as e:
-            print("Erreur:", e)  # Affichez l'erreur dans la console
-            return JsonResponse({'error': str(e)}, status=500)
-    return JsonResponse({'error': 'Invalid request'}, status=400)
+            logger.error(f"Erreur inattendue: {str(e)}", exc_info=True)
+            return JsonResponse({
+                'error': 'Erreur interne du serveur',
+                'details': str(e)
+            }, status=500)
+    
+    return JsonResponse({'error': 'Méthode non autorisée'}, status=405)
 
 
 from django.utils.crypto import get_random_string

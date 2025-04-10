@@ -155,34 +155,57 @@
             document.getElementById('html_content').value = fullContent;
         }
 
+        // Dans votre script JavaScript
         function sendMessage() {
             var chatInput = document.getElementById('chat-input').value;
-            if (chatInput) {
-                fetch('/generate_content/', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRFToken': '{{ csrf_token }}'
-                    },
-                    body: JSON.stringify({ prompt: chatInput })
+            if (chatInput.trim() === '') return;
+        
+            var chatOutput = document.getElementById('chat-output');
+            chatOutput.innerHTML += `<div class="user-message"><strong>Vous:</strong> ${chatInput}</div>`;
+            
+            // Afficher un indicateur de chargement
+            var loadingId = 'loading-' + Date.now();
+            chatOutput.innerHTML += `<div id="${loadingId}" class="ai-message loading">IA: <span class="loading-dots">...</span></div>`;
+            chatOutput.scrollTop = chatOutput.scrollHeight;
+            
+            fetch('/generate_content/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify({ 
+                    prompt: chatInput,
+                    context: "Rédige un contenu email marketing professionnel."
                 })
-                .then(response => response.json())
-                .then(data => {
-                    var chatOutput = document.getElementById('chat-output');
-                    chatOutput.innerHTML += `<p><strong>Vous:</strong> ${chatInput}</p>`;
-
-                    if (data.generated_content) {
-                        chatOutput.innerHTML += `<p><strong>IA:</strong> ${data.generated_content}</p>`;
-                    } else if (data.error) {
-                        chatOutput.innerHTML += `<p style="color:red;"><strong>Erreur IA:</strong> ${data.error}</p>`;
-                    } else {
-                        chatOutput.innerHTML += `<p style="color:red;"><strong>Erreur:</strong> Réponse inattendue</p>`;
-                    }
-
-                    document.getElementById('chat-input').value = '';
-                })
-                .catch(error => console.error('Erreur:', error));
-            }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Erreur HTTP! Statut: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Supprimer l'indicateur de chargement
+                document.getElementById(loadingId).remove();
+                
+                if (data.generated_content) {
+                    chatOutput.innerHTML += `<div class="ai-message"><strong>IA:</strong> ${data.generated_content}</div>`;
+                } else if (data.error) {
+                    chatOutput.innerHTML += `<div class="error-message">Erreur API: ${data.error}</div>`;
+                } else {
+                    chatOutput.innerHTML += `<div class="error-message">Réponse inattendue de l'API</div>`;
+                }
+            })
+            .catch(error => {
+                console.error('Erreur Fetch:', error);
+                document.getElementById(loadingId).remove();
+                chatOutput.innerHTML += `<div class="error-message">Erreur: ${error.message}</div>`;
+            })
+            .finally(() => {
+                document.getElementById('chat-input').value = '';
+                chatOutput.scrollTop = chatOutput.scrollHeight;
+            });
         }
 
         function insertGeneratedContent() {

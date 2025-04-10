@@ -113,24 +113,27 @@ def deliverability_statistics_page(stats):
 def kpi_open_rate(stats):
     return html.Div([
         html.Div(
-            "Taux d'ouverture", 
+            "Total des messages ouverts", 
             className="kpi-label", 
             style={
-                'fontSize': '1rem',  # Taille du texte en gros
-                'textAlign': 'center',  # Centré
-                'color': 'red',  # Couleur rouge
-                'fontWeight': 'bold',  # Texte en gras
+                
+                'fontSize': '1rem',  
+                'textAlign': 'center',  
+                'color': '#c60c30',  
                 'marginBottom': '10px'  # Espacement sous le titre
-            }
-        ),
-        html.Div(
-            f"{stats['open_rate']:.1f}%", 
-            className="kpi-value", 
-            style={
-                'fontSize': '1rem',  # Taille du texte en gros
+
+                }
+            ),
+            html.Div(
+                f"{stats['total_opened'] / 1000:.1f} K", 
+                className="kpi-value", 
+                style={
+                    # Taille du texte en gros
+                    'fontSize': '2.5rem',
+                'fontFamily': 'Verdana, sans-serif',  # Police de caractères
                 'textAlign': 'center',  # Centré
                 'color': 'black',  # Couleur noire
-                'fontWeight': 'bold'  # Texte en gras
+                
             }
         )
     ], className="kpi-card-small", style={
@@ -138,31 +141,33 @@ def kpi_open_rate(stats):
         'display': 'flex',  # Affichage en flexbox
         'flexDirection': 'column',  # Orientation verticale
         'alignItems': 'center',  # Centrer les éléments horizontalement
-        'justifyContent': 'center'  # Centrer les éléments verticalement
+        'justifyContent': 'center',
+          # Hauteur de la carte
     })
 
 
 def kpi_click_rate(stats):
     return html.Div([
         html.Div(
-            "Taux de clics", 
+            "Total des clics", 
             className="kpi-label", 
             style={
                 'fontSize': '1rem',  # Taille du texte en gros
                 'textAlign': 'center',  # Centré
-                'color': 'red',  # Couleur rouge
-                'fontWeight': 'bold',  # Texte en gras
+                'color': '#c60c30',  # Couleur rouge
                 'marginBottom': '10px'  # Espacement sous le titre
+
             }
         ),
         html.Div(
-            f"{stats['click_rate']:.1f}%", 
+            f"{stats['total_clicked'] / 1000:.1f} K", 
             className="kpi-value", 
             style={
-                'fontSize': '1rem',  # Taille du texte en gros
+                'fontSize': '2.5rem',
+                'fontFamily': 'Verdana, sans-serif',  # Police de caractères # Taille du texte en gros
                 'textAlign': 'center',  # Centré
                 'color': 'black',  # Couleur noire
-                'fontWeight': 'bold'  # Texte en gras
+                
             }
         )
     ], className="kpi-card-small", style={
@@ -177,24 +182,24 @@ def kpi_click_rate(stats):
 def kpi_bounce_rate(stats):
     return html.Div([
         html.Div(
-            "Taux de bounce", 
+            "Total des messages rebondis", 
             className="kpi-label", 
             style={
                 'fontSize': '1rem',  # Taille du texte en gros
                 'textAlign': 'center',  # Centré
-                'color': 'red',  # Couleur rouge
-                'fontWeight': 'bold',  # Texte en gras
+                'color': '#c60c30',  # Couleur rouge
                 'marginBottom': '10px'  # Espacement sous le titre
             }
         ),
         html.Div(
-            f"{(stats['total_bounced'] / stats['total_sent'] * 100):.1f}%", 
+            f"{stats['total_bounced']/ 1000:.1f} K", 
             className="kpi-value", 
             style={
-                'fontSize': '1rem',  # Taille du texte en gros
+                
                 'textAlign': 'center',  # Centré
                 'color': 'black',  # Couleur noire
-                'fontWeight': 'bold'  # Texte en gras
+                'fontSize': '2.5rem',
+                'fontFamily': 'Verdana, sans-serif',  # Police de caractères
             }
         )
     ], className="kpi-card-small", style={
@@ -209,24 +214,24 @@ def kpi_bounce_rate(stats):
 def kpi_unsubscribe_rate(stats):
     return html.Div([
         html.Div(
-            "Désabonnements", 
+            "total de désabonnements", 
             className="kpi-label", 
             style={
                 'fontSize': '1rem',  # Taille du texte en gros
                 'textAlign': 'center',  # Centré
-                'color': 'red',  # Couleur rouge
-                'fontWeight': 'bold',  # Texte en gras
+                'color': '#c60c30',  # Couleur rouge
                 'marginBottom': '10px'  # Espacement sous le titre
             }
         ),
         html.Div(
-            f"{stats['unsubscribe_rate']:.1f}%", 
+            f"{stats['total_unsubscribed']/ 1000:.1f} K", 
             className="kpi-value", 
             style={
-                'fontSize': '1rem',  # Taille du texte en gros
+                
                 'textAlign': 'center',  # Centré
                 'color': 'black',  # Couleur noire
-                'fontWeight': 'bold'  # Texte en gras
+                'fontSize': '2.5rem',
+                'fontFamily': 'Verdana, sans-serif',  # Police de caractères
             }
         )
     ], className="kpi-card-small", style={
@@ -409,4 +414,4 @@ def predictions_page(data):
 
 # Lancer l'application Dash
 if __name__ == '__main__':
-    app.run_server(debug=True)  
+    app.run_server(debug=False)  
