@@ -109,7 +109,26 @@ button:hover {
     margin-right: 10px;
 }
 
+.add_employee{
+    background-color: var(--primary-color);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background-color var(--transition-speed) ease, transform 0.2s ease;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    box-shadow: 0 4px 6px var(--shadow-color);
+}
 
+.add_employee:hover {
+    background-color: var(--hover-color);
+    transform: translateY(-2px);
+}
 /* Contenu principal */
 .main-content {
    
@@ -225,6 +244,7 @@ button:hover {
 .search-bar button:hover {
     background-color: var(--hover-color);
 }
+
 
 /* Filter Bar */
 .filter-bar {

@@ -373,6 +373,47 @@ width: 47%;
     font-size: 14px;
 }
 
+
+.actions button {
+    background: none;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    position: relative;
+}
+
+.actions button i {
+    font-size: 20px;
+    color: var(--primary-color);
+}
+
+.actions button:hover i {
+    color: var(--hover-color);
+}
+
+/* Styles pour afficher une description lors du survol */
+.actions button[title]::after {
+    content: attr(title);
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.actions button:hover[title]::after {
+    opacity: 1;
+}
+
 /* Statistiques */
 .stats {
     margin: 20px 0;
@@ -488,9 +529,7 @@ input[disabled] {
     transition: background-color var(--transition-speed) ease;
 }
 
-.edit-button:hover, .save-button:hover {
-    background-color: var(--hover-color);
-}
+
 
 .save-button {
     display: block;

@@ -182,6 +182,10 @@ def index(request):
 
 
 
+from django.contrib.auth import authenticate, login
+from django.shortcuts import render, redirect
+from django.urls import reverse
+
 def user_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -189,13 +193,15 @@ def user_login(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            user.is_logged_in = True
-            user.save()
+            # Rediriger en fonction du rôle de l'utilisateur
             if user.role == 'admin':
-                return redirect('admin_dashboard')
+                return redirect(f"{reverse('admin_dashboard')}?success=true&username={user.username}")
             elif user.role == 'marketing':
-                return redirect('marketing_dashboard')
+                return redirect(f"{reverse('marketing_dashboard')}?success=true&username={user.username}")
+            else:
+                return redirect(f"{reverse('default_dashboard')}?success=true&username={user.username}")
         else:
+            # En cas d'erreur, afficher un message d'erreur
             return render(request, 'login.html', {'error': 'Invalid username or password'})
     return render(request, 'login.html')
 
@@ -400,7 +406,8 @@ def add_employee(request):
                 [employee.email],
             )
 
-            return redirect('gestion_utilisateurs_marketing')
+            # Rediriger avec un paramètre de succès
+            return redirect(f"{reverse('gestion_utilisateurs_marketing')}?success=true")
     else:
         form = AddEmployeeForm()
     return render(request, 'add_employee.html', {'form': form})
@@ -538,6 +545,8 @@ from django.utils import timezone
 from .models import Campaign, Content, Group
 from django.contrib import messages
 
+from django.urls import reverse
+
 @login_required
 def create_campaign(request):
     if request.method == 'POST':
@@ -583,7 +592,8 @@ def create_campaign(request):
             # Lancer la campagne immédiatement
             launch_fast_campaign(request, campaign.id)
 
-        return redirect('gestion_campagnes_mk')
+        # Rediriger avec un paramètre de succès
+        return redirect(f"{reverse('gestion_campagnes_mk')}?success=true")
 
     contents = Content.objects.all()
     groups = Group.objects.all()

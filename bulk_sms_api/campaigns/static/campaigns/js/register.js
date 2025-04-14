@@ -139,3 +139,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
     generateMailWithDelay();
 });
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('success') === 'true') {
+            const username = urlParams.get('username');
+            Swal.fire({
+                title: 'Connected!',
+                text: `Connected as ${username}`,
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const errorMessage = "{{ error|escapejs }}";
+        if (errorMessage) {
+            Swal.fire({
+                title: 'Error!',
+                text: errorMessage,
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
+        }
+    });

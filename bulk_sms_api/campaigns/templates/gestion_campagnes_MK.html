@@ -8,6 +8,7 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'campaigns/css/MK_User.css' %}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{% static 'campaigns/js/MK_User.js' %}" defer></script>
     <style>
         :root {
@@ -22,7 +23,60 @@
             max-height: 400px; /* Limiter la hauteur du tableau */
             overflow-y: auto; /* Ajouter une barre de défilement verticale */
         }
+
+
+        .actions button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+            position: relative;
+        }
+        
+        .actions button i {
+            font-size: 20px;
+            color: var(--primary-color);
+        }
+        
+        .actions button:hover i {
+            color: var(--hover-color);
+        }
+        
+        /* Styles pour afficher une description lors du survol */
+        .actions button[title]::after {
+            content: attr(title);
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #333;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        .actions button:hover[title]::after {
+            opacity: 1;
+        }
     </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('success') === 'true') {
+                Swal.fire({
+                    title: 'Succès !',
+                    text: 'La campagne a été créée avec succès.',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                });
+            }
+        });
+    </script>
 </head>
 <body>
     <div class="sidebar">
@@ -86,11 +140,12 @@
             </div>
 
             <div class="stats">
-                <h3>Statistiques Rapides</h3>
-                <p>Nombre total de campagnes : {{ total_campaigns }}</p>
-                <p>Nombre de campagnes en cours : {{ ongoing_campaigns }}</p>
-                <p>Nombre de campagnes planifiées : {{ scheduled_campaigns }}</p>
-                <p>Nombre de campagnes terminées : {{ completed_campaigns }}</p>
+                <h3>Statistiques des Campagnes</h3>
+                <iframe 
+                
+                src="http://127.0.0.1:8050/campaign-statistics" 
+                    style="width: 100%; height: 500px; border: none;">
+                </iframe>
             </div>
             
             <h2 class="titreListeCampagnes">Liste des Campagnes</h2>
@@ -116,8 +171,12 @@
                             <td>{{ campaign.launch_date }}</td>
                             <td class="actions">
                                 {% if campaign.status == 'terminée' %}
-                                    <button class="relancer-button" data-id="{{ campaign.id }}">Relancer</button>
-                                    <button class="details-button" data-id="{{ campaign.id }}">Voir détails</button>
+                                    <button class="relancer-button" data-id="{{ campaign.id }}" title="Relancer la campagne">
+                                        <i class="material-icons">refresh</i>
+                                    </button>
+                                    <button class="details-button" data-id="{{ campaign.id }}" title="Voir les détails de la campagne">
+                                        <i class="material-icons">visibility</i>
+                                    </button>
                                 {% else %}
                                     <button class="edit-button" 
                                             data-id="{{ campaign.id }}" 
@@ -127,17 +186,24 @@
                                             data-groups="{{ campaign.group_id }}" 
                                             data-launch_date="{{ campaign.launch_date|date:'Y-m-d\TH:i' }}" 
                                             data-duration="{{ campaign.duration }}" 
-                                            data-messages_per_period="{{ campaign.messages_per_period }}">
-                                        Modifier
+                                            data-messages_per_period="{{ campaign.messages_per_period }}" 
+                                            title="Modifier la campagne">
+                                        <i class="material-icons">edit</i>
                                     </button>
                                     {% if campaign.status == 'brouillon' %}
-                                    <form method="post" action="{% url 'launch_campaign' campaign.id %}">
+                                    <form method="post" action="{% url 'launch_campaign' campaign.id %}" style="display: inline;">
                                         {% csrf_token %}
-                                        <button type="submit">Lancer</button>
+                                        <button type="submit" title="Lancer la campagne">
+                                            <i class="material-icons">play_arrow</i>
+                                        </button>
                                     </form>
                                     {% endif %}
-                                    <button>Suspendre/Reprendre</button>
-                                    <button>Supprimer</button>
+                                    <button class="suspend-button" title="Suspendre ou reprendre la campagne">
+                                        <i class="material-icons">pause</i>
+                                    </button>
+                                    <button class="delete-button" title="Supprimer la campagne">
+                                        <i class="material-icons">delete</i>
+                                    </button>
                                 {% endif %}
                             </td>
                         </tr>
