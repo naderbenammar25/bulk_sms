@@ -18553,3 +18553,77 @@ INFO:werkzeug:127.0.0.1 - - [24/Apr/2025 20:58:25] "[36mGET /_dash-component-su
 INFO:werkzeug:127.0.0.1 - - [24/Apr/2025 20:58:25] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
 INFO:werkzeug:127.0.0.1 - - [24/Apr/2025 20:58:25] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
 INFO:werkzeug:127.0.0.1 - - [24/Apr/2025 20:58:25] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+INFO:dash.dash:Dash is running on http://127.0.0.1:8050/
+
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8050
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:58:33] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:58:34] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:58:34] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:58:34] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:58:35] "GET /_favicon.ico?v=2.18.2 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:58:40] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:58:40] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:58:40] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:58:40] "GET /_favicon.ico?v=2.18.2 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:58:40] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\bulk_sms_api\settings.py changed, reloading.
+WARNING:django.request:Not Found: /favicon.ico
+INFO:dash.dash:Dash is running on http://127.0.0.1:8050/
+
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8050
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:59:49] "GET /kpi-open-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:59:49] "GET /kpi-click-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:59:49] "GET /open-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:59:49] "GET /kpi-bounce-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:59:49] "GET /temporal-distance HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:59:49] "GET /click-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:59:49] "GET /hourly-distribution HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:59:49] "GET /kpi-unsubscribe-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:59:49] "GET /mail-status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:59:49] "GET /bounce-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:59:50] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:59:50] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:59:50] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:59:50] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:59:50] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:59:50] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:59:50] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:59:50] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:59:50] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:59:50] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:59:50] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:59:50] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:59:50] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:59:50] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:59:50] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:59:50] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:59:50] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:59:50] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:59:50] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:59:50] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:59:50] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:59:50] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:59:50] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:59:50] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:59:52] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:59:52] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:59:52] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:59:52] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:59:52] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:59:52] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:59:52] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:59:52] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:59:52] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:59:52] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:59:52] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:59:52] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:59:53] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:59:54] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:59:54] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:59:54] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:59:54] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [25/Apr/2025 16:59:54] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -

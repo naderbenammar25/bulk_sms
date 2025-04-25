@@ -137,7 +137,7 @@ DATABASES = {
         'NAME': 'new_mass_mailing_db',  # Nom de la base de données que vous avez créée
         'USER': 'postgres',  # Votre nom d'utilisateur PostgreSQL
         'PASSWORD': 'user01',  # Votre mot de passe PostgreSQL
-        'HOST': 'localhost',
+        'HOST': 'localhost',  # Adresse de votre serveur PostgreSQL (localhost si c'est sur la même machine)
         'PORT': '5432',
     }
 }

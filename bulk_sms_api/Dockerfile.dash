@@ -1,0 +1,18 @@
+# Utiliser une image Python comme base
+FROM python:3.11-slim
+
+# Définir le répertoire de travail
+WORKDIR /app
+
+# Copier les fichiers de l'application Dash
+COPY requirements.txt /app/
+COPY . /app/
+COPY ./ml_model /app/ml_model
+# Installer les dépendances
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Exposer le port 8050
+EXPOSE 8050
+
+# Commande pour démarrer l'application Dash
+CMD ["python", "bulk_sms_api/ml_model/dash_apps.py"]
