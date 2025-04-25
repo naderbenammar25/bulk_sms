@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{% static 'campaigns/js/MK_User.js' %}" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         :root {
             --primary-color: {{ colors.0 }};
@@ -62,6 +63,20 @@
         
         .actions button:hover[title]::after {
             opacity: 1;
+        }
+        .stats {
+            height: 300px;
+        }
+        .search-bar {
+            height: 150px;
+            position: relative;
+            top: 41px;
+            
+        }
+        .filter-bar {
+            height: 150px;
+            position: relative;
+            top: 83px;
         }
     </style>
     <script>
@@ -140,13 +155,64 @@
             </div>
 
             <div class="stats">
-                <h3>Statistiques des Campagnes</h3>
-                <iframe 
-                
-                src="http://127.0.0.1:8050/campaign-statistics" 
-                    style="width: 100%; height: 500px; border: none;">
-                </iframe>
+                <h3>Statistiques des Rapides</h3>
+                <button onclick="window.open('http://127.0.0.1:8050/hourly-distribution', '_blank')">Statistiques détaillées</button>
+
+                <canvas id="campaignStatsChart" width="400" height="200"></canvas>
             </div>
+            
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    const totalCampaigns = {{ total_campaigns }};
+                    const completedCampaigns = {{ completed_campaigns }};
+                    const ongoingCampaigns = {{ ongoing_campaigns }};
+                    const scheduledCampaigns = {{ scheduled_campaigns }};
+                    const draftCampaigns = {{ draft_campaigns }};
+            
+                    const data = {
+                        labels: ['Terminées', 'En cours', 'Planifiées', 'Brouillon'],
+                        datasets: [{
+                            label: 'Statistiques des Campagnes',
+                            data: [completedCampaigns, ongoingCampaigns, scheduledCampaigns, draftCampaigns],
+                            backgroundColor: [
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(255, 99, 132, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(255, 99, 132, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    };
+            
+                    const options = {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                            title: {
+                                display: true,
+                                text: 'Statistiques des Campagnes'
+                            }
+                        }
+                    };
+            
+                    const ctx = document.getElementById('campaignStatsChart').getContext('2d');
+                    new Chart(ctx, {
+                        type: 'bar',
+                        data: data,
+                        options: options
+                    });
+                });
+            </script>
+            
+            
             
             <h2 class="titreListeCampagnes">Liste des Campagnes</h2>
 
@@ -171,9 +237,12 @@
                             <td>{{ campaign.launch_date }}</td>
                             <td class="actions">
                                 {% if campaign.status == 'terminée' %}
-                                    <button class="relancer-button" data-id="{{ campaign.id }}" title="Relancer la campagne">
+                                <form method="post" action="{% url 'relancer_campaign' campaign.id %}" style="display: inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" title="Relancer la campagne">
                                         <i class="material-icons">refresh</i>
                                     </button>
+                                </form>
                                     <button class="details-button" data-id="{{ campaign.id }}" title="Voir les détails de la campagne">
                                         <i class="material-icons">visibility</i>
                                     </button>
@@ -198,12 +267,18 @@
                                         </button>
                                     </form>
                                     {% endif %}
-                                    <button class="suspend-button" title="Suspendre ou reprendre la campagne">
-                                        <i class="material-icons">pause</i>
-                                    </button>
-                                    <button class="delete-button" title="Supprimer la campagne">
-                                        <i class="material-icons">delete</i>
-                                    </button>
+                                    <form method="post" action="{% url 'suspend_campaign' campaign.id %}" style="display: inline;">
+                                        {% csrf_token %}
+                                        <button type="submit" title="Suspendre ou reprendre la campagne">
+                                            <i class="material-icons">pause</i>
+                                        </button>
+                                    </form>
+                                    <form method="post" action="{% url 'delete_campaign' campaign.id %}" style="display: inline;">
+                                        {% csrf_token %}
+                                        <button type="submit" title="Supprimer la campagne">
+                                            <i class="material-icons">delete</i>
+                                        </button>
+                                    </form>
                                 {% endif %}
                             </td>
                         </tr>

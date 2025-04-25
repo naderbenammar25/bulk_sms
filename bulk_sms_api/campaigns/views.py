@@ -202,7 +202,7 @@ def user_login(request):
                 return redirect(f"{reverse('default_dashboard')}?success=true&username={user.username}")
         else:
             # En cas d'erreur, afficher un message d'erreur
-            return render(request, 'login.html', {'error': 'Invalid username or password'})
+            return render(request, 'login.html', {'error': 'Nom d\'utilisateur ou mot de passe incorrect.'})
     return render(request, 'login.html')
 
 def custom_logout(request):
@@ -295,6 +295,19 @@ def toggle_user_status(request, user_id):
     user.is_active = not user.is_active
     user.save()
     return redirect('admin_dashboard')
+
+
+@login_required
+def toggle_contact_status(request, contact_id):
+    contact = get_object_or_404(Contact, id=contact_id)
+    # Inverser le statut du contact
+    if contact.status == 'Actif':
+        contact.status = 'Inactif'
+    else:
+        contact.status = 'Actif'
+    contact.save()
+    return JsonResponse({'status': contact.status})
+
 
 @api_view(['GET'])
 def get_employees(request):
@@ -449,42 +462,46 @@ def gestion_groupes(request):
 
 
 
-
-from django.shortcuts import render, redirect, get_object_or_404
+import psycopg2
+import pandas as pd
+from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from django.utils import timezone
-from .models import Campaign, Content, Group
 
-from django.db.models import Q
+def load_data_from_db():
+    conn = psycopg2.connect(
+        dbname="new_mass_mailing_db",
+        user="postgres",
+        password="user01",
+        host="localhost",
+        port="5432"
+    )
+    query = "SELECT * FROM campaigns_campaign"
+    data = pd.read_sql_query(query, conn)
+    conn.close()
+    return data
 
 @login_required
 def gestion_campagnes_mk(request):
-    status_filter = request.GET.get('status')
-    search_query = request.GET.get('search')
+    # Charger les données des campagnes depuis la base de données
+    campaigns_df = load_data_from_db()
 
-    campaigns = Campaign.objects.all()
+    # Calculer les statistiques
+    total_campaigns = len(campaigns_df)
+    ongoing_campaigns = len(campaigns_df[campaigns_df['status'] == 'en cours'])
+    scheduled_campaigns = len(campaigns_df[campaigns_df['status'] == 'planifiée'])
+    completed_campaigns = len(campaigns_df[campaigns_df['status'] == 'terminée'])
+    draft_campaigns = len(campaigns_df[campaigns_df['status'] == 'brouillon'])
 
-    if status_filter:
-        campaigns = campaigns.filter(status=status_filter)
-
-    if search_query:
-        campaigns = campaigns.filter(Q(name__icontains=search_query))
-
-    contents = Content.objects.all()
-    groups = Group.objects.all()
-    total_campaigns = campaigns.count()
-    ongoing_campaigns = campaigns.filter(status='en cours').count()
-    scheduled_campaigns = campaigns.filter(status='planifiée').count()
-    completed_campaigns = campaigns.filter(status='terminée').count()
+    # Convertir les campagnes en liste de dictionnaires pour le template
+    campaigns = campaigns_df.to_dict(orient='records')
 
     context = {
-        'campaigns': campaigns, 
-        'contents': contents,
-        'groups': groups,
+        'campaigns': campaigns,
         'total_campaigns': total_campaigns,
         'ongoing_campaigns': ongoing_campaigns,
         'scheduled_campaigns': scheduled_campaigns,
         'completed_campaigns': completed_campaigns,
+        'draft_campaigns': draft_campaigns,
     }
     return render(request, 'gestion_campagnes_MK.html', context)
 
@@ -752,26 +769,92 @@ def notifications(request):
 def gestion_campagnes(request):
     return render(request, 'gestion_campagnes.html')
 
+from django.core.exceptions import ValidationError
+from bs4 import BeautifulSoup
+
 @login_required
 def editeur_contenu(request):
     if request.method == 'POST':
         title = request.POST.get('title')
         html_content = request.POST.get('html_content')
 
-        # Enregistrer le contenu avec l'en-tête et le pied de page
+        # Valider le contenu HTML
+        try:
+            soup = BeautifulSoup(html_content, 'html.parser')
+            if not soup.find():  # Vérifie si le contenu HTML est vide ou invalide
+                raise ValidationError("Le contenu HTML est invalide.")
+        except Exception as e:
+            messages.error(request, f"Erreur dans le contenu HTML : {e}")
+            return redirect('editeur_contenu')
+
         Content.objects.create(title=title, html_content=html_content)
         messages.success(request, 'Contenu créé avec succès.')
         return redirect('marketing_dashboard')
 
     user = request.user
-    company = user.company  # Assurez-vous que l'utilisateur a une relation avec l'entreprise
-    logo_url = company.logo.url if company.logo else None  # Assurez-vous que l'entreprise a un logo
+    company = user.company
+    logo_url = company.logo.url if company.logo else None
     company_name = company.name if company else "Nom de l'entreprise"
 
     return render(request, 'editeur_contenu.html', {
         'logo_url': logo_url,
         'company_name': company_name,
     })
+
+
+@login_required
+def suspend_campaign(request, campaign_id):
+    campaign = get_object_or_404(Campaign, id=campaign_id)
+
+    if campaign.status == 'en cours':
+        campaign.status = 'suspendue'
+        messages.success(request, f"La campagne '{campaign.name}' a été suspendue.")
+    elif campaign.status == 'suspendue':
+        campaign.status = 'en cours'
+        messages.success(request, f"La campagne '{campaign.name}' a été reprise.")
+    else:
+        messages.error(request, f"La campagne '{campaign.name}' ne peut pas être suspendue ou reprise.")
+
+    campaign.save()
+    return redirect('gestion_campagnes_mk')
+
+from django.shortcuts import get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from .models import Campaign
+
+@login_required
+def delete_campaign(request, campaign_id):
+    campaign = get_object_or_404(Campaign, id=campaign_id)
+
+    try:
+        campaign.delete()
+        messages.success(request, f"La campagne '{campaign.name}' a été supprimée avec succès.")
+    except Exception as e:
+        messages.error(request, f"Erreur lors de la suppression de la campagne : {e}")
+
+    return redirect('gestion_campagnes_mk')
+
+
+from django.shortcuts import get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from .models import Campaign
+
+@login_required
+def relancer_campaign(request, campaign_id):
+    campaign = get_object_or_404(Campaign, id=campaign_id)
+
+    if campaign.status == 'terminée':
+        campaign.status = 'en cours'
+        campaign.launch_date = timezone.now()
+        campaign.save()
+        messages.success(request, f"La campagne '{campaign.name}' a été relancée avec succès.")
+    else:
+        messages.error(request, f"La campagne '{campaign.name}' ne peut pas être relancée car elle n'est pas terminée.")
+
+    return redirect('gestion_campagnes_mk')
+
 @login_required
 def demande_assistance(request):
     return render(request, 'demande_assistance.html')
@@ -801,7 +884,8 @@ def update_password(request):
         form = PasswordChangeForm(request.user)
     return render(request, 'update_password.html', {'form': form})
 
-
+from django.views.decorators.csrf import csrf_protect
+@csrf_protect
 @login_required
 def import_contacts(request):
     if request.method == 'POST':
@@ -863,88 +947,71 @@ def merge_groups(request):
         return redirect('gestion_groupes')
     return redirect('gestion_groupes')
 
-# campaigns/views.py
-import json
+
 import requests
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
-
+import json
 import logging
+
+# Configurer le logger
 logger = logging.getLogger(__name__)
 
 @csrf_exempt
 def generate_content(request):
     if request.method == 'POST':
         try:
-            # Log la requête entrante
-            logger.info(f"Requête reçue - Body: {request.body}")
-            
             data = json.loads(request.body)
             prompt = data.get('prompt', '')
-            
-            if not prompt:
-                return JsonResponse({'error': 'Prompt manquant'}, status=400)
-            
-            # Configuration de l'appel API
-            api_url = "https://api.deepseek.com/v1/chat/completions"
-            headers = {
-                "Authorization": f"Bearer {settings.DEEPSEEK_API_KEY}",
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            }
-            
-            payload = {
-                "model": "deepseek-chat",
-                "messages": [{
-                    "role": "user",
-                    "content": f"Tu es un assistant marketing spécialisé dans la rédaction de campagnes email. {prompt}"
-                }],
-                "temperature": 0.7,
-                "max_tokens": 1000
-            }
-            
-            # Log avant l'appel API
-            logger.debug(f"Envoi à DeepSeek - Payload: {payload}")
-            
-            response = requests.post(api_url, headers=headers, json=payload, timeout=30)
-            
-            # Log la réponse brute
-            logger.debug(f"Réponse DeepSeek - Status: {response.status_code}, Body: {response.text}")
-            
-            response.raise_for_status()
-            response_data = response.json()
-            
-            if not response_data.get('choices'):
-                raise ValueError("Structure de réponse inattendue de l'API DeepSeek")
-            
-            generated_content = response_data['choices'][0]['message']['content']
-            
-            return JsonResponse({
-                'generated_content': generated_content,
-                'usage': response_data.get('usage', {})
-            })
-            
-        except json.JSONDecodeError as e:
-            logger.error(f"Erreur JSON: {str(e)}")
-            return JsonResponse({'error': 'Données JSON invalides'}, status=400)
-            
-        except requests.exceptions.RequestException as e:
-            logger.error(f"Erreur requête API: {str(e)}")
-            return JsonResponse({
-                'error': f"Erreur de communication avec l'API DeepSeek",
-                'details': str(e)
-            }, status=502)
-            
-        except Exception as e:
-            logger.error(f"Erreur inattendue: {str(e)}", exc_info=True)
-            return JsonResponse({
-                'error': 'Erreur interne du serveur',
-                'details': str(e)
-            }, status=500)
-    
-    return JsonResponse({'error': 'Méthode non autorisée'}, status=405)
 
+            if not prompt:
+                return JsonResponse({"error": "Le prompt est vide."}, status=400)
+
+            # Requête à l'API DeepSeek R1
+            response = requests.post(
+                url="https://openrouter.ai/api/v1/chat/completions",
+                headers={
+                    "Authorization": f"Bearer {settings.DEEPSEEK_API_KEY}",
+                    "Content-Type": "application/json",
+                    "HTTP-Referer": "http://localhost:8000",  # Remplacez par votre URL
+                    "X-Title": "Bulk SMS Marketing",  # Remplacez par le nom de votre site
+                },
+                json={
+                    "model": "deepseek/deepseek-r1:free",
+                    "messages": [
+                        {
+                            "role": "system",
+                            "content": "Tu es un assistant marketing spécialisé dans la rédaction de contenu pour campagnes SMS. Tes réponses doivent être concises, persuasives et adaptées aux limites des SMS (160 caractères)."
+                        },
+                        {
+                            "role": "user",
+                            "content": prompt
+                        }
+                    ],
+                    "max_tokens": 500
+                }
+            )
+
+            # Vérifier le statut de la réponse
+            if response.status_code == 200:
+                result = response.json()
+                return JsonResponse({
+                    'generated_content': result['choices'][0]['message']['content']
+                })
+            else:
+                logger.error(f"Erreur API : {response.status_code}, {response.text}")
+                return JsonResponse({
+                    'error': f"Erreur API : {response.status_code}, {response.text}"
+                }, status=response.status_code)
+
+        except Exception as e:
+            logger.exception("Erreur serveur")
+            return JsonResponse({
+                'error': f"Erreur serveur : {str(e)}"
+            }, status=500)
+
+    return JsonResponse({'error': 'Méthode non autorisée'}, status=405)
 
 from django.utils.crypto import get_random_string
 from .models import EmailTracking  # Garder l'importation
@@ -965,45 +1032,34 @@ def launch_campaign(request, campaign_id):
         logo_url = request.build_absolute_uri(company.logo.url) if company.logo else ''
         company_name = company.name if company else 'Nom de l\'entreprise'
 
-        # Envoyer des emails aux contacts associés au groupe choisi
-        contacts = campaign.group.contacts.all()
+        # Envoyer des emails uniquement aux contacts actifs associés au groupe choisi
+        contacts = campaign.group.contacts.filter(status='Actif')  # Exclure les contacts désactivés
         for contact in contacts:
             subject = f"Campagne: {campaign.name}"
             message = campaign.message
-            tracking_id = get_random_string(32)
-            tracking_pixel_url = f"{request.build_absolute_uri('/track_email/')}{tracking_id}/"
             html_content = f"""
                 <div class="header">
                     <img src="{logo_url}" alt="Logo de l'entreprise">
                     <h3>{company_name}</h3>
                 </div>
                 {message}
-                <img src="{tracking_pixel_url}" width="1" height="1" />
                 <div class="footer">
                     <p>&copy; {company_name} - Tous droits réservés</p>
                 </div>
             """
 
-            # Enregistrer les informations de suivi dans la base de données
-            EmailTracking.objects.create(
-                EVENT_DATE=timezone.now(),
-                EVENT_TYPE='Sent',
-                MessageHash=tracking_id,
-                ContactHash=contact,  # Utiliser l'objet contact directement
-                COMMUNICATION_NAME=campaign.name,
-                COMMUNICATION_SUBJECT=subject,
-                CAMPAIGN_NAME=campaign.name
-            )
-
-            email = EmailMultiAlternatives(
-                subject=subject,
-                body=message,
-                from_email=settings.EMAIL_HOST_USER,
-                to=[contact.email],
-            )
-            email.attach_alternative(html_content, "text/html")
-            email.send()
-            logger.info(f"Email sent to {contact.email} with tracking ID {tracking_id}")
+            try:
+                email = EmailMultiAlternatives(
+                    subject=subject,
+                    body=message,
+                    from_email=settings.EMAIL_HOST_USER,
+                    to=[contact.email],
+                )
+                email.attach_alternative(html_content, "text/html")
+                email.send()
+                logger.info(f"Email sent to {contact.email}")
+            except Exception as e:
+                logger.error(f"Failed to send email to {contact.email}: {e}")
 
     return redirect('gestion_campagnes_mk')
 
@@ -1033,7 +1089,6 @@ logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.DEBUG)
 
 
-
 @login_required
 def launch_fast_campaign(request, campaign_id):
     campaign = get_object_or_404(Campaign, id=campaign_id)
@@ -1041,13 +1096,12 @@ def launch_fast_campaign(request, campaign_id):
     campaign.launch_date = timezone.now()
     campaign.save()
 
-    # Récupérer les informations de l'entreprise
     company = request.user.company
     logo_url = request.build_absolute_uri(company.logo.url) if company.logo else ''
     company_name = company.name if company else 'Nom de l\'entreprise'
 
-    # Envoyer des emails aux contacts associés au groupe choisi
-    contacts = campaign.group.contacts.all()
+    # Envoyer des emails uniquement aux contacts actifs associés au groupe choisi
+    contacts = campaign.group.contacts.filter(status='Actif')  # Exclure les contacts désactivés
     for contact in contacts:
         subject = f"Campagne: {campaign.name}"
         message = campaign.message
@@ -1078,9 +1132,35 @@ def launch_fast_campaign(request, campaign_id):
     return redirect('gestion_campagnes_mk')
 
 
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
+from .models import Feedback, Campaign
 
+@login_required
+def gestion_feedback(request):
+    
 
+    feedbacks = Feedback.objects.all().order_by('-created_at')  # Charger tous les feedbacks
 
+    if request.method == 'POST':
+        feedback_id = request.POST.get('feedback_id')
+        response_message = request.POST.get('response')
+        feedback = get_object_or_404(Feedback, id=feedback_id)
 
+        # Envoyer la réponse par email
+        send_mail(
+            subject=f"Réponse à votre feedback pour la campagne {feedback.campaign.name}",
+            message=response_message,
+            from_email="nader@metadia.net",
+            recipient_list=[feedback.contact_email],
+        )
 
+        # Mettre à jour le feedback avec la réponse
+        feedback.response = response_message
+        feedback.responded_at = now()
+        feedback.save()
 
+        return redirect('gestion_feedback')
+
+    return render(request, 'gestion_feedback.html', {'feedbacks': feedbacks})

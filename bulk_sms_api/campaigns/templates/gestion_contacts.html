@@ -115,9 +115,12 @@
                             <td>{{ contact.group.name }}</td>
                             <td>{{ contact.status }}</td>
                             <td class="actions">
-                                <button class="edit-button">Modifier</button>
-                                <button class="associate-button">Associer</button>
-                                <button class="status-button">{% if contact.status == 'Actif' %}Désactiver{% else %}Activer{% endif %}</button>
+                                <a href="#" class="edit-icon" title="Modifier"><i class="material-icons">edit</i></a>
+                                <a href="#" class="associate-icon" title="Associer"><i class="material-icons">link</i></a>
+                                <a href="#" class="status-icon" title="{% if contact.status == 'Actif' %}Désactiver{% else %}Activer{% endif %}"
+                                    data-contact-id="{{ contact.id }}">
+                                    <i class="material-icons">{% if contact.status == 'Actif' %}toggle_off{% else %}toggle_on{% endif %}</i>
+                                </a>
                             </td>
                         </tr>
                         {% endfor %}
@@ -140,7 +143,38 @@
                     <button type="submit" class="save-button">Confirmer</button>
                 </form>
             </div>
+            <div class="instructions" style="margin-bottom: 20px;">
+                <h2>Instructions</h2>
+                <p>Pour importer des contacts, veuillez préparer un fichier CSV qui suit la structure suivante.</p>
+                <image src="{% static 'campaigns/images/exempleCSV.png' %}" alt="tableau excel" class="instructions-image">
+            </div>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const statusIcons = document.querySelectorAll('.status-icon');
+            statusIcons.forEach(icon => {
+                icon.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    const contactId = this.getAttribute('data-contact-id');
+                    const url = `/toggle_contact_status/${contactId}/`;
+        
+                    fetch(url, {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        // Recharger la page après la mise à jour
+                        window.location.reload();
+                    })
+                    .catch(error => console.error('Erreur:', error));
+                });
+            });
+        });
+    </script>
 </body>
 </html>

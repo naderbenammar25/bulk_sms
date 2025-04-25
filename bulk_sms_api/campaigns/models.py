@@ -125,3 +125,18 @@ class EmailTracking(models.Model):
     
     def __str__(self):
         return f"{self.COMMUNICATION_NAME} - {self.ContactHash} - {self.EVENT_DATE}"
+    
+
+from django.db import models
+from django.utils.timezone import now
+
+class Feedback(models.Model):
+    contact_email = models.EmailField()  # Email du contact ayant répondu
+    campaign = models.ForeignKey('Campaign', on_delete=models.CASCADE, related_name='feedbacks')  # Campagne associée
+    message = models.TextField()  # Message reçu du contact
+    response = models.TextField(blank=True, null=True)  # Réponse de l'administrateur
+    created_at = models.DateTimeField(default=now)  # Date de réception du feedback
+    responded_at = models.DateTimeField(blank=True, null=True)  # Date de réponse de l'administrateur
+
+    def __str__(self):
+        return f"Feedback de {self.contact_email} pour la campagne {self.campaign.name}"

@@ -16,6 +16,16 @@ locations = [
     'Sousse', 'Tataouine', 'Tozeur', 'Zaghouan'
 ]
 
+# Probabilités ajustées pour les types d'événements
+event_probabilities = {
+    'Click': 0.35,         # 35% des événements
+    'Open': 0.30,          # 30% des événements
+    'Unsubscribed': 0.20,  # 20% des événements
+    'Bounced': 0.10,       # 10% des événements
+    'Sent': 0.03,          # 3% des événements
+    'Complaint': 0.02      # 2% des événements
+}
+
 # Générer des données aléatoires
 data = {
     'EVENT_DATE': [],
@@ -31,7 +41,7 @@ data = {
 start_date = datetime(2021, 1, 1)
 for _ in range(num_events):
     event_date = start_date + timedelta(minutes=random.randint(0, 525600))  # Date aléatoire dans l'année
-    event_type = random.choice(event_types)
+    event_type = random.choices(list(event_probabilities.keys()), weights=event_probabilities.values(), k=1)[0]
     message_hash = f"msg_{random.randint(1, num_events)}"
     contact_hash = f"user_{random.randint(1, num_users)}"
     communication_name = random.choice(communication_names)

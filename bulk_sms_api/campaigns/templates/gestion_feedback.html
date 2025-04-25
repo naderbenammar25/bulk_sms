@@ -1,0 +1,100 @@
+<!-- filepath: c:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\campaigns\templates\gestion_feedback.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion des Feedbacks</title>
+    
+    <link rel="stylesheet" href="{% static 'campaigns/css/admin.css' %}">
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+    }
+    
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+    
+    table th, table td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+    }
+    
+    table th {
+        background-color: #f4f4f4;
+    }
+    
+    textarea {
+        width: 100%;
+        height: 80px;
+        margin-bottom: 10px;
+    }
+    
+    button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+    
+    button:hover {
+        background-color: #0056b3;
+    }
+</style>
+</head>
+<body>
+    <div class="main-content">
+        <h1>Gestion des Feedbacks</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Contact</th>
+                    <th>Campagne</th>
+                    <th>Message</th>
+                    <th>Réponse</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for feedback in feedbacks %}
+                <tr>
+                    <td>{{ feedback.contact_email }}</td>
+                    <td>{{ feedback.campaign.name }}</td>
+                    <td>{{ feedback.message }}</td>
+                    <td>
+                        {% if feedback.response %}
+                            {{ feedback.response }}
+                        {% else %}
+                            <em>Pas encore répondu</em>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if not feedback.response %}
+                        <form method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="feedback_id" value="{{ feedback.id }}">
+                            <textarea name="response" placeholder="Écrire une réponse..." required></textarea>
+                            <button type="submit">Envoyer</button>
+                        </form>
+                        {% else %}
+                            <em>Répondu le {{ feedback.responded_at|date:"d/m/Y H:i" }}</em>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -2,7 +2,8 @@ from django.urls import path
 from .views import index, admin_dashboard, marketing_dashboard, user_login, upload_csv, list_groups, send_emails, register, approve_registration, reject_registration
 from .views import gestion_employe, toggle_employee_status, get_employees, gestion_contacts, gestion_utilisateurs_marketing, gestion_groupes, gestion_campagnes, visualisation_performances, gestion_feedback, demander_intervention
 from .views import edit_user, reset_password, toggle_user_status, add_employee, accueil_MK_User, employee_actions, connect_as_employee, gestion_profile_admin, update_profile , create_campaign, custom_logout, gestion_campagnes_admin, email_tracking_pixel
-from .views import securite, notifications, editeur_contenu, demande_assistance, gestion_profile_MK, update_profile_MK, update_password , import_contacts, add_group, merge_groups,gestion_campagnes_mk, generate_content, suivi_performances, launch_campaign
+from .views import securite, notifications, editeur_contenu, demande_assistance, gestion_profile_MK, update_profile_MK, update_password , import_contacts, add_group, merge_groups,gestion_campagnes_mk, generate_content, suivi_performances, launch_campaign, suspend_campaign,delete_campaign,relancer_campaign
+from .views import toggle_contact_status
 from django.contrib.auth import views as auth_views
 from django.contrib import admin
 
@@ -51,7 +52,13 @@ urlpatterns = [
     path('gestion_campagnes_admin/', gestion_campagnes_admin, name='gestion_campagnes_admin'),
     path('launch_campaign/<int:campaign_id>/', launch_campaign, name='launch_campaign'),
     path('track_email/<str:tracking_id>/', email_tracking_pixel, name='email_tracking_pixel'),
-    path('generate_content/', generate_content, name='generate_content'),
+    path('generate-content/', generate_content, name='generate_content'),
+    path('suspend_campaign/<int:campaign_id>/', suspend_campaign, name='suspend_campaign'),
+    path('delete_campaign/<int:campaign_id>/', delete_campaign, name='delete_campaign'),
+    path('relancer_campaign/<int:campaign_id>/', relancer_campaign, name='relancer_campaign'),
+    path('toggle_contact_status/<int:contact_id>/', toggle_contact_status, name='toggle_contact_status'),
+
+
 
     path('suivi_performances/', suivi_performances, name='suivi_performances'),
     path('create_campaign/', create_campaign, name='create_campaign'),

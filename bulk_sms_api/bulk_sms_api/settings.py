@@ -14,7 +14,7 @@ from pathlib import Path
 import os
 
 GEMINI_API_KEY = 'AIzaSyCz0PG1OKKUqxK8XIZax1RX75Gu6NCjSWk'
-DEEPSEEK_API_KEY = 'sk-66c88cb81ed946228f69eb82a3e66d46'
+DEEPSEEK_API_KEY = "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"
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -93,7 +93,9 @@ MIDDLEWARE = [
 
 
 ]
-
+CSRF_COOKIE_SECURE = True  # Assure que le cookie CSRF est envoyé uniquement via HTTPS
+CSRF_COOKIE_HTTPONLY = True  # Empêche l'accès au cookie CSRF via JavaScript
+CSRF_COOKIE_SAMESITE = 'Lax' 
 
 CORS_ALLOW_ALL_ORIGINS = True
 
