@@ -58,22 +58,29 @@ services:
       retries: 5
     restart: always
 
-  grafana:
-    image: grafana/grafana:latest
-    container_name: grafana_server
-    ports:
-      - "3001:3000"
-    volumes:
-      - grafana_data:/var/lib/grafana
-    restart: always
-
   prometheus:
     image: prom/prometheus:latest
     container_name: prometheus_server
     ports:
-      - "9090:9090"
+      - "9091:9090"
     volumes:
-      - ./prometheus-3.3.0-rc.1.windows-amd64/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    restart: always
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana_server
+    ports:
+      - "3100:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+    restart: always
+
+  promlens:
+    image: prom/promlens:latest
+    container_name: promlens_server
+    ports:
+      - "8080:8080"
     restart: always
 
 volumes:

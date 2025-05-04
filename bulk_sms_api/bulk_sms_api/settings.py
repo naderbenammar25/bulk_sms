@@ -34,7 +34,7 @@ SECRET_KEY = 'django-insecure-@z9v7x(w_ha8mjkpo71(1q-&e$*n0#6sv(@r=u=iel38*85x#0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -137,7 +137,7 @@ DATABASES = {
         'NAME': 'new_mass_mailing_db',  # Nom de la base de données que vous avez créée
         'USER': 'postgres',  # Votre nom d'utilisateur PostgreSQL
         'PASSWORD': 'user01',  # Votre mot de passe PostgreSQL
-        'HOST': 'localhost',  # Adresse de votre serveur PostgreSQL (localhost si c'est sur la même machine)
+        'HOST': 'postgres_db',  # Adresse de votre serveur PostgreSQL (localhost si c'est sur la même machine)
         'PORT': '5432',
     }
 }

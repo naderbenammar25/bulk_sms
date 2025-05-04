@@ -186,6 +186,10 @@ from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from django.urls import reverse
 
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login
+from django.urls import reverse
+
 def user_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -194,16 +198,20 @@ def user_login(request):
         if user is not None:
             login(request, user)
             # Rediriger en fonction du rôle de l'utilisateur
-            if user.role == 'admin':
-                return redirect(f"{reverse('admin_dashboard')}?success=true&username={user.username}")
-            elif user.role == 'marketing':
-                return redirect(f"{reverse('marketing_dashboard')}?success=true&username={user.username}")
+            if hasattr(user, 'role'):  # Vérifiez si l'utilisateur a un attribut 'role'
+                if user.role == 'admin':
+                    return redirect(f"{reverse('admin_dashboard')}?success=true&username={user.username}")
+                elif user.role == 'marketing':
+                    return redirect(f"{reverse('marketing_dashboard')}?success=true&username={user.username}")
+                else:
+                    return redirect(f"{reverse('default_dashboard')}?success=true&username={user.username}")
             else:
                 return redirect(f"{reverse('default_dashboard')}?success=true&username={user.username}")
         else:
             # En cas d'erreur, afficher un message d'erreur
             return render(request, 'login.html', {'error': 'Nom d\'utilisateur ou mot de passe incorrect.'})
     return render(request, 'login.html')
+
 
 def custom_logout(request):
     user = request.user

@@ -102,27 +102,37 @@
                     <th>Téléphone</th>
                     <th>Status</th>
                     <th>Dernière Connexion</th>
-                    <th>Actions</th>
+                    <th style="width: 100px;">Actions</th> <!-- Élargir la colonne -->
                 </tr>
             </thead>
             <tbody>
                 {% for employee in employees %}
-                <tr>
-                    <td>
-                        {{ employee.first_name }} {{ employee.last_name }}
-                        <button onclick="window.location.href='{% url 'connect_as_employee' employee.id %}'" style="background-color: var(--primary-color); color: white;">Se connecter</button>
-                    </td>
-                    <td>{{ employee.email }}</td>
-                    <td>{{ employee.phone }}</td>
-                    <td>{{ employee.is_logged_in|yesno:"Connecté,Déconnecté" }}</td>
-                    <td>{{ employee.last_login }}</td>
-                    <td>
-                        <button class="edit-employee" data-employee-id="{{ employee.id }}"style="background-color: var(--primary-color); color: white;">Modifier</button>
-                        <button class="reset-password" data-employee-id="{{ employee.id }}"style="background-color: var(--primary-color); color: white;">Réinitialiser</button>
-                        <button class="toggle-status" data-employee-id="{{ employee.id }}"style="background-color: var(--primary-color); color: white;">{{ employee.is_active|yesno:"Désactiver,Activer" }}</button>
-                    </td>
-                </tr>
-                {% endfor %}
+    <tr>
+        <td>
+            {{ employee.first_name }} {{ employee.last_name }}
+            <a href="{% url 'connect_as_employee' employee.id %}" title="Se connecter">
+                <i class="material-icons" style="color: var(--primary-color); cursor: pointer; margin-left: 10px;">login</i>
+            </a>
+        </td>
+        <td>{{ employee.email }}</td>
+        <td>{{ employee.phone }}</td>
+        <td>{{ employee.is_logged_in|yesno:"Connecté,Déconnecté" }}</td>
+        <td>{{ employee.last_login }}</td>
+        <td>
+            <a href="#" class="edit-employee" data-employee-id="{{ employee.id }}" title="Modifier">
+                <i class="material-icons" style="color: var(--primary-color); cursor: pointer;">edit</i>
+            </a>
+            <a href="#" class="reset-password" data-employee-id="{{ employee.id }}" title="Réinitialiser">
+                <i class="material-icons" style="color: var(--primary-color); cursor: pointer;">lock_reset</i>
+            </a>
+            <a href="#" class="toggle-status" data-employee-id="{{ employee.id }}" title="{{ employee.is_active|yesno:'Désactiver,Activer' }}">
+                <i class="material-icons" style="color: var(--primary-color); cursor: pointer;">
+                    {{ employee.is_active|yesno:'toggle_off,toggle_on' }}
+                </i>
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
             </tbody>
         </table>
         <h2>Activités des Employés</h2>

@@ -1,4 +1,4 @@
-<!-- filepath: /C:/Users/LENOVO/django_projects/bulk_sms/bulk_sms_api/campaigns/templates/login.html -->
+<!-- filepath: c:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\campaigns\templates\login.html -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,26 +6,21 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'campaigns/css/register.css' %}">
     <script src="{% static 'campaigns/js/register.js' %}" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-   
 </head>
 <body>
     <image src="{% static 'campaigns/images/sideBackground.png' %}" alt="map-tunisia-floating-emails" class="LoginBackground">
     <div class="floating-mails-container"></div>
     <div class="login_form">
-    <h1 class="titreLogin">Login</h1>
-    <form method="post">
-        {% csrf_token %}
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required><br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br>
-        <button type="submit">Login</button>
-    </form>
-    {% if error %}
-        <p style="color: red;">{{ error }}</p>
-    {% endif %}
-    <p class="mdp_oublie"><a href="{% url 'password_reset' %}">Vous avez oublié votre mot de passe ?</a></p>
-</div>
+        <h1 class="titreLogin">Login</h1>
+        <form method="post">
+            {% csrf_token %}
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required><br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required><br>
+            <button type="submit">Login</button>
+        </form>
+        <p class="mdp_oublie"><a href="{% url 'password_reset' %}">Vous avez oublié votre mot de passe ?</a></p>
+    </div>
 </body>
 </html>

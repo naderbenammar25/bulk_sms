@@ -154,14 +154,4 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    document.addEventListener('DOMContentLoaded', function() {
-        const errorMessage = "{{ error|default:''|escapejs }}"; // Utiliser une valeur par défaut vide
-        if (errorMessage) {
-            Swal.fire({
-                title: 'Error!',
-                text: errorMessage,
-                icon: 'error',
-                confirmButtonText: 'OK'
-            });
-        }
-    });
+   
