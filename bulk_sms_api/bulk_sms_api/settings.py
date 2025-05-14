@@ -34,7 +34,7 @@ SECRET_KEY = 'django-insecure-@z9v7x(w_ha8mjkpo71(1q-&e$*n0#6sv(@r=u=iel38*85x#0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.85.1', '*']
 
 
 # Application definition
@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'channels',
     'corsheaders',
     'django_prometheus',
+    'csp',
 
 
 
@@ -102,8 +103,15 @@ CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8000",
     "http://127.0.0.1:8000",
-    # Ajoutez votre domaine de production ici
+    
 ]
+CONTENT_SECURITY_POLICY = {
+    'DIRECTIVES': {
+        'default-src': ["'self'"],
+        'script-src': ["'self'", "https://trusted-scripts.example.com"],
+        'style-src': ["'self'", "https://trusted-styles.example.com"],
+    }
+}
 
 
 ROOT_URLCONF = 'bulk_sms_api.urls'
@@ -134,10 +142,10 @@ WSGI_APPLICATION = 'bulk_sms_api.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'new_mass_mailing_db',  # Nom de la base de données que vous avez créée
-        'USER': 'postgres',  # Votre nom d'utilisateur PostgreSQL
-        'PASSWORD': 'user01',  # Votre mot de passe PostgreSQL
-        'HOST': 'postgres_db',  # Adresse de votre serveur PostgreSQL (localhost si c'est sur la même machine)
+        'NAME': 'new_mass_mailing_db',  # Nom de la base de données
+        'USER': 'postgres',  # Nom d'utilisateur PostgreSQL
+        'PASSWORD': 'user01',  # Mot de passe PostgreSQL
+        'HOST': 'localhost',  # Nom du service PostgreSQL défini dans docker-compose.yml
         'PORT': '5432',
     }
 }

@@ -3,6 +3,7 @@ FROM python:3.10-slim
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
+# Installer les dépendances nécessaires
 RUN apt-get update && apt-get install -y \
     build-essential \
     libpq-dev \
@@ -10,8 +11,12 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /app
 
+# Copier les dépendances et les installer
 COPY requirements.txt .
-RUN pip install --no-cache-dir --default-timeout=300 -r requirements.txtRUN pip install --upgrade pip
+RUN pip install --no-cache-dir --default-timeout=300 -r requirements.txt && \
+    pip install --upgrade pip
+
+# Copier tout le code source dans le conteneur
 COPY . .
 
 EXPOSE 8050

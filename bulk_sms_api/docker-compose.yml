@@ -11,14 +11,15 @@ services:
     volumes:
       - .:/app
     environment:
-      - DEBUG=True
-      - DATABASE_HOST=db
-      - DATABASE_PORT=5432
-      - DATABASE_NAME=new_mass_mailing_db
-      - DATABASE_USER=postgres
-      - DATABASE_PASSWORD=user01
+      DEBUG: "True"
+      DATABASE_HOST: postgres_db
+      DATABASE_PORT: "5432"
+      DATABASE_NAME: new_mass_mailing_db
+      DATABASE_USER: postgres
+      DATABASE_PASSWORD: user01
     depends_on:
-      - db
+      postgres_db:
+        condition: service_healthy
     restart: always
 
   dash:
@@ -31,16 +32,17 @@ services:
     volumes:
       - .:/app
     environment:
-      - DATABASE_HOST=db
-      - DATABASE_PORT=5432
-      - DATABASE_NAME=new_mass_mailing_db
-      - DATABASE_USER=postgres
-      - DATABASE_PASSWORD=user01
+      DATABASE_HOST: postgres_db
+      DATABASE_PORT: "5432"
+      DATABASE_NAME: new_mass_mailing_db
+      DATABASE_USER: postgres
+      DATABASE_PASSWORD: user01
     depends_on:
-      - db
+      postgres_db:
+        condition: service_healthy
     restart: always
 
-  db:
+  postgres_db:
     image: postgres:15
     container_name: postgres_db
     ports:

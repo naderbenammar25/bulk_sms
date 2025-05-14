@@ -19714,3 +19714,835 @@ INFO:werkzeug:127.0.0.1 - - [03/May/2025 16:21:12] "[36mGET /_dash-component-su
 INFO:werkzeug:127.0.0.1 - - [03/May/2025 16:21:12] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
 INFO:werkzeug:127.0.0.1 - - [03/May/2025 16:21:12] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
 INFO:werkzeug:127.0.0.1 - - [03/May/2025 16:21:12] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+INFO:dash.dash:Dash is running on http://127.0.0.1:8050/
+
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8050
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\campaigns\models.py changed, reloading.
+WARNING:django.request:Not Found: /favicon.ico
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:36:47] "GET /kpi-click-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:36:47] "GET /kpi-open-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:36:47] "GET /kpi-bounce-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:36:47] "GET /kpi-unsubscribe-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:36:47] "GET /click-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:36:47] "GET /mail-status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:36:47] "GET /bounce-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:36:47] "GET /hourly-distribution HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:36:47] "GET /temporal-distance HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:36:47] "GET /open-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:36:48] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:36:48] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:36:48] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:36:48] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:36:48] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:36:48] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:36:48] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:36:48] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:36:48] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:36:48] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:36:48] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:36:48] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:36:48] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:36:48] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:36:48] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:36:48] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:36:48] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:36:48] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:36:48] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:36:48] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:36:50] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:36:50] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:36:50] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:36:50] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:36:50] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:36:50] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:36:50] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:36:50] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:36:50] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:36:50] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:36:50] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:36:50] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:36:50] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:36:50] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:36:50] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:36:50] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:36:51] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:36:52] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:36:52] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:36:52] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:36:52] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:36:52] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:37:50] "GET /kpi-open-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:37:50] "GET /kpi-click-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:37:50] "GET /kpi-bounce-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:37:50] "GET /open-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:37:50] "GET /kpi-unsubscribe-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:37:50] "GET /temporal-distance HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:37:50] "GET /click-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:37:50] "GET /hourly-distribution HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:37:50] "GET /mail-status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:37:50] "GET /bounce-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:37:51] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:37:51] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:37:51] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:37:51] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:37:51] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:37:51] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:37:51] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:37:51] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:37:52] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:37:52] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:37:52] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:37:52] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:37:52] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:37:52] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:37:52] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:37:52] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:37:52] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:37:52] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:37:52] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:37:52] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:37:52] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:37:52] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:37:52] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:37:52] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:37:52] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:37:52] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:37:52] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:37:52] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:37:52] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:37:52] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:37:52] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:37:52] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:37:52] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:37:52] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:37:52] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:37:52] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:37:52] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:37:52] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:37:52] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:37:52] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:37:52] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2025 22:37:52] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.request:Not Found: /favicon.ico
+INFO:dash.dash:Dash is running on http://127.0.0.1:8050/
+
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8050
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [06/May/2025 16:05:06] "GET /kpi-open-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/May/2025 16:05:06] "GET /kpi-click-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/May/2025 16:05:06] "GET /kpi-bounce-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/May/2025 16:05:06] "GET /kpi-unsubscribe-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/May/2025 16:05:06] "GET /open-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/May/2025 16:05:06] "GET /click-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/May/2025 16:05:06] "GET /hourly-distribution HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/May/2025 16:05:06] "GET /temporal-distance HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/May/2025 16:05:06] "GET /mail-status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/May/2025 16:05:06] "GET /bounce-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/May/2025 16:05:07] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/May/2025 16:05:07] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/May/2025 16:05:07] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/May/2025 16:05:07] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/May/2025 16:05:07] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/May/2025 16:05:07] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/May/2025 16:05:07] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/May/2025 16:05:07] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/May/2025 16:05:07] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/May/2025 16:05:07] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/May/2025 16:05:07] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/May/2025 16:05:07] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/May/2025 16:05:07] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/May/2025 16:05:07] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/May/2025 16:05:07] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/May/2025 16:05:07] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/May/2025 16:05:07] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/May/2025 16:05:07] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/May/2025 16:05:07] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/May/2025 16:05:07] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/May/2025 16:05:07] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/May/2025 16:05:07] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/May/2025 16:05:07] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/May/2025 16:05:07] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/May/2025 16:05:08] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/May/2025 16:05:08] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/May/2025 16:05:08] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/May/2025 16:05:08] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/May/2025 16:05:08] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/May/2025 16:05:08] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/May/2025 16:05:08] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/May/2025 16:05:08] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/May/2025 16:05:08] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/May/2025 16:05:08] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/May/2025 16:05:08] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/May/2025 16:05:08] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/May/2025 16:05:09] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/May/2025 16:05:10] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/May/2025 16:05:10] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/May/2025 16:05:10] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/May/2025 16:05:10] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/May/2025 16:05:10] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\bulk_sms_api\settings.py changed, reloading.
+WARNING:django.request:Not Found: /favicon.ico
+INFO:dash.dash:Dash is running on http://127.0.0.1:8050/
+
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8050
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:07] "GET /bounce-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:07] "GET /mail-status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:07] "GET /hourly-distribution HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:07] "GET /click-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:10] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:10] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:10] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:10] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:10] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:10] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:10] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:10] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:12] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:12] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:12] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:12] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:12] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:12] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:12] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:12] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:13] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:14] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:14] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:14] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:53] "GET /kpi-open-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:53] "GET /kpi-click-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:53] "GET /kpi-bounce-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:53] "GET /kpi-unsubscribe-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:53] "GET /open-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:53] "GET /temporal-distance HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:53] "GET /click-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:53] "GET /hourly-distribution HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:53] "GET /mail-status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:53] "GET /bounce-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:54] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:54] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:54] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:54] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:54] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:54] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:54] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:54] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:54] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:54] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:54] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:54] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:54] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:54] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:54] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:54] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:54] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:54] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:54] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:54] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:54] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:54] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:54] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:54] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:54] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:54] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:54] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:54] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:55] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:55] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:55] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:55] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:55] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:55] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:55] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:55] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:55] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:55] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:55] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:55] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:55] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [07/May/2025 16:29:55] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+ERROR:django.request:Internal Server Error: /create_campaign/
+Traceback (most recent call last):
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\db\models\fields\__init__.py", line 2123, in get_prep_value
+    return int(value)
+           ^^^^^^^^^^
+ValueError: invalid literal for int() with base 10: ''
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\campaigns\views.py", line 590, in create_campaign
+    target_group = Group.objects.get(id=target_group_id)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\db\models\query.py", line 635, in get
+    clone = self._chain() if self.query.combinator else self.filter(*args, **kwargs)
+                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\db\models\query.py", line 1476, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\db\models\query.py", line 1494, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\db\models\query.py", line 1501, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\db\models\sql\query.py", line 1609, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\db\models\sql\query.py", line 1641, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\db\models\sql\query.py", line 1555, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\db\models\sql\query.py", line 1385, in build_lookup
+    lookup = lookup_class(lhs, rhs)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\db\models\lookups.py", line 30, in __init__
+    self.rhs = self.get_prep_lookup()
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\db\models\lookups.py", line 369, in get_prep_lookup
+    return super().get_prep_lookup()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\db\models\lookups.py", line 88, in get_prep_lookup
+    return self.lhs.output_field.get_prep_value(self.rhs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\django\db\models\fields\__init__.py", line 2125, in get_prep_value
+    raise e.__class__(
+ValueError: Field 'id' expected a number but got ''.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\bulk_sms_api\settings.py changed, reloading.
+WARNING:django.request:Not Found: /favicon.ico
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\bulk_sms_api\settings.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\bulk_sms_api\settings.py changed, reloading.
+WARNING:django.request:Not Found: /favicon.ico
+INFO:dash.dash:Dash is running on http://127.0.0.1:8050/
+
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8050
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [09/May/2025 20:21:40] "GET /kpi-open-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/May/2025 20:21:40] "GET /kpi-click-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/May/2025 20:21:40] "GET /open-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/May/2025 20:21:40] "GET /kpi-unsubscribe-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/May/2025 20:21:40] "GET /kpi-bounce-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/May/2025 20:21:40] "GET /temporal-distance HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/May/2025 20:21:40] "GET /click-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/May/2025 20:21:40] "GET /hourly-distribution HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/May/2025 20:21:41] "GET /mail-status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/May/2025 20:21:41] "GET /bounce-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/May/2025 20:21:42] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/May/2025 20:21:42] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/May/2025 20:21:42] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/May/2025 20:21:42] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/May/2025 20:21:42] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/May/2025 20:21:42] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/May/2025 20:21:42] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/May/2025 20:21:42] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/May/2025 20:21:42] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/May/2025 20:21:42] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/May/2025 20:21:42] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/May/2025 20:21:42] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/May/2025 20:21:42] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/May/2025 20:21:42] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/May/2025 20:21:42] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/May/2025 20:21:42] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/May/2025 20:21:42] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/May/2025 20:21:42] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/May/2025 20:21:42] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/May/2025 20:21:42] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/May/2025 20:21:42] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/May/2025 20:21:42] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/May/2025 20:21:43] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/May/2025 20:21:43] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/May/2025 20:21:45] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/May/2025 20:21:45] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/May/2025 20:21:45] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/May/2025 20:21:45] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/May/2025 20:21:45] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/May/2025 20:21:45] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/May/2025 20:21:45] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [09/May/2025 20:21:45] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [09/May/2025 20:21:45] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [09/May/2025 20:21:45] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [09/May/2025 20:21:45] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [09/May/2025 20:21:45] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [09/May/2025 20:21:46] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [09/May/2025 20:21:47] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [09/May/2025 20:21:47] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [09/May/2025 20:21:47] "GET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1" 200 -
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.request:Not Found: /favicon.ico
+INFO:dash.dash:Dash is running on http://127.0.0.1:8050/
+
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8050
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.security.csrf:Forbidden (CSRF cookie not set.): /login/
+WARNING:django.security.csrf:Forbidden (CSRF cookie not set.): /login/
+WARNING:django.security.csrf:Forbidden (CSRF cookie not set.): /login/
+WARNING:django.security.csrf:Forbidden (CSRF cookie not set.): /login/
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.security.csrf:Forbidden (CSRF cookie not set.): /login/
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.security.csrf:Forbidden (CSRF cookie not set.): /register/
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.request:Not Found: /robots.txt
+WARNING:django.request:Not Found: /sitemap.xml
+WARNING:django.request:Not Found: /toggle_status/
+WARNING:django.security.csrf:Forbidden (CSRF cookie not set.): /login/
+WARNING:django.security.csrf:Forbidden (CSRF cookie not set.): /register/
+WARNING:django.security.csrf:Forbidden (CSRF cookie not set.): /password_reset/
+WARNING:django.security.csrf:Forbidden (CSRF cookie not set.): /admin/login/
+WARNING:django.request:Not Found: /4780172375109505109
+WARNING:django.request:Not Found: /login/2472717061935404896
+WARNING:django.request:Not Found: /password_reset/3400885121993996548
+WARNING:django.request:Not Found: /register/7029765433042369150
+WARNING:django.request:Not Found: /toggle_status/554332308663300846
+WARNING:django.request:Not Found: /WEB-INF/web.xml
+WARNING:django.request:Not Found: /WEB-INF/applicationContext.xml
+WARNING:django.request:Not Found: /WEB-INF/classes/web/xml.class
+WARNING:django.request:Not Found: /WEB-INF/classes/0/5em.class
+WARNING:django.request:Not Found: /WEB-INF/classes/pre/exception_value.class
+WARNING:django.request:Not Found: /WEB-INF/classes/1/5em.class
+WARNING:django.request:Not Found: /WEB-INF/classes/192/168/85/1.class
+WARNING:django.request:Not Found: /WEB-INF/classes/bulk_sms_api/urls.class
+WARNING:django.request:Not Found: /WEB-INF/classes/applicationContext/xml.class
+WARNING:django.security.csrf:Forbidden (CSRF cookie not set.): /
+WARNING:django.security.csrf:Forbidden (CSRF cookie not set.): /
+WARNING:django.security.csrf:Forbidden (CSRF cookie not set.): /
+WARNING:django.request:Not Found: /latest/meta-data/
+WARNING:django.request:Not Found: /latest/meta-data/
+WARNING:django.request:Not Found: /computeMetadata/v1/
+WARNING:django.request:Not Found: /computeMetadata/v1/
+WARNING:django.request:Not Found: /opc/v1/instance/
+WARNING:django.request:Not Found: /opc/v1/instance/
+WARNING:django.request:Not Found: /latest/meta-data/
+WARNING:django.request:Not Found: /latest/meta-data/
+WARNING:django.request:Not Found: /metadata/instance
+WARNING:django.request:Not Found: /elmah.axd
+WARNING:django.request:Not Found: /trace.axd
+WARNING:django.request:Not Found: /.htaccess
+WARNING:django.request:Not Found: /.env
+WARNING:django.request:Not Found: /lfm.php
+WARNING:django.request:Not Found: /actuator/health
+WARNING:django.request:Not Found: /.idea/WebServers.xml
+WARNING:django.request:Not Found: /actuator/health
+WARNING:django.request:Not Found: /config/databases.yml
+WARNING:django.request:Not Found: /config/database.yml
+WARNING:django.request:Not Found: /.git/config
+WARNING:django.request:Not Found: /.svn/entries
+WARNING:django.request:Not Found: /.svn/wc.db
+WARNING:django.request:Not Found: /CVS/root
+WARNING:django.request:Not Found: /server-status
+WARNING:django.request:Not Found: /core
+WARNING:django.request:Not Found: /sftp-config.json
+WARNING:django.request:Not Found: /WS_FTP.ini
+WARNING:django.request:Not Found: /ws_ftp.ini
+WARNING:django.request:Not Found: /WS_FTP.INI
+WARNING:django.request:Not Found: /filezilla.xml
+WARNING:django.request:Not Found: /sitemanager.xml
+WARNING:django.request:Not Found: /FileZilla.xml
+WARNING:django.request:Not Found: /winscp.ini
+WARNING:django.request:Not Found: /WinSCP.ini
+WARNING:django.request:Not Found: /.DS_Store
+WARNING:django.request:Not Found: /.php_cs.cache
+WARNING:django.request:Not Found: /DEADJOE
+WARNING:django.request:Not Found: /sites/default/private/files/backup_migrate/scheduled/test.txt
+WARNING:django.request:Not Found: /app/etc/local.xml
+WARNING:django.request:Not Found: /server.key
+WARNING:django.request:Not Found: /privatekey.key
+WARNING:django.request:Not Found: /myserver.key
+WARNING:django.request:Not Found: /key.pem
+WARNING:django.request:Not Found: /id_rsa
+WARNING:django.request:Not Found: /id_dsa
+WARNING:django.request:Not Found: /.ssh/id_rsa
+WARNING:django.request:Not Found: /.ssh/id_dsa
+WARNING:django.request:Not Found: /adminer.php
+WARNING:django.request:Not Found: /vb_test.php
+WARNING:django.request:Not Found: /CHANGELOG.txt
+WARNING:django.request:Not Found: /sites/default/files/.ht.sqlite
+WARNING:django.request:Not Found: /composer.json
+WARNING:django.request:Not Found: /composer.lock
+WARNING:django.request:Not Found: /vim_settings.xml
+WARNING:django.request:Not Found: /server-info
+WARNING:django.request:Not Found: /phpinfo.php
+WARNING:django.request:Not Found: /info.php
+WARNING:django.request:Not Found: /i.php
+WARNING:django.request:Not Found: /test.php
+WARNING:django.request:Not Found: /_wpeprivate/config.json
+WARNING:django.request:Not Found: /_framework/blazor.boot.json
+WARNING:django.request:Not Found: /.hg
+WARNING:django.request:Not Found: /.bzr
+WARNING:django.request:Not Found: /._darcs
+WARNING:django.request:Not Found: /BitKeeper
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\bulk_sms_api\settings.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\campaigns\views.py changed, reloading.
+WARNING:django.request:Not Found: /robots.txt
+WARNING:django.request:Not Found: /sitemap.xml
+WARNING:django.request:Not Found: /toggle_status/
+WARNING:django.request:Not Found: /1759672531825338147
+WARNING:django.request:Not Found: /login/3239780358316306132
+WARNING:django.request:Not Found: /password_reset/99383024079682775
+WARNING:django.request:Not Found: /password_reset/done/3899906558023326046
+WARNING:django.request:Not Found: /register/5845775507137619018
+WARNING:django.request:Not Found: /toggle_status/4871344142450934690
+WARNING:django.request:Not Found: /WEB-INF/web.xml
+WARNING:django.request:Not Found: /WEB-INF/applicationContext.xml
+WARNING:django.request:Not Found: /WEB-INF/classes/web/xml.class
+WARNING:django.request:Not Found: /WEB-INF/classes/0/5em.class
+WARNING:django.request:Not Found: /WEB-INF/classes/pre/exception_value.class
+WARNING:django.request:Not Found: /WEB-INF/classes/1/5em.class
+WARNING:django.request:Not Found: /WEB-INF/classes/192/168/85/1.class
+WARNING:django.request:Not Found: /WEB-INF/classes/bulk_sms_api/urls.class
+WARNING:django.request:Not Found: /WEB-INF/classes/applicationContext/xml.class
+WARNING:django.request:Not Found: /latest/meta-data/
+WARNING:django.request:Not Found: /latest/meta-data/
+WARNING:django.request:Not Found: /computeMetadata/v1/
+WARNING:django.request:Not Found: /computeMetadata/v1/
+WARNING:django.request:Not Found: /opc/v1/instance/
+WARNING:django.request:Not Found: /opc/v1/instance/
+WARNING:django.request:Not Found: /latest/meta-data/
+WARNING:django.request:Not Found: /latest/meta-data/
+WARNING:django.request:Not Found: /metadata/instance
+WARNING:django.request:Not Found: /elmah.axd
+WARNING:django.request:Not Found: /trace.axd
+WARNING:django.request:Not Found: /.htaccess
+WARNING:django.request:Not Found: /.env
+WARNING:django.request:Not Found: /actuator/health
+WARNING:django.request:Not Found: /lfm.php
+WARNING:django.request:Not Found: /actuator/health
+WARNING:django.request:Not Found: /.idea/WebServers.xml
+WARNING:django.request:Not Found: /config/databases.yml
+WARNING:django.request:Not Found: /config/database.yml
+WARNING:django.request:Not Found: /.git/config
+WARNING:django.request:Not Found: /.svn/entries
+WARNING:django.request:Not Found: /.svn/wc.db
+WARNING:django.request:Not Found: /CVS/root
+WARNING:django.request:Not Found: /server-status
+WARNING:django.request:Not Found: /core
+WARNING:django.request:Not Found: /sftp-config.json
+WARNING:django.request:Not Found: /WS_FTP.ini
+WARNING:django.request:Not Found: /ws_ftp.ini
+WARNING:django.request:Not Found: /WS_FTP.INI
+WARNING:django.request:Not Found: /filezilla.xml
+WARNING:django.request:Not Found: /sitemanager.xml
+WARNING:django.request:Not Found: /FileZilla.xml
+WARNING:django.request:Not Found: /winscp.ini
+WARNING:django.request:Not Found: /WinSCP.ini
+WARNING:django.request:Not Found: /.DS_Store
+WARNING:django.request:Not Found: /.php_cs.cache
+WARNING:django.request:Not Found: /DEADJOE
+WARNING:django.request:Not Found: /sites/default/private/files/backup_migrate/scheduled/test.txt
+WARNING:django.request:Not Found: /app/etc/local.xml
+WARNING:django.request:Not Found: /server.key
+WARNING:django.request:Not Found: /privatekey.key
+WARNING:django.request:Not Found: /myserver.key
+WARNING:django.request:Not Found: /key.pem
+WARNING:django.request:Not Found: /id_rsa
+WARNING:django.request:Not Found: /id_dsa
+WARNING:django.request:Not Found: /.ssh/id_rsa
+WARNING:django.request:Not Found: /.ssh/id_dsa
+WARNING:django.request:Not Found: /adminer.php
+WARNING:django.request:Not Found: /vb_test.php
+WARNING:django.request:Not Found: /CHANGELOG.txt
+WARNING:django.request:Not Found: /sites/default/files/.ht.sqlite
+WARNING:django.request:Not Found: /composer.json
+WARNING:django.request:Not Found: /composer.lock
+WARNING:django.request:Not Found: /vim_settings.xml
+WARNING:django.request:Not Found: /server-info
+WARNING:django.request:Not Found: /phpinfo.php
+WARNING:django.request:Not Found: /info.php
+WARNING:django.request:Not Found: /i.php
+WARNING:django.request:Not Found: /test.php
+WARNING:django.request:Not Found: /_wpeprivate/config.json
+WARNING:django.request:Not Found: /_framework/blazor.boot.json
+WARNING:django.request:Not Found: /.hg
+WARNING:django.request:Not Found: /.bzr
+WARNING:django.request:Not Found: /._darcs
+WARNING:django.request:Not Found: /BitKeeper
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.request:Not Found: /favicon.ico
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\bulk_sms_api\settings.py changed, reloading.
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.request:Not Found: /robots.txt
+WARNING:django.request:Not Found: /sitemap.xml
+WARNING:django.security.csrf:Forbidden (CSRF cookie not set.): /register/
+WARNING:django.security.csrf:Forbidden (CSRF cookie not set.): /login/
+WARNING:django.request:Not Found: /toggle_status/
+WARNING:django.security.csrf:Forbidden (CSRF cookie not set.): /password_reset/
+WARNING:django.security.csrf:Forbidden (CSRF cookie not set.): /admin/login/
+WARNING:django.request:Not Found: /5455138735804728376
+WARNING:django.request:Not Found: /login/1390508121101453802
+WARNING:django.request:Not Found: /password_reset/5800541732607504076
+WARNING:django.request:Not Found: /register/7205135330996974512
+WARNING:django.request:Not Found: /toggle_status/6647216646871215302
+WARNING:django.request:Not Found: /WEB-INF/web.xml
+WARNING:django.request:Not Found: /WEB-INF/applicationContext.xml
+WARNING:django.request:Not Found: /WEB-INF/classes/web/xml.class
+WARNING:django.request:Not Found: /WEB-INF/classes/0/5em.class
+WARNING:django.request:Not Found: /WEB-INF/classes/pre/exception_value.class
+WARNING:django.request:Not Found: /WEB-INF/classes/1/5em.class
+WARNING:django.request:Not Found: /WEB-INF/classes/192/168/85/1.class
+WARNING:django.request:Not Found: /WEB-INF/classes/bulk_sms_api/urls.class
+WARNING:django.request:Not Found: /WEB-INF/classes/applicationContext/xml.class
+WARNING:django.security.csrf:Forbidden (CSRF cookie not set.): /
+WARNING:django.security.csrf:Forbidden (CSRF cookie not set.): /
+WARNING:django.security.csrf:Forbidden (CSRF cookie not set.): /
+WARNING:django.request:Not Found: /latest/meta-data/
+WARNING:django.request:Not Found: /latest/meta-data/
+WARNING:django.request:Not Found: /computeMetadata/v1/
+WARNING:django.request:Not Found: /computeMetadata/v1/
+WARNING:django.request:Not Found: /opc/v1/instance/
+WARNING:django.request:Not Found: /opc/v1/instance/
+WARNING:django.request:Not Found: /latest/meta-data/
+WARNING:django.request:Not Found: /latest/meta-data/
+WARNING:django.request:Not Found: /metadata/instance
+WARNING:django.request:Not Found: /elmah.axd
+WARNING:django.request:Not Found: /trace.axd
+WARNING:django.request:Not Found: /.htaccess
+WARNING:django.request:Not Found: /.env
+WARNING:django.request:Not Found: /lfm.php
+WARNING:django.request:Not Found: /actuator/health
+WARNING:django.request:Not Found: /.idea/WebServers.xml
+WARNING:django.request:Not Found: /actuator/health
+WARNING:django.request:Not Found: /config/databases.yml
+WARNING:django.request:Not Found: /config/database.yml
+WARNING:django.request:Not Found: /.git/config
+WARNING:django.request:Not Found: /.svn/entries
+WARNING:django.request:Not Found: /.svn/wc.db
+WARNING:django.request:Not Found: /CVS/root
+WARNING:django.request:Not Found: /server-status
+WARNING:django.request:Not Found: /core
+WARNING:django.request:Not Found: /sftp-config.json
+WARNING:django.request:Not Found: /WS_FTP.ini
+WARNING:django.request:Not Found: /ws_ftp.ini
+WARNING:django.request:Not Found: /WS_FTP.INI
+WARNING:django.request:Not Found: /filezilla.xml
+WARNING:django.request:Not Found: /sitemanager.xml
+WARNING:django.request:Not Found: /FileZilla.xml
+WARNING:django.request:Not Found: /winscp.ini
+WARNING:django.request:Not Found: /WinSCP.ini
+WARNING:django.request:Not Found: /.DS_Store
+WARNING:django.request:Not Found: /.php_cs.cache
+WARNING:django.request:Not Found: /DEADJOE
+WARNING:django.request:Not Found: /sites/default/private/files/backup_migrate/scheduled/test.txt
+WARNING:django.request:Not Found: /app/etc/local.xml
+WARNING:django.request:Not Found: /server.key
+WARNING:django.request:Not Found: /privatekey.key
+WARNING:django.request:Not Found: /myserver.key
+WARNING:django.request:Not Found: /key.pem
+WARNING:django.request:Not Found: /id_rsa
+WARNING:django.request:Not Found: /id_dsa
+WARNING:django.request:Not Found: /.ssh/id_rsa
+WARNING:django.request:Not Found: /.ssh/id_dsa
+WARNING:django.request:Not Found: /adminer.php
+WARNING:django.request:Not Found: /vb_test.php
+WARNING:django.request:Not Found: /CHANGELOG.txt
+WARNING:django.request:Not Found: /sites/default/files/.ht.sqlite
+WARNING:django.request:Not Found: /composer.json
+WARNING:django.request:Not Found: /composer.lock
+WARNING:django.request:Not Found: /vim_settings.xml
+WARNING:django.request:Not Found: /server-info
+WARNING:django.request:Not Found: /phpinfo.php
+WARNING:django.request:Not Found: /info.php
+WARNING:django.request:Not Found: /i.php
+WARNING:django.request:Not Found: /test.php
+WARNING:django.request:Not Found: /_wpeprivate/config.json
+WARNING:django.request:Not Found: /_framework/blazor.boot.json
+WARNING:django.request:Not Found: /.hg
+WARNING:django.request:Not Found: /.bzr
+WARNING:django.request:Not Found: /._darcs
+WARNING:django.request:Not Found: /BitKeeper
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\bulk_sms_api\settings.py changed, reloading.
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.security.csrf:Forbidden (CSRF cookie not set.): /login/
+WARNING:django.security.csrf:Forbidden (CSRF cookie not set.): /login/
+WARNING:django.security.csrf:Forbidden (CSRF cookie not set.): /login/
+WARNING:django.security.csrf:Forbidden (CSRF cookie not set.): /login/
+WARNING:django.security.csrf:Forbidden (CSRF cookie not set.): /login/
+INFO:dash.dash:Dash is running on http://127.0.0.1:8050/
+
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8050
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:django.utils.autoreload:C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\bulk_sms_api\settings.py changed, reloading.
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.request:Not Found: /favicon.ico
+INFO:dash.dash:Dash is running on http://127.0.0.1:8050/
+
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8050
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+WARNING:django.request:Not Found: /favicon.ico
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:29:49] "GET /kpi-open-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:29:49] "GET /kpi-click-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:29:49] "GET /kpi-bounce-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:29:49] "GET /kpi-unsubscribe-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:29:49] "GET /open-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:29:50] "GET /hourly-distribution HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:29:50] "GET /click-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:29:50] "GET /mail-status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:29:50] "GET /temporal-distance HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:29:50] "GET /bounce-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:29:52] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:29:52] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:29:52] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:29:52] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:29:52] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:29:52] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:29:52] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:29:52] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:29:52] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:29:52] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:29:52] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:29:52] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:29:52] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:29:52] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:29:52] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:29:52] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:29:52] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:29:52] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:29:52] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:29:52] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:29:53] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:29:53] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:29:53] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:29:53] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:29:55] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:29:55] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:29:56] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:29:56] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:29:56] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:29:56] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:29:56] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:29:56] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:29:56] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:29:56] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:29:56] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:29:56] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:29:57] "GET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:29:57] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:29:57] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:29:57] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:29:57] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:29:57] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+WARNING:django.request:Not Found: /favicon.ico
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:19] "GET /kpi-open-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:19] "GET /kpi-click-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:19] "GET /kpi-bounce-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:19] "GET /kpi-unsubscribe-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:19] "GET /open-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:19] "GET /temporal-distance HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:19] "GET /click-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:19] "GET /hourly-distribution HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:19] "GET /mail-status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:19] "GET /bounce-rate HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:20] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:20] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:20] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:20] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:20] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:20] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:20] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:20] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:20] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:20] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:20] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:20] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:20] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:20] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:20] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:20] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:20] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:20] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:20] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:20] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:20] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:20] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:20] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:20] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:20] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:20] "POST /_dash-update-component HTTP/1.1" 200 -
+WARNING:django.request:Not Found: /favicon.ico
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:20] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:20] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:20] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:20] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:20] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:20] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:20] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:21] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:21] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:21] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:21] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:21] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:21] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:21] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:21] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:21] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:25] "GET /predictions HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:26] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:26] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:26] "GET /_favicon.ico?v=2.18.2 HTTP/1.1" 200 -
+ERROR:dash_apps:Exception on /_dash-update-component [POST]
+Traceback (most recent call last):
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\dash\dash.py", line 1376, in dispatch
+    ctx.run(
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\dash\_callback.py", line 507, in add_context
+    raise err
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\dash\_callback.py", line 496, in add_context
+    output_value = _invoke_callback(func, *func_args, **func_kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.virtualenvs\bulk_sms-1lhJneuN\Lib\site-packages\dash\_callback.py", line 43, in _invoke_callback
+    return func(*args, **kwargs)  # %% callback invoked %%
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py", line 44, in display_page
+    return predictions_page(data)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\dash_apps.py", line 407, in predictions_page
+    df, X, y = create_dataset(data, sent_open_hour_range=36, open_click_hour_range=24, column_names=column_names)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\ml_model\regressor_sto_model.py", line 579, in create_dataset
+    raise KeyError("La colonne 'Label' est manquante dans le DataFrame.")
+KeyError: "La colonne 'Label' est manquante dans le DataFrame."
+INFO:werkzeug:127.0.0.1 - - [13/May/2025 14:49:27] "[35m[1mPOST /_dash-update-component HTTP/1.1[0m" 500 -

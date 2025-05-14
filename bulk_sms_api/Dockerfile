@@ -11,6 +11,7 @@ RUN echo "deb http://deb.debian.org/debian bullseye main" > /etc/apt/sources.lis
 # Utiliser un miroir alternatif pour apt
 RUN sed -i 's|http://deb.debian.org|http://ftp.fr.debian.org|g' /etc/apt/sources.list
 
+# Installer les dépendances nécessaires
 RUN apt-get update && apt-get install -y \
     build-essential \
     libpq-dev \
@@ -18,8 +19,12 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /app
 
+# Copier les dépendances et les installer
 COPY requirements.txt .
-RUN pip install --no-cache-dir --default-timeout=300 -r requirements.txtRUN pip install --upgrade pip
+RUN pip install --no-cache-dir --default-timeout=300 -r requirements.txt && \
+    pip install --upgrade pip
+
+# Copier le reste du code
 COPY . .
 
 EXPOSE 8000
