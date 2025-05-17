@@ -11,6 +11,7 @@ import random
 import psycopg2
 import datetime
 import numpy as np
+from prophet import Prophet
 
 warnings.filterwarnings('ignore')
 
@@ -631,6 +632,23 @@ def load_model_once(model_path='random_forest_model.pkl'):
             MODEL = None
     return MODEL
 
+
+    ##############Prophet model pour la prédiction STO ####################
+
+def prepare_prophet_data(data, contact_hash):
+    # Filtrer les événements 'Open' pour ce contact
+    df = data[(data['ContactHash'] == contact_hash) & (data['EVENT_TYPE'].str.lower() == 'open')]
+    # Grouper par date (par exemple, par heure ou jour)
+    df_grouped = df.groupby(df['EVENT_DATE'].dt.floor('H')).size().reset_index(name='y')
+    df_grouped.rename(columns={'EVENT_DATE': 'ds'}, inplace=True)
+    return df_grouped
+
+
+
+
+
+
+
     ##############statsmodels####################
 def get_statistics(data):
     # Utiliser le modèle global
@@ -719,3 +737,5 @@ if __name__ == "__main__":
 
     # Charger ou créer le dataset
     df, X, y = create_or_load_dataset(data, sent_open_hour_range=36, open_click_hour_range=24, column_names=column_names)
+
+    

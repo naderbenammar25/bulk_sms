@@ -3,7 +3,14 @@ from dash import dcc, html
 from dash.dependencies import Input, Output
 import plotly.express as px
 import pandas as pd
-from ml_model.regressor_sto_model import load_data_from_db, get_statistics, create_dataset, get_sent_hour
+from ml_model.regressor_sto_model import load_data_from_db, get_statistics, create_dataset, get_sent_hour, prepare_prophet_data
+import plotly.graph_objs as go
+from prophet import Prophet
+import matplotlib.pyplot as plt
+import base64
+from io import BytesIO
+
+
 
 # Charger les données depuis la base de données
 data = load_data_from_db()
@@ -50,6 +57,25 @@ def display_page(pathname):
         return kpi_bounce_rate(stats)
     elif pathname == '/kpi-unsubscribe-rate':
         return kpi_unsubscribe_rate(stats)
+@app.callback(
+    Output('prophet-plot-container', 'children'),
+    [Input({'type': 'show-plot-btn', 'index': dash.dependencies.ALL}, 'n_clicks')]
+)
+def display_prophet_plot(n_clicks_list, pathname):
+    ctx = dash.callback_context
+    if not ctx.triggered:
+        return ""
+    button_id = ctx.triggered[0]['prop_id'].split('.')[0]
+    if not button_id:
+        return ""
+    import json
+    btn_index = json.loads(button_id)['index']
+    predictions = get_prophet_predictions(data)
+    if btn_index >= len(predictions):
+        return ""
+    pred = predictions[btn_index]
+    img_base64 = prophet_plot_base64(pred['prophet_data'], pred['forecast'], pred['contact'])
+    return html.Img(src='data:image/png;base64,{}'.format(img_base64), style={'width': '80%', 'margin': 'auto', 'display': 'block'})
     
 def deliverability_statistics_page(stats):
     if stats['total_sent'] == 0:
@@ -401,17 +427,106 @@ def tunisia_map_page(data):
     ])
 
 # Page Prédictions
-def predictions_page(data):
-    # Utiliser le modèle pour prédire l'heure optimale d'envoi
-    column_names = ['ContactHash', 'COMMUNICATION_NAME', 'EVENT_DATE', 'EVENT_TYPE']
-    df, X, y = create_dataset(data, sent_open_hour_range=36, open_click_hour_range=24, column_names=column_names)
-    predicted_sent_hour = get_sent_hour(model=None, contact_hash=data['ContactHash'].iloc[0], comm=data['COMMUNICATION_NAME'].iloc[0], df=df, X=X)
 
+def get_prophet_predictions(data):
+    results = []
+    for contact_hash in data['ContactHash'].unique():
+        prophet_data = prepare_prophet_data(data, contact_hash)
+        if len(prophet_data) < 2:
+            continue
+        model = Prophet()
+        model.fit(prophet_data)
+        future = model.make_future_dataframe(periods=24, freq='H')
+        forecast = model.predict(future)
+        best_row = forecast.loc[forecast['yhat'].idxmax()]
+        results.append({
+            'contact': contact_hash,
+            'best_time': best_row['ds'],
+            'score': best_row['yhat'],
+            'prophet_data': prophet_data,
+            'forecast': forecast
+        })
+    return results
+
+def prophet_plot_base64(prophet_data, forecast, contact_hash):
+    model = Prophet()
+    model.fit(prophet_data)
+    fig = model.plot(forecast)
+    plt.title(f"Prévision du taux d'ouverture pour {contact_hash}")
+    buf = BytesIO()
+    plt.savefig(buf, format="png")
+    plt.close(fig)
+    buf.seek(0)
+    img_base64 = base64.b64encode(buf.read()).decode('utf-8')
+    return img_base64
+
+import dash_table
+from dash import dcc, html, Input, Output, State
+
+def predictions_page(data):
+    predictions = get_prophet_predictions(data)
+    table_rows = []
+    for i, pred in enumerate(predictions):
+        table_rows.append(html.Tr([
+            html.Td(pred['contact']),
+            html.Td(str(pred['best_time'])),
+            html.Td(f"{pred['score']:.2f}"),
+            html.Td(html.Button("Voir le plot", id={'type': 'show-plot-btn', 'index': i}, n_clicks=0))
+        ]))
     return html.Div([
-        html.H2("Prédictions"),
-        html.H3(f"Heure optimale d'envoi pour {data['ContactHash'].iloc[0]} et {data['COMMUNICATION_NAME'].iloc[0]} : {predicted_sent_hour}"),
+        html.H2("Prédictions Prophet par contact"),
+        html.Table([
+            html.Thead(html.Tr([html.Th("Contact"), html.Th("Date/Heure prédite"), html.Th("Score prédit"), html.Th("Plot")])),
+            html.Tbody(table_rows)
+        ]),
+        html.Div(id='prophet-plot-container')
     ])
 
 # Lancer l'application Dash
 if __name__ == '__main__':
-    app.run_server(debug=False)  
+    app.run_server(debug=False) 
+
+    # ...existing code...
+
+def predictions_page(data):
+    predictions = get_prophet_predictions(data)
+    table_rows = []
+    for i, pred in enumerate(predictions):
+        table_rows.append(html.Tr([
+            html.Td(pred['contact']),
+            html.Td(str(pred['best_time'])),
+            html.Td(f"{pred['score']:.2f}"),
+            html.Td(html.Button("Voir le plot", id={'type': 'show-plot-btn', 'index': i}, n_clicks=0))
+        ]))
+    return html.Div([
+        html.H2("Prédictions Prophet par contact"),
+        html.Table([
+            html.Thead(html.Tr([html.Th("Contact"), html.Th("Date/Heure prédite"), html.Th("Score prédit"), html.Th("Plot")])),
+            html.Tbody(table_rows)
+        ]),
+        html.Div(id='prophet-plot-container')
+    ])
+
+@app.callback(
+    Output('prophet-plot-container', 'children'),
+    [Input({'type': 'show-plot-btn', 'index': dash.dependencies.ALL}, 'n_clicks')],
+    [State('page-content', 'children')]
+)
+def display_prophet_plot(n_clicks_list, page_content):
+    ctx = dash.callback_context
+    if not ctx.triggered:
+        return ""
+    button_id = ctx.triggered[0]['prop_id'].split('.')[0]
+    if not button_id:
+        return ""
+    import json
+    btn_index = json.loads(button_id)['index']
+    # Récupère le contact correspondant à l'index
+    predictions = get_prophet_predictions(data)
+    if btn_index >= len(predictions):
+        return ""
+    pred = predictions[btn_index]
+    if pred is None:
+        return html.Div("Pas assez de données pour ce contact.")
+    img_base64 = prophet_plot_base64(pred['prophet_data'], pred['forecast'], pred['contact'])
+    return html.Img(src='data:image/png;base64,{}'.format(img_base64), style={'width': '80%', 'margin': 'auto', 'display': 'block'})

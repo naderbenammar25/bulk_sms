@@ -1,0 +1,158 @@
+<!-- filepath: campaigns/templates/predictions_dashboard.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Prédictions d'ouverture optimales</title>
+    <style>
+        .navbar {
+            background: #2c3e50;
+            color: #fff;
+            padding: 10px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin-right: 20px;
+            font-weight: bold;
+        }
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+        .btn-retour {
+            background: #c60c30;
+            color: #fff;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .btn-retour:hover {
+            background: #a00d23;
+        }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px;}
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: center;}
+        th { background: #f5f5f5; }
+        .btn-details { background: #2c3e50; color: #fff; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer;}
+        .btn-details:hover { background: #2980b9; }
+        #plot-container { margin-top: 30px; text-align: center; }
+    </style>
+</head>
+<body>
+    <!-- Loader/Progress Bar -->
+    <div id="loading-overlay" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(255,255,255,0.95);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+        <div style="width:60%;max-width:400px;">
+            <div style="margin-bottom:20px;font-size:1.2em;color:#2c3e50;">
+                Veuillez patienter pendant le calcul des prédictions optimales d'envoi.<br>
+                Cette opération peut prendre quelques secondes.<br>
+                <span id="progress-text">Initialisation du modèle Prophet...</span>
+            </div>
+            <div style="width:100%;background:#eee;border-radius:8px;overflow:hidden;">
+                <div id="progress-bar" style="width:10%;height:18px;background:#2c3e50;transition:width 0.4s;"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div>
+            <a href="{% url 'admin_dashboard' %}">Accueil Admin</a>
+            <span>Prédictions</span>
+        </div>
+        <button class="btn-retour" onclick="window.location.href='{% url 'admin_dashboard' %}'">Retour au Dashboard</button>
+    </div>
+
+    <h2>Prédictions des ouvertures par contact</h2>
+    <form method="get">
+    <label for="group">Choisir un groupe :</label>
+    <select name="group" id="group" onchange="this.form.submit()">
+        {% for group in groupes %}
+            <option value="{{ group.name }}" {% if group.name == selected_group_name %}selected{% endif %}>{{ group.name }}</option>
+        {% endfor %}
+    </select>
+</form>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Contact</th>
+                <th>Date/Heure prédite</th>
+                <th>Score prédit</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pred in predictions %}
+<tr>
+    <td>{{ pred.contact }}</td>
+    <td>{{ pred.best_time }}</td>
+    <td>{{ pred.score|floatformat:2 }}</td>
+    <td>
+        <form method="get" style="display:inline;">
+            <input type="hidden" name="contact" value="{{ pred.contact }}">
+            <button type="submit" class="btn-details">Voir le graphique</button>
+        </form>
+    </td>
+</tr>
+{% endfor %}
+        </tbody>
+    </table>
+    <div id="plot-container">
+    {% if plot_base64 %}
+        <h3>Prévision pour le contact {{ selected_contact }}</h3>
+        <img src="data:image/png;base64,{{ plot_base64 }}" style="max-width:90%;">
+        {% if mse_value %}
+            <p style="margin-top:15px;font-weight:bold;">MSE (Erreur quadratique moyenne) : {{ mse_value|floatformat:4 }}</p>
+        {% endif %}
+    {% elif group_plot_base64 %}
+        <h3>Prévision moyenne pour le groupe sélectionné</h3>
+        <img src="data:image/png;base64,{{ group_plot_base64 }}" style="max-width:90%;">
+    {% else %}
+        <p style="color:red;">Aucune donnée suffisante pour générer la prévision du groupe.</p>
+    {% endif %}
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Simule une progression (car le backend ne peut pas envoyer l'état d'avancement réel sans WebSocket/AJAX)
+    let progress = 10;
+    const bar = document.getElementById('progress-bar');
+    const text = document.getElementById('progress-text');
+    const overlay = document.getElementById('loading-overlay');
+    const steps = [
+        "Initialisation du modèle Prophet...",
+        "Chargement des données...",
+        "Préparation des séries temporelles...",
+        "Entraînement des modèles pour chaque contact...",
+        "Calcul des prédictions optimales...",
+        "Affichage des résultats..."
+    ];
+    let step = 0;
+
+    function fakeProgress() {
+        if (progress < 95) {
+            progress += Math.random() * 5;
+            bar.style.width = progress + "%";
+            if (progress > (step+1)*15 && step < steps.length-1) {
+                step++;
+                text.textContent = steps[step];
+            }
+            setTimeout(fakeProgress, 400);
+        }
+    }
+    fakeProgress();
+
+    // Masquer l'overlay quand la page est chargée
+    window.onload = function() {
+        bar.style.width = "100%";
+        text.textContent = "Traitement terminé. Affichage des résultats...";
+        setTimeout(function() {
+            overlay.style.display = "none";
+        }, 800);
+    };
+});
+</script>
+</body>
+</html>

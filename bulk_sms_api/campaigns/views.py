@@ -490,26 +490,32 @@ def load_data_from_db():
 
 @login_required
 def gestion_campagnes_mk(request):
-    # Charger les données des campagnes depuis la base de données
-    campaigns_df = load_data_from_db()
+    status_filter = request.GET.get('status')
+    search_query = request.GET.get('search')
 
-    # Calculer les statistiques
-    total_campaigns = len(campaigns_df)
-    ongoing_campaigns = len(campaigns_df[campaigns_df['status'] == 'en cours'])
-    scheduled_campaigns = len(campaigns_df[campaigns_df['status'] == 'planifiée'])
-    completed_campaigns = len(campaigns_df[campaigns_df['status'] == 'terminée'])
-    draft_campaigns = len(campaigns_df[campaigns_df['status'] == 'brouillon'])
+    campaigns = Campaign.objects.all()
 
-    # Convertir les campagnes en liste de dictionnaires pour le template
-    campaigns = campaigns_df.to_dict(orient='records')
+    if status_filter:
+        campaigns = campaigns.filter(status=status_filter)
+
+    if search_query:
+        campaigns = campaigns.filter(Q(name__icontains=search_query))
+
+    contents = Content.objects.all()
+    groups = Group.objects.all()
+    total_campaigns = campaigns.count()
+    ongoing_campaigns = campaigns.filter(status='en cours').count()
+    scheduled_campaigns = campaigns.filter(status='planifiée').count()
+    completed_campaigns = campaigns.filter(status='terminée').count()
 
     context = {
-        'campaigns': campaigns,
-        'total_campaigns': total_campaigns,
-        'ongoing_campaigns': ongoing_campaigns,
-        'scheduled_campaigns': scheduled_campaigns,
-        'completed_campaigns': completed_campaigns,
-        'draft_campaigns': draft_campaigns,
+        'campaigns': campaigns, 
+        'contents': contents,
+        'groups': groups,
+        'total_campaigns': total_campaigns if 'total_campaigns' in locals() else 0,
+        'completed_campaigns': completed_campaigns if 'completed_campaigns' in locals() else 0,
+        'ongoing_campaigns': ongoing_campaigns if 'ongoing_campaigns' in locals() else 0,
+        'scheduled_campaigns': scheduled_campaigns if 'scheduled_campaigns' in locals() else 0,
     }
     return render(request, 'gestion_campagnes_MK.html', context)
 
@@ -1172,3 +1178,80 @@ def gestion_feedback(request):
         return redirect('gestion_feedback')
 
     return render(request, 'gestion_feedback.html', {'feedbacks': feedbacks})
+
+
+
+from django.shortcuts import render
+from ml_model.regressor_sto_model import load_data_from_db, prepare_prophet_data
+from prophet import Prophet
+import pandas as pd
+import matplotlib.pyplot as plt
+from io import BytesIO
+import base64
+
+def prophet_plot_base64(prophet_data, forecast, contact_hash):
+    model = Prophet()
+    model.fit(prophet_data)
+    fig = model.plot(forecast)
+    plt.title(f"Prévision du taux d'ouverture pour {contact_hash}")
+    buf = BytesIO()
+    plt.savefig(buf, format="png")
+    plt.close(fig)
+    buf.seek(0)
+    img_base64 = base64.b64encode(buf.read()).decode('utf-8')
+    return img_base64
+
+from .models import Group
+
+from sklearn.metrics import mean_squared_error
+
+def predictions_dashboard(request):
+    data = load_data_from_db()
+    data['EVENT_DATE'] = pd.to_datetime(data['EVENT_DATE'], format='%Y-%m-%d %H:%M:%S')
+    predictions = []
+    plot_base64 = None
+    mse_value = None
+    selected_contact = request.GET.get('contact')
+    selected_group_name = request.GET.get('group')
+
+    groupes = Group.objects.all()
+
+    if selected_group_name:
+        if 'GroupName' in data.columns:
+            data = data[data['GroupName'] == selected_group_name]
+        else:
+            group_obj = Group.objects.filter(name=selected_group_name).first()
+            if group_obj and 'Group_id' in data.columns:
+                data = data[data['Group_id'] == group_obj.id]
+
+    unique_contacts = list(data['ContactHash'].unique())[:100]
+
+    for contact_hash in unique_contacts:
+        prophet_data = prepare_prophet_data(data, contact_hash)
+        if len(prophet_data) < 2:
+            continue
+        model = Prophet()
+        model.fit(prophet_data)
+        future = model.make_future_dataframe(periods=24, freq='H')
+        forecast = model.predict(future)
+        best_row = forecast.loc[forecast['yhat'].idxmax()]
+        predictions.append({
+            'contact': contact_hash,
+            'best_time': best_row['ds'],
+            'score': best_row['yhat'],
+        })
+        if selected_contact and str(contact_hash) == str(selected_contact):
+            plot_base64 = prophet_plot_base64(prophet_data, forecast, contact_hash)
+            # Calcul du MSE sur l'historique
+            y_true = prophet_data['y'].values
+            y_pred = forecast.set_index('ds').loc[prophet_data['ds'], 'yhat'].values
+            mse_value = mean_squared_error(y_true, y_pred)
+
+    return render(request, 'predictions_dashboard.html', {
+        'predictions': predictions,
+        'selected_contact': selected_contact,
+        'plot_base64': plot_base64,
+        'mse_value': mse_value,
+        'groupes': groupes,
+        'selected_group_name': selected_group_name,
+    })

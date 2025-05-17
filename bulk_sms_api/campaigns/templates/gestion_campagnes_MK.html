@@ -228,62 +228,67 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Boucle pour afficher les campagnes -->
-                        {% for campaign in campaigns %}
-                        <tr>
-                            <td>{{ campaign.name }}</td>
-                            <td>{{ campaign.group.name }}</td>
-                            <td>{{ campaign.get_status_display }}</td>
-                            <td>{{ campaign.launch_date }}</td>
-                            <td class="actions">
-                                {% if campaign.status == 'terminée' %}
-                                <form method="post" action="{% url 'relancer_campaign' campaign.id %}" style="display: inline;">
-                                    {% csrf_token %}
-                                    <button type="submit" title="Relancer la campagne">
-                                        <i class="material-icons">refresh</i>
-                                    </button>
-                                </form>
-                                    <button class="details-button" data-id="{{ campaign.id }}" title="Voir les détails de la campagne">
-                                        <i class="material-icons">visibility</i>
-                                    </button>
-                                {% else %}
-                                    <button class="edit-button" 
-                                            data-id="{{ campaign.id }}" 
-                                            data-title="{{ campaign.name }}" 
-                                            data-content="{{ campaign.content_id }}" 
-                                            data-message="{{ campaign.message }}" 
-                                            data-groups="{{ campaign.group_id }}" 
-                                            data-launch_date="{{ campaign.launch_date|date:'Y-m-d\TH:i' }}" 
-                                            data-duration="{{ campaign.duration }}" 
-                                            data-messages_per_period="{{ campaign.messages_per_period }}" 
-                                            title="Modifier la campagne">
-                                        <i class="material-icons">edit</i>
-                                    </button>
-                                    {% if campaign.status == 'brouillon' %}
-                                    <form method="post" action="{% url 'launch_campaign' campaign.id %}" style="display: inline;">
-                                        {% csrf_token %}
-                                        <button type="submit" title="Lancer la campagne">
-                                            <i class="material-icons">play_arrow</i>
-                                        </button>
-                                    </form>
-                                    {% endif %}
-                                    <form method="post" action="{% url 'suspend_campaign' campaign.id %}" style="display: inline;">
-                                        {% csrf_token %}
-                                        <button type="submit" title="Suspendre ou reprendre la campagne">
-                                            <i class="material-icons">pause</i>
-                                        </button>
-                                    </form>
-                                    <form method="post" action="{% url 'delete_campaign' campaign.id %}" style="display: inline;">
-                                        {% csrf_token %}
-                                        <button type="submit" title="Supprimer la campagne">
-                                            <i class="material-icons">delete</i>
-                                        </button>
-                                    </form>
-                                {% endif %}
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
+    {% if campaigns %}
+        {% for campaign in campaigns %}
+        <tr>
+            <td>{{ campaign.name }}</td>
+            <td>{{ campaign.group_id }}</td>
+            <td>{{ campaign.status }}</td>
+            <td>{{ campaign.launch_date }}</td>
+            <td class="actions">
+                {% if campaign.status == 'terminée' %}
+                <form method="post" action="{% url 'relancer_campaign' campaign.id %}" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" title="Relancer la campagne">
+                        <i class="material-icons">refresh</i>
+                    </button>
+                </form>
+                <button class="details-button" data-id="{{ campaign.id }}" title="Voir les détails de la campagne">
+                    <i class="material-icons">visibility</i>
+                </button>
+                {% else %}
+                <button class="edit-button" 
+                        data-id="{{ campaign.id }}" 
+                        data-title="{{ campaign.name }}" 
+                        data-content="{{ campaign.content_id }}" 
+                        data-message="{{ campaign.message }}" 
+                        data-groups="{{ campaign.group_id }}" 
+                        data-launch_date="{{ campaign.launch_date|date:'Y-m-d\\TH:i' }}" 
+                        data-duration="{{ campaign.duration }}" 
+                        data-messages_per_period="{{ campaign.messages_per_period }}" 
+                        title="Modifier la campagne">
+                    <i class="material-icons">edit</i>
+                </button>
+                {% if campaign.status == 'brouillon' %}
+                <form method="post" action="{% url 'launch_campaign' campaign.id %}" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" title="Lancer la campagne">
+                        <i class="material-icons">play_arrow</i>
+                    </button>
+                </form>
+                {% endif %}
+                <form method="post" action="{% url 'suspend_campaign' campaign.id %}" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" title="Suspendre ou reprendre la campagne">
+                        <i class="material-icons">pause</i>
+                    </button>
+                </form>
+                <form method="post" action="{% url 'delete_campaign' campaign.id %}" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" title="Supprimer la campagne">
+                        <i class="material-icons">delete</i>
+                    </button>
+                </form>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    {% else %}
+        <tr>
+            <td colspan="5" style="text-align:center;">Aucune campagne trouvée.</td>
+        </tr>
+    {% endif %}
+</tbody>
                 </table>
             </div>
             
