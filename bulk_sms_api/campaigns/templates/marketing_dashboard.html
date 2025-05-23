@@ -1,26 +1,77 @@
-<!-- filepath: /C:/Users/LENOVO/django_projects/bulk_sms/bulk_sms_api/campaigns/templates/marketing_dashboard.html -->
+<!-- filepath: c:\Users\LENOVO\django_projects\bulk_sms\bulk_sms_api\campaigns\templates\marketing_dashboard.html -->
+{% load static %}
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accueil Utilisateur Marketing</title>
-    {% load static %}
     <link rel="stylesheet" href="{% static 'campaigns/css/MK_User.css' %}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
     <style>
-        :root {
-            --primary-color: {{ colors.0 }};
-            --secondary-color: {{ colors.1 }};
-            --background-color: #f4f7f6;
-            --sidebar-color: #2c3e50;
-            --text-color: #333;
-            --hover-color: {{ colors.0 }};
+        .profile-pic {
+            width: 1000px;
+            height: auto;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #3498db;
+            margin-bottom: 10px;
+            cursor: pointer;
+            position: relative;
+            top: 100px;
+        }
+        .profile-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .stats-row {
+            display: flex;
+            gap: 20px;
+            margin: 20px 0;
+            justify-content: center;
+        }
+        .stat-card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            padding: 20px 30px;
+            text-align: center;
+            min-width: 160px;
+        }
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #3498db;
+        }
+        .stat-label {
+            font-size: 1rem;
+            color: #555;
+        }
+        .quick-actions {
+            display: flex;
+            gap: 15px;
+            margin: 30px 0;
+            justify-content: center;
+        }
+        .action-btn {
+            background: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 12px 24px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            text-decoration: none;
+        }
+        .action-btn:hover {
+            background: #217dbb;
         }
     </style>
 </head>
-<body>  
+<body>
     <div class="sidebar">
         <div class="sidebar-header">
             <img src="{{ logo_url }}" alt="Company Logo" class="logo">
@@ -41,13 +92,18 @@
         <div class="header-bar">
             <h1>Accueil Utilisateur Marketing</h1>
             <div class="user-info">
-                {% if request.session.admin_username and request.session.employee_username %}
-                    <span>{{ request.session.admin_username }} connecté en tant que {{ request.session.employee_username }}</span>
-                {% else %}
-                    <span>{{ request.user.username }}</span>
-                {% endif %}
+                <div class="profile-section">
+                    <form method="post" enctype="multipart/form-data" action="{% url 'update_profile_MK' %}">
+                        {% csrf_token %}
+                        <label for="profile-pic">
+                            <img src="{% if request.user.profile_picture %}{{ request.user.profile_picture.url }}{% else %}{% static 'campaigns/images/default_profile.png' %}{% endif %}" alt="Photo de profil" class="profile-pic" title="Changer la photo">
+                        </label>
+                        <input type="file" id="profile-pic" name="profile_picture" style="display:none;" onchange="this.form.submit();">
+                    </form>
+                    <span>{{ request.user.first_name }} {{ request.user.last_name }}</span>
+                </div>
                 <a href="{% url 'gestion_profile_MK' %}"><i class="material-icons">account_circle</i></a>
-                <form class = "logoutForm" method="post" action="{% url 'logout' %}">
+                <form class="logoutForm" method="post" action="{% url 'logout' %}">
                     {% csrf_token %}
                     <button type="submit" class="logout-button">Déconnexion</button>
                 </form>
@@ -56,34 +112,39 @@
         <div class="content">
             <h2>Bienvenue, {{ request.user.first_name }} {{ request.user.last_name }}</h2>
             <p>Utilisez le menu de navigation pour accéder aux différentes sections de l'application.</p>
-            <!-- Débogage temporaire -->
-            <pre>
-                Admin Username: {{ request.session.admin_username }}
-                Employee Username: {{ request.session.employee_username }}
-            </pre>
-            <!-- Liste des éléments de la session -->
-            <h3>Éléments de la session</h3>
-            <ul>
-                {% for key, value in request.session.items %}
-                    <li>{{ key }}: {{ value }}</li>
-                {% endfor %}
-            </ul>
+            <!-- Statistiques principales -->
+            <div class="stats-row">
+                <div class="stat-card">
+                    <div class="stat-value">{{ active_campaigns_count }}</div>
+                    <div class="stat-label">Campagnes actives</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">{{ avg_open_rate }}%</div>
+                    <div class="stat-label">Taux d'ouverture moyen</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">{{ avg_click_rate }}%</div>
+                    <div class="stat-label">Taux de clic moyen</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">{{ last_notification|default:"-" }}</div>
+                    <div class="stat-label">Dernière notification</div>
+                </div>
+            </div>
+            <!-- Raccourcis -->
+            <div class="quick-actions">
+                <a href="{% url 'gestion_campagnes_mk' %}" class="action-btn"><i class="material-icons">add_circle</i> Nouvelle campagne</a>
+                <a href="{% url 'notifications' %}" class="action-btn"><i class="material-icons">notifications</i> Notifications</a>
+                <a href="{% url 'demande_assistance' %}" class="action-btn"><i class="material-icons">help</i> Assistance</a>
+            </div>
+            <!-- Autres widgets ou informations ici -->
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get('success') === 'true') {
-            const username = urlParams.get('username');
-            Swal.fire({
-                title: 'Bienvenue !',
-                text: `Connecté en tant que ${username}`,
-                icon: 'success',
-                confirmButtonText: 'OK'
-            });
-        }
-    });
-</script>
+    <script>
+        // Optionnel : feedback visuel après upload photo
+        document.querySelector('.profile-pic')?.addEventListener('click', function() {
+            document.getElementById('profile-pic').click();
+        });
+    </script>
 </body>
 </html>

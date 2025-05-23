@@ -366,7 +366,7 @@ def bounce_rate_page(stats):
         dcc.Graph(
             figure=px.pie(
                 names=['Bounced', 'Livrés'],
-                values=[total_bounced, non_bounced],
+                values=[total_sent, total_bounced],
                 color_discrete_sequence=['#e74c3c', '#3498db']
             ).update_layout(
                 showlegend=True,
@@ -380,25 +380,27 @@ def bounce_rate_page(stats):
 
 
 def mail_status_page(stats):
-    
+    open_rate = stats['open_rate']
+    total_bounced = stats['total_bounced']
+    total_sent = stats['total_sent']
+    non_bounced = total_sent - total_bounced
+    click_rate = stats['click_rate']
+    unsubscribe_rate = stats['unsubscribe_rate']
+    fig = go.Figure(data=[go.Pie(
+        labels=['Ouverts', 'Non ouverts'],
+        values=[total_sent,open_rate],
+        hole=0.4
+    )])
+    fig.update_layout(margin=dict(t=0, b=0, l=0, r=0), showlegend=True)
+
     return html.Div([
-            # Carte 3 - Pie chart ouvertures
-                html.Div([
-                    html.Div("Statut des Emails", className="card-title"),
-                    dcc.Graph(
-                        figure=px.pie(
-                            names=['Ouverts', 'Non ouverts'],
-                            values=[stats['total_opened'], stats['total_sent'] - stats['total_opened']],
-                            color_discrete_sequence=['#2ecc71', '#e74c3c']
-                        ).update_layout(
-                        showlegend=True,
-                        margin={"t": 0, "b": 0, "l": 0, "r": 0}
-                    ),
-                    config={'displayModeBar': False},
-                    className="graph-container"
-                )
-            ], className="data-card")
-    ])
+        html.Div("Statut des Emails", className="card-title"),
+        dcc.Graph(
+            figure=fig,
+            config={'displayModeBar': False},
+            className="graph-container"
+        )
+    ], className="data-card")
 
 
 

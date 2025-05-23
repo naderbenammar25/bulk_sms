@@ -660,17 +660,18 @@ def get_statistics(data):
     data['EVENT_TYPE'] = data['EVENT_TYPE'].str.lower().str.strip()
 
     # Calculer les totaux
-    total_sent = len(data[data['EVENT_TYPE'] == 'sent'])
-    total_opened = len(data[data['EVENT_TYPE'] == 'open'])
-    total_clicked = len(data[data['EVENT_TYPE'] == 'click'])
-    total_unsubscribed = len(data[data['EVENT_TYPE'] == 'unsubscribed'])
-    total_bounced = len(data[data['EVENT_TYPE'] == 'bounced'])
-    total_complaints = len(data[data['EVENT_TYPE'] == 'complaint'])
+# Pourcentage d'emails ouverts/clickés sur le nombre d'emails envoyés (uniques)
+    total_sent = data[data['EVENT_TYPE'] == 'sent']['MessageHash'].nunique()
+    total_opened = data[data['EVENT_TYPE'] == 'open']['MessageHash'].nunique()
+    total_clicked = data[data['EVENT_TYPE'] == 'click']['MessageHash'].nunique()
+    total_unsubscribed = data[data['EVENT_TYPE'] == 'unsubscribed']['MessageHash'].nunique()
+    total_bounced = data[data['EVENT_TYPE'] == 'bounced']['MessageHash'].nunique()
+    total_complaints = data[data['EVENT_TYPE'] == 'complaint']['MessageHash'].nunique()
 
-    # Calculer les taux
     open_rate = (total_opened / total_sent) * 100 if total_sent > 0 else 0
     click_rate = (total_clicked / total_sent) * 100 if total_sent > 0 else 0
     unsubscribe_rate = (total_unsubscribed / total_sent) * 100 if total_sent > 0 else 0
+# ...existing code...
 
     # Calculer les distributions horaires
     open_distribution = data[data['EVENT_TYPE'] == 'open']['EVENT_DATE'].dt.hour.value_counts().sort_index()
