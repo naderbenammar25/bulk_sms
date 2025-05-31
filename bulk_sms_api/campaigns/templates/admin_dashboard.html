@@ -237,7 +237,7 @@
 </script>
 </head>
 <body>
-    <!-- Sidebar -->
+    
     <div class="sidebar">
         <div class="sidebar-header">
             <img src="{{ logo_url }}" alt="Company Logo" class="logo">
@@ -257,7 +257,7 @@
         </nav>
     </div>
 
-    <!-- Header Bar -->
+    
     <div class="header-bar">
         <h1>Tableau de Bord - Admin</h1>
         <div class="user-info">
@@ -272,12 +272,12 @@
     
     
 
-    <!-- Dashboard Container -->
+    
     <div class="dashboard-container">
         <h1 class="dash_title" >Statistiques de Délivrabilité des Emails</h1>  
         {{ dash_app|safe }}
      
-        <!-- Dashboard Navigation -->
+        
     <div class="dashboard-navigation">
         <a href="http://127.0.0.1:8050/open-rate" target="dashboard-iframe">Taux d'ouverture</a>
         <a href="http://127.0.0.1:8050/click-rate" target="dashboard-iframe">Taux de clics</a>
@@ -286,7 +286,7 @@
         <a href="{% url 'predictions_dashboard' %}" target="_self">Optimisation des horaies de lancement des campagnes</a>
         <a href="http://127.0.0.1:3000/dashboards" target="_blank" style="background-color:rgb(208, 50, 45); color: white;">Performances de l'application</a>
     </div>
-        <!-- Graphiques -->
+        
         <div class="kpi-row">
             <div class="kpi-card">
                 <iframe src="http://127.0.0.1:8050/kpi-open-rate" style="width: 100%; height: 150px; border: none;"></iframe>

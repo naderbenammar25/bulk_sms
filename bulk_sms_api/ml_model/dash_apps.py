@@ -12,19 +12,19 @@ from io import BytesIO
 
 
 
-# Charger les données depuis la base de données
+# Chargement des données depuis la base
 data = load_data_from_db()
 data['EVENT_DATE'] = pd.to_datetime(data['EVENT_DATE'], format='%Y-%m-%d %H:%M:%S')
 stats = get_statistics(data)
 
-# Créer une application Dash
+# création de l'application dash
 app = dash.Dash(__name__, suppress_callback_exceptions=True)
 
-# Layout du dashboard
-app.layout = html.Div([
-    dcc.Location(id='url', refresh=False),  # Composant pour gérer l'URL
 
-    # Contenu principal
+app.layout = html.Div([
+    dcc.Location(id='url', refresh=False),  
+
+    
     html.Div(id='page-content', style={'padding': '20px'}),
 ])
 
@@ -107,9 +107,9 @@ def deliverability_statistics_page(stats):
         
         
         
-        # Première ligne de cartes
+        
         html.Div([
-            # Carte 1 - Diagramme en anneau
+            # Carte 1 - diagramme en anneau
             html.Div([
                 html.Div("Répartition des Événements", className="card-title"),
                 dcc.Graph(
@@ -131,7 +131,7 @@ def deliverability_statistics_page(stats):
         
         
     ], className="dashboard-container")
-# Page Click Rate
+
 
 
 
@@ -146,7 +146,7 @@ def kpi_open_rate(stats):
                 'fontSize': '1rem',  
                 'textAlign': 'center',  
                 'color': '#c60c30',  
-                'marginBottom': '10px'  # Espacement sous le titre
+                'marginBottom': '10px' 
 
                 }
             ),
@@ -154,21 +154,21 @@ def kpi_open_rate(stats):
                 f"{stats['total_opened'] / 1000:.1f} K", 
                 className="kpi-value", 
                 style={
-                    # Taille du texte en gros
+                    
                     'fontSize': '2.5rem',
-                'fontFamily': 'Verdana, sans-serif',  # Police de caractères
-                'textAlign': 'center',  # Centré
-                'color': 'black',  # Couleur noire
+                'fontFamily': 'Verdana, sans-serif',  
+                'textAlign': 'center',  
+                'color': 'black', 
                 
             }
         )
     ], className="kpi-card-small", style={
         
-        'display': 'flex',  # Affichage en flexbox
-        'flexDirection': 'column',  # Orientation verticale
-        'alignItems': 'center',  # Centrer les éléments horizontalement
+        'display': 'flex',  
+        'flexDirection': 'column',  
+        'alignItems': 'center', 
         'justifyContent': 'center',
-          # Hauteur de la carte
+        
     })
 
 
@@ -178,10 +178,10 @@ def kpi_click_rate(stats):
             "Total des clics", 
             className="kpi-label", 
             style={
-                'fontSize': '1rem',  # Taille du texte en gros
-                'textAlign': 'center',  # Centré
-                'color': '#c60c30',  # Couleur rouge
-                'marginBottom': '10px'  # Espacement sous le titre
+                'fontSize': '1rem',  
+                'textAlign': 'center',  
+                'color': '#c60c30',  
+                'marginBottom': '10px'  
 
             }
         ),
@@ -190,18 +190,18 @@ def kpi_click_rate(stats):
             className="kpi-value", 
             style={
                 'fontSize': '2.5rem',
-                'fontFamily': 'Verdana, sans-serif',  # Police de caractères # Taille du texte en gros
-                'textAlign': 'center',  # Centré
-                'color': 'black',  # Couleur noire
+                'fontFamily': 'Verdana, sans-serif',  
+                'textAlign': 'center',  
+                'color': 'black',  
                 
             }
         )
     ], className="kpi-card-small", style={
         
-        'display': 'flex',  # Affichage en flexbox
-        'flexDirection': 'column',  # Orientation verticale
-        'alignItems': 'center',  # Centrer les éléments horizontalement
-        'justifyContent': 'center'  # Centrer les éléments verticalement
+        'display': 'flex',  
+        'flexDirection': 'column',  
+        'alignItems': 'center',  
+        'justifyContent': 'center'  
     })
 
 
@@ -211,10 +211,10 @@ def kpi_bounce_rate(stats):
             "Total des messages rebondis", 
             className="kpi-label", 
             style={
-                'fontSize': '1rem',  # Taille du texte en gros
-                'textAlign': 'center',  # Centré
-                'color': '#c60c30',  # Couleur rouge
-                'marginBottom': '10px'  # Espacement sous le titre
+                'fontSize': '1rem',  
+                'textAlign': 'center',  
+                'color': '#c60c30',  
+                'marginBottom': '10px' 
             }
         ),
         html.Div(
@@ -222,18 +222,18 @@ def kpi_bounce_rate(stats):
             className="kpi-value", 
             style={
                 
-                'textAlign': 'center',  # Centré
-                'color': 'black',  # Couleur noire
+                'textAlign': 'center', 
+                'color': 'black',  
                 'fontSize': '2.5rem',
-                'fontFamily': 'Verdana, sans-serif',  # Police de caractères
+                'fontFamily': 'Verdana, sans-serif',  
             }
         )
     ], className="kpi-card-small", style={
         
-        'display': 'flex',  # Affichage en flexbox
-        'flexDirection': 'column',  # Orientation verticale
-        'alignItems': 'center',  # Centrer les éléments horizontalement
-        'justifyContent': 'center'  # Centrer les éléments verticalement
+        'display': 'flex',  
+        'flexDirection': 'column',  
+        'alignItems': 'center',  
+        'justifyContent': 'center' 
     })
 
 
@@ -243,10 +243,10 @@ def kpi_unsubscribe_rate(stats):
             "total de désabonnements", 
             className="kpi-label", 
             style={
-                'fontSize': '1rem',  # Taille du texte en gros
-                'textAlign': 'center',  # Centré
-                'color': '#c60c30',  # Couleur rouge
-                'marginBottom': '10px'  # Espacement sous le titre
+                'fontSize': '1rem',  
+                'textAlign': 'center', 
+                'color': '#c60c30', 
+                'marginBottom': '10px' 
             }
         ),
         html.Div(
@@ -254,25 +254,25 @@ def kpi_unsubscribe_rate(stats):
             className="kpi-value", 
             style={
                 
-                'textAlign': 'center',  # Centré
-                'color': 'black',  # Couleur noire
+                'textAlign': 'center', 
+                'color': 'black', 
                 'fontSize': '2.5rem',
-                'fontFamily': 'Verdana, sans-serif',  # Police de caractères
+                'fontFamily': 'Verdana, sans-serif',  
             }
         )
     ], className="kpi-card-small", style={
         
-        'display': 'flex',  # Affichage en flexbox
-        'flexDirection': 'column',  # Orientation verticale
-        'alignItems': 'center',  # Centrer les éléments horizontalement
-        'justifyContent': 'center'  # Centrer les éléments verticalement
+        'display': 'flex', 
+        'flexDirection': 'column',  
+        'alignItems': 'center',
+        'justifyContent': 'center'  
     })
 
 
 
 # Page Distance Temporelle
 def temporal_distance_page(data):
-    # Filtrer les événements 'sent' et 'open'
+    # Filtrer les événements sent / open
     sent_events = data[data['EVENT_TYPE'] == 'sent']
     open_events = data[data['EVENT_TYPE'] == 'open']
     
@@ -303,7 +303,7 @@ def temporal_distance_page(data):
 
 
 def click_rate_page(stats):
-    if stats['total_sent'] == 0:  # Vérifier si les données sont valides
+    if stats['total_sent'] == 0:  
         return html.Div("Aucune donnée disponible pour le taux de clics.", style={'color': 'red'})
 
     return html.Div([
@@ -404,12 +404,12 @@ def mail_status_page(stats):
 
 
 
-# Page Carte de la Tunisie
+# Page carte géographique incomplete !
 def tunisia_map_page(data):
-    # Exemple de données pour la carte de la Tunisie
+    
     tunisia_data = pd.DataFrame({
         'region': ['Tunis', 'Sfax', 'Sousse', 'Kairouan', 'Gabès'],
-        'open_rate': [80, 70, 65, 60, 55]  # Exemple de taux d'ouverture par région
+        'open_rate': [80, 70, 65, 60, 55] 
     })
 
     return html.Div([
@@ -484,11 +484,11 @@ def predictions_page(data):
         html.Div(id='prophet-plot-container')
     ])
 
-# Lancer l'application Dash
+
 if __name__ == '__main__':
     app.run_server(debug=False) 
 
-    # ...existing code...
+   
 
 def predictions_page(data):
     predictions = get_prophet_predictions(data)
@@ -523,7 +523,7 @@ def display_prophet_plot(n_clicks_list, page_content):
         return ""
     import json
     btn_index = json.loads(button_id)['index']
-    # Récupère le contact correspondant à l'index
+    
     predictions = get_prophet_predictions(data)
     if btn_index >= len(predictions):
         return ""

@@ -1,4 +1,3 @@
-<!-- filepath: /C:/Users/LENOVO/django_projects/bulk_sms/bulk_sms_api/campaigns/templates/gestion_profile_admin.html -->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -73,7 +72,7 @@
                     <option value="Français" {% if request.user.language == "Français" %}selected{% endif %}>Français</option>
                     <option value="Anglais" {% if request.user.language == "Anglais" %}selected{% endif %}>Anglais</option>
                     <option value="Espagnol" {% if request.user.language == "Espagnol" %}selected{% endif %}>Espagnol</option>
-                    <!-- Ajoutez d'autres langues ici -->
+                   
                 </select>
 
                 <label for="date_format">Format Dates</label>
@@ -81,7 +80,7 @@
                     <option value="JJ-MM-YYYY" {% if request.user.date_format == "JJ-MM-YYYY" %}selected{% endif %}>JJ-MM-YYYY</option>
                     <option value="MM-JJ-YYYY" {% if request.user.date_format == "MM-JJ-YYYY" %}selected{% endif %}>MM-JJ-YYYY</option>
                     <option value="YYYY-MM-DD" {% if request.user.date_format == "YYYY-MM-DD" %}selected{% endif %}>YYYY-MM-DD</option>
-                    <!-- Ajoutez d'autres formats de date ici -->
+                    
                 </select>
 
                 <label for="timezone">Fuseau horaire</label>

@@ -1,13 +1,11 @@
 from django.urls import path
 from .views import index, admin_dashboard, marketing_dashboard, user_login, upload_csv, list_groups, send_emails, register, approve_registration, reject_registration
 from .views import gestion_employe, toggle_employee_status, get_employees, gestion_contacts, gestion_utilisateurs_marketing, gestion_groupes, gestion_campagnes, visualisation_performances, gestion_feedback, demander_intervention
-from .views import edit_user, reset_password, toggle_user_status, add_employee, accueil_MK_User, employee_actions, connect_as_employee, gestion_profile_admin, update_profile , create_campaign, custom_logout, gestion_campagnes_admin, email_tracking_pixel
+from .views import edit_user, reset_password, toggle_user_status, add_employee, accueil_MK_User, employee_actions, connect_as_employee, gestion_profile_admin, create_campaign, custom_logout, gestion_campagnes_admin, email_tracking_pixel
 from .views import securite, notifications, editeur_contenu, demande_assistance, gestion_profile_MK, update_profile_MK, update_password , import_contacts, add_group, merge_groups,gestion_campagnes_mk, generate_content, suivi_performances, launch_campaign, suspend_campaign,delete_campaign,relancer_campaign
 from .views import toggle_contact_status, predictions_dashboard
 from django.contrib.auth import views as auth_views
 from django.contrib import admin
-from django.conf import settings
-from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -39,7 +37,6 @@ urlpatterns = [
     path('logout/', custom_logout, name='logout'),
     path('connect_as_employee/<int:employee_id>/', connect_as_employee, name='connect_as_employee'),
     path('gestion_profile_admin/', gestion_profile_admin, name='gestion_profile_admin'), 
-    path('update_profile/', update_profile, name='update_profile'),
     path('marketing_dashboard/', marketing_dashboard, name='marketing_dashboard'),
     path('securite/', securite, name='securite'),
     path('notifications/', notifications, name='notifications'),
@@ -72,5 +69,3 @@ urlpatterns = [
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='registration/password_reset_confirm.html'), name='password_reset_confirm'),
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='registration/password_reset_complete.html'), name='password_reset_complete'),
 ]
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

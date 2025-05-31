@@ -44,7 +44,31 @@ from django.contrib.auth import authenticate, login as auth_login, logout as aut
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import CustomUser
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.utils import timezone
+from .models import Campaign, Content, Group
+from django.contrib import messages
 
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.utils import timezone
+from .models import Campaign, Content, Group
+from django.contrib import messages
+
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.utils import timezone
+from .models import Campaign, Content, Group
+from django.contrib import messages
+
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.utils import timezone
+from .models import Campaign, Content, Group
+from django.contrib import messages
+
+from django.urls import reverse
 
 ## importations pour les statistiques
 from ml_model.regressor_sto_model import get_statistics
@@ -81,11 +105,11 @@ def register(request):
         admin_password = request.POST.get('admin_password')
         confirm_password = request.POST.get('confirm_password')
 
-        # Vérifier que les mots de passe correspondent
+        
         if admin_password != confirm_password:
             return render(request, 'index.html', {'error': 'Les mots de passe ne correspondent pas.'})
 
-        # Vérifier que l'utilisateur a sélectionné la couleur principale
+        
         if not primary_color:
             return render(request, 'index.html', {'error': 'Vous devez sélectionner la couleur principale.'})
 
@@ -102,10 +126,10 @@ def register(request):
                 password=admin_password,
                 role='admin',
                 company=company,
-                is_active=False  # Désactiver le compte jusqu'à approbation
+                is_active=False  
             )
 
-            # Envoyer un message de confirmation à l'administrateur
+            #message de confirmation vers l'administrateur
             send_mail(
                 'Inscription en cours de traitement',
                 'Votre demande d\'inscription est en cours de traitement. Vous recevrez un email une fois votre compte approuvé.',
@@ -113,8 +137,8 @@ def register(request):
                 [admin_email],
             )
 
-            # Envoyer une notification au super administrateur
-            super_admin_email = 'nader21benammar@gmail.com'  # Remplacez par l'email du super administrateur
+            # notification vers le super administrateur
+            super_admin_email = 'nader21benammar@gmail.com' 
             send_mail(
                 'Nouvelle demande d\'inscription',
                 f'Une nouvelle demande d\'inscription a été soumise par {admin_username}. Veuillez la traiter.',
@@ -197,8 +221,8 @@ def user_login(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            # Rediriger en fonction du rôle de l'utilisateur
-            if hasattr(user, 'role'):  # Vérifiez si l'utilisateur a un attribut 'role'
+            # Redirection en fonction du rôle de l'utilisateur
+            if hasattr(user, 'role'):  
                 if user.role == 'admin':
                     return redirect(f"{reverse('admin_dashboard')}?success=true&username={user.username}")
                 elif user.role == 'marketing':
@@ -208,7 +232,7 @@ def user_login(request):
             else:
                 return redirect(f"{reverse('default_dashboard')}?success=true&username={user.username}")
         else:
-            # En cas d'erreur, afficher un message d'erreur
+            
             return render(request, 'login.html', {'error': 'Nom d\'utilisateur ou mot de passe incorrect.'})
     return render(request, 'login.html')
 
@@ -234,7 +258,7 @@ def approve_registration(request, user_id):
     password = request.POST.get('password')
 
 
-    # Mail de confirmation à l'utilisateur
+    
     send_mail(
         'Compte approuvé',
         f'Bonjour {user.first_name},\n\n'
@@ -253,17 +277,17 @@ def reject_registration(request, user_id):
     user = get_object_or_404(CustomUser, id=user_id)
     if request.method == 'POST':
         reason = request.POST.get('reason')
-        # Envoyer un email de refus à l'utilisateur
+        # email de refus 
         send_mail(
             'Demande d\'inscription refusée',
             f'Votre demande d\'inscription a été refusée pour la raison suivante : {reason}',
-            'nader@metadia.net',  # Remplacez par votre adresse email
+            'nader@metadia.net',  
             [user.email],
         )
-        # Supprimer l'entreprise associée
+        
         if user.company:
             user.company.delete()
-        # Supprimer l'utilisateur
+        
         user.delete()
         return redirect(reverse('admin:auth_user_changelist'))
     return render(request, 'reject_registration.html', {'user': user})
@@ -308,7 +332,7 @@ def toggle_user_status(request, user_id):
 @login_required
 def toggle_contact_status(request, contact_id):
     contact = get_object_or_404(Contact, id=contact_id)
-    # Inverser le statut du contact
+    # gestion de statut des contacts
     if contact.status == 'Actif':
         contact.status = 'Inactif'
     else:
@@ -415,11 +439,11 @@ def add_employee(request):
             employee = form.save(commit=False)
             employee.role = 'marketing'
             employee.is_active = True
-            employee.company = request.user.company  # Définir le company_id de l'employé
+            employee.company = request.user.company  
             employee.set_password(form.cleaned_data['password'])
             employee.save()
 
-            # Envoyer un email à l'employé
+            
             send_mail(
                 'Ouverture de votre compte',
                 f'Bonjour {employee.first_name},\n\nVotre compte a été créé avec succès. Vous pouvez vous connecter avec les informations suivantes :\n\nNom d\'utilisateur : {employee.username}\nMot de passe : {form.cleaned_data["password"]}\n\nLien de connexion : http://127.0.0.1:8000/login/\n\nCordialement,\nL\'équipe',
@@ -427,7 +451,7 @@ def add_employee(request):
                 [employee.email],
             )
 
-            # Rediriger avec un paramètre de succès
+            
             return redirect(f"{reverse('gestion_utilisateurs_marketing')}?success=true")
     else:
         form = AddEmployeeForm()
@@ -435,7 +459,7 @@ def add_employee(request):
 
 @login_required
 def accueil_MK_User(request):
-    # Logic to handle the marketing user dashboard
+    
     return render(request, 'accueil_MK_User.html')
 
 @login_required
@@ -540,7 +564,7 @@ def gestion_campagnes_admin(request):
     completed_campaigns = campaigns.filter(status='terminée').count()
 
     context = {
-        'campaigns': campaigns[:10],  # Limiter l'affichage à 10 campagnes
+        'campaigns': campaigns[:10],  
         'contents': contents,
         'groups': groups,
         'total_campaigns': total_campaigns,
@@ -552,31 +576,7 @@ def gestion_campagnes_admin(request):
 
 
 
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.decorators import login_required
-from django.utils import timezone
-from .models import Campaign, Content, Group
-from django.contrib import messages
 
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.decorators import login_required
-from django.utils import timezone
-from .models import Campaign, Content, Group
-from django.contrib import messages
-
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.decorators import login_required
-from django.utils import timezone
-from .models import Campaign, Content, Group
-from django.contrib import messages
-
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.decorators import login_required
-from django.utils import timezone
-from .models import Campaign, Content, Group
-from django.contrib import messages
-
-from django.urls import reverse
 
 @login_required
 def create_campaign(request):
@@ -596,14 +596,14 @@ def create_campaign(request):
         target_group = Group.objects.get(id=target_group_id)
 
         if content:
-            message = content.html_content  # Utiliser le contenu existant si sélectionné
+            message = content.html_content  
 
         if campaign_type == 'lancement_rapide':
             launch_date = timezone.now()
-            duration = 1  # Valeur par défaut pour la durée
-            duration_unit = 'jours'  # Valeur par défaut pour l'unité de durée
-            messages_per_period = 1  # Valeur par défaut pour le nombre de messages par période
-            period_unit = 'semaine'  # Valeur par défaut pour l'unité de période
+            duration = 1 
+            duration_unit = 'jours'  # durée par défaut 
+            messages_per_period = 1 
+            period_unit = 'semaine'  # periode par défaut
 
         campaign = Campaign.objects.create(
             name=title,
@@ -620,10 +620,10 @@ def create_campaign(request):
         )
 
         if campaign_type == 'lancement_rapide':
-            # Lancer la campagne immédiatement
+            
             launch_fast_campaign(request, campaign.id)
 
-        # Rediriger avec un paramètre de succès
+        
         return redirect(f"{reverse('gestion_campagnes_mk')}?success=true")
 
     contents = Content.objects.all()
@@ -649,10 +649,10 @@ from .models import CustomUser
 def connect_as_employee(request, employee_id):
     employee = get_object_or_404(CustomUser, id=employee_id)
     if request.user.role == 'admin':
-        # Stocker les informations de connexion dans la session
+        
         request.session['admin_username'] = request.user.username
         request.session['employee_username'] = employee.username
-        request.session.modified = True  # Assurez-vous que la session est marquée comme modifiée
+        request.session.modified = True  
         login(request, employee)
         return redirect('marketing_dashboard')
     return redirect('gestion_utilisateurs_marketing')
@@ -662,7 +662,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 
 @login_required
-def update_profile(request):
+def update_profile_MK(request):
     if request.method == 'POST':
         user = request.user
         user.username = request.POST.get('username', user.username)
@@ -671,19 +671,23 @@ def update_profile(request):
         user.language = request.POST.get('language', user.language)
         user.date_format = request.POST.get('date_format', user.date_format)
         user.timezone = 'Automatique' if request.POST.get('timezone_auto') else request.POST.get('timezone', user.timezone)
+        
+        if request.FILES.get('profile_picture'):
+            user.profile_picture = request.FILES['profile_picture']
         user.save()
         messages.success(request, 'Votre profil a été mis à jour avec succès.')
-        return redirect('gestion_profile_admin')
-    return render(request, 'gestion_profile_admin.html')
+        return redirect('marketing_dashboard')
+    # Si accès direct en GET, on redirige aussi vers le dashboard
+    return redirect('marketing_dashboard')
 
 
 @login_required
 def gestion_profile_admin(request):
     user = request.user
-    company = user.company  # Assurez-vous que l'utilisateur a une relation avec l'entreprise
-    logo_url = company.logo.url if company.logo else None  # Assurez-vous que l'entreprise a un logo
-    timezones = pytz.all_timezones  # Get the list of all timezones
-    detected_timezone = timezone.get_current_timezone_name()  # Detect the current timezone
+    company = user.company  
+    logo_url = company.logo.url if company.logo else None  
+    timezones = pytz.all_timezones 
+    detected_timezone = timezone.get_current_timezone_name()  # Detection du fuseau horaire actuel
     return render(request, 'gestion_profile_admin.html', {
         'full_name': f'{user.first_name} {user.last_name}',
         'email': user.email,
@@ -694,7 +698,7 @@ def gestion_profile_admin(request):
         'logo_url': logo_url,
         'company': company,
         'timezones': timezones,
-        'detected_timezone': detected_timezone,  # Pass the detected timezone to the template
+        'detected_timezone': detected_timezone,  
     })
 
 @login_required
@@ -715,10 +719,10 @@ def update_profile_MK(request):
 @login_required
 def gestion_profile_MK(request):
     user = request.user
-    company = user.company  # Assurez-vous que l'utilisateur a une relation avec l'entreprise
-    logo_url = company.logo.url if company.logo else None  # Assurez-vous que l'entreprise a un logo
-    timezones = pytz.all_timezones  # Get the list of all timezones
-    detected_timezone = timezone.get_current_timezone_name()  # Detect the current timezone
+    company = user.company  
+    logo_url = company.logo.url if company.logo else None  
+    timezones = pytz.all_timezones  
+    detected_timezone = timezone.get_current_timezone_name()  # detection du fuseau horaire actuel
     return render(request, 'gestion_profile_MK.html', {
         'full_name': f'{user.first_name} {user.last_name}',
         'email': user.email,
@@ -729,14 +733,14 @@ def gestion_profile_MK(request):
         'logo_url': logo_url,
         'company': company,
         'timezones': timezones,
-        'detected_timezone': detected_timezone,  # Pass the detected timezone to the template
+        'detected_timezone': detected_timezone,  
     })
 
 @login_required
 def record_campaign_action(request, campaign_id):
     if request.method == 'POST':
         action = request.POST.get('action')
-        timestamp = timezone.now()  # Utilise le fuseau horaire de l'utilisateur
+        timestamp = timezone.now()  # affectation de l'heure actuelle
         CampaignAction.objects.create(
             user=request.user,
             campaign_id=campaign_id,
@@ -766,7 +770,7 @@ def securite(request):
         form = PasswordChangeForm(request.user, request.POST)
         if form.is_valid():
             user = form.save()
-            update_session_auth_hash(request, user)  # Important, to keep the user logged in
+            update_session_auth_hash(request, user)  # pour garder l'utilisateur connecté
             messages.success(request, 'Votre mot de passe a été mis à jour avec succès.')
             return redirect('securite')
         else:
@@ -792,10 +796,10 @@ def editeur_contenu(request):
         title = request.POST.get('title')
         html_content = request.POST.get('html_content')
 
-        # Valider le contenu HTML
+        
         try:
             soup = BeautifulSoup(html_content, 'html.parser')
-            if not soup.find():  # Vérifie si le contenu HTML est vide ou invalide
+            if not soup.find():  
                 raise ValidationError("Le contenu HTML est invalide.")
         except Exception as e:
             messages.error(request, f"Erreur dans le contenu HTML : {e}")
@@ -889,7 +893,7 @@ def update_password(request):
         form = PasswordChangeForm(request.user, request.POST)
         if form.is_valid():
             user = form.save()
-            update_session_auth_hash(request, user)  # Important, to keep the user logged in
+            update_session_auth_hash(request, user)  
             messages.success(request, 'Votre mot de passe a été mis à jour avec succès.')
             return redirect('securite')
         else:
@@ -907,8 +911,8 @@ def import_contacts(request):
         groupe = get_object_or_404(Group, id=groupe_id)
         csv_file = request.FILES['csv_file']
         decoded_file = csv_file.read().decode('latin1').splitlines()
-        reader = csv.reader(decoded_file, delimiter=';')  # Utilisation du délimiteur ;
-        next(reader)  # Ignorer la première ligne (les en-têtes)
+        reader = csv.reader(decoded_file, delimiter=';')  # séparateur ;
+        next(reader)  
         for row in reader:
             if len(row) < 9:
                 continue  # Ignorer les lignes qui ne contiennent pas au moins 9 colonnes
@@ -920,7 +924,7 @@ def import_contacts(request):
                 last_name=nom,
                 phone=telephone,
                 email=email,
-                age=int(age) if age.isdigit() else None,  # Convertir l'âge en entier
+                age=int(age) if age.isdigit() else None,  
                 status='Actif'
             )
         messages.success(request, 'Les contacts ont été importés avec succès.')
@@ -947,7 +951,7 @@ def merge_groups(request):
         for group_id in groups_to_merge:
             group = get_object_or_404(Group, id=group_id)
             for contact in group.contacts.all():
-                # Créer une copie du contact dans le nouveau groupe
+                
                 Contact.objects.create(
                     group=new_group,
                     company=contact.company,
@@ -969,66 +973,99 @@ from django.conf import settings
 import json
 import logging
 
-# Configurer le logger
 logger = logging.getLogger(__name__)
+
+def validate_prompt(prompt):
+    """Valide le prompt avant envoi à l'API"""
+    if not prompt or not isinstance(prompt, str):
+        return False
+    if len(prompt) > 500: 
+        return False
+    return True
 
 @csrf_exempt
 def generate_content(request):
-    if request.method == 'POST':
+    if request.method != 'POST':
+        logger.warning(f"Méthode non autorisée: {request.method}")
+        return JsonResponse({'error': 'Méthode non autorisée'}, status=405)
+
+    try:
+        # Décodage et validation des données
         try:
             data = json.loads(request.body)
-            prompt = data.get('prompt', '')
+            prompt = data.get('prompt', 'Tu es un assistant marketing expert en campagnes de mailing.').strip()
+        except json.JSONDecodeError:
+            logger.error("Erreur de décodage JSON")
+            return JsonResponse({"error": "Format de données invalide"}, status=400)
 
-            if not prompt:
-                return JsonResponse({"error": "Le prompt est vide."}, status=400)
+        if not validate_prompt(prompt):
+            logger.warning(f"Prompt invalide: {prompt}")
+            return JsonResponse({"error": "Prompt vide ou trop long (max 500 caractères)"}, status=400)
 
-            # Requête à l'API DeepSeek R1
+        
+        api_params = {
+            "model": "deepseek-chat",
+            "messages": [
+                {
+                    "role": "system",
+                    "content": (
+                        "Tu es un assistant marketing expert en campagnes de mailing. "
+                        "Rédige des messages courts (<160 caractères), persuasifs "
+                        "avec appel à l'action clair. Inclus l'offre et le CTA."
+                    )
+                },
+                {
+                    "role": "user", 
+                    "content": prompt
+                }
+            ],
+            "temperature": 0.3,
+            "max_tokens": 500,
+            "frequency_penalty": 0.5  
+        }
+
+        
+        try:
             response = requests.post(
-                url="https://openrouter.ai/api/v1/chat/completions",
+                url="https://api.deepseek.com/v1/chat/completions",
                 headers={
                     "Authorization": f"Bearer {settings.DEEPSEEK_API_KEY}",
                     "Content-Type": "application/json",
-                    "HTTP-Referer": "http://localhost:8000",  # Remplacez par votre URL
-                    "X-Title": "Bulk SMS Marketing",  # Remplacez par le nom de votre site
                 },
-                json={
-                    "model": "deepseek/deepseek-r1:free",
-                    "messages": [
-                        {
-                            "role": "system",
-                            "content": "Tu es un assistant marketing spécialisé dans la rédaction de contenu pour campagnes SMS. Tes réponses doivent être concises, persuasives et adaptées aux limites des SMS (160 caractères)."
-                        },
-                        {
-                            "role": "user",
-                            "content": prompt
-                        }
-                    ],
-                    "max_tokens": 500
-                }
+                json=api_params,
+                timeout=10  
             )
+            response.raise_for_status()  
 
-            # Vérifier le statut de la réponse
-            if response.status_code == 200:
-                result = response.json()
-                return JsonResponse({
-                    'generated_content': result['choices'][0]['message']['content']
-                })
-            else:
-                logger.error(f"Erreur API : {response.status_code}, {response.text}")
-                return JsonResponse({
-                    'error': f"Erreur API : {response.status_code}, {response.text}"
-                }, status=response.status_code)
+        except requests.Timeout:
+            logger.error("Timeout de l'API DeepSeek")
+            return JsonResponse({"error": "Le service est temporairement indisponible"}, status=503)
+        except requests.RequestException as e:
+            logger.error(f"Erreur API: {str(e)}")
+            return JsonResponse({"error": "Erreur de communication avec le service"}, status=502)
 
-        except Exception as e:
-            logger.exception("Erreur serveur")
-            return JsonResponse({
-                'error': f"Erreur serveur : {str(e)}"
-            }, status=500)
+        
+        result = response.json()
+        generated_text = result['choices'][0]['message']['content']
+        
+        
+        if not generated_text or len(generated_text) > 500:
+            logger.warning("Contenu généré invalide")
+            return JsonResponse({"error": "Erreur de génération de contenu"}, status=500)
 
-    return JsonResponse({'error': 'Méthode non autorisée'}, status=405)
+        return JsonResponse({
+            'generated_content': generated_text,
+            'char_count': len(generated_text)
+        })
+
+    except Exception as e:
+        logger.exception("Erreur serveur inattendue")
+        return JsonResponse({
+            'error': 'Une erreur technique est survenue'
+        }, status=500)
 
 from django.utils.crypto import get_random_string
-from .models import EmailTracking  # Garder l'importation
+from .models import EmailTracking 
 import logging
 
 logger = logging.getLogger(__name__)
@@ -1041,13 +1078,13 @@ def launch_campaign(request, campaign_id):
         campaign.launch_date = timezone.now()
         campaign.save()
 
-        # Récupérer les informations de l'entreprise
+        
         company = request.user.company
         logo_url = request.build_absolute_uri(company.logo.url) if company.logo else ''
         company_name = company.name if company else 'Nom de l\'entreprise'
 
-        # Envoyer des emails uniquement aux contacts actifs associés au groupe choisi
-        contacts = campaign.group.contacts.filter(status='Actif')  # Exclure les contacts désactivés
+        
+        contacts = campaign.group.contacts.filter(status='Actif')  
         for contact in contacts:
             subject = f"Campagne: {campaign.name}"
             message = campaign.message
@@ -1099,7 +1136,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-# Assurez-vous que le niveau de journalisation est défini sur DEBUG
+
 logging.basicConfig(level=logging.DEBUG)
 
 
@@ -1114,7 +1151,7 @@ def launch_fast_campaign(request, campaign_id):
     logo_url = request.build_absolute_uri(company.logo.url) if company.logo else ''
     company_name = company.name if company else 'Nom de l\'entreprise'
 
-    # Envoyer des emails uniquement aux contacts actifs associés au groupe choisi
+    
     contacts = campaign.group.contacts.filter(status='Actif')  # Exclure les contacts désactivés
     for contact in contacts:
         subject = f"Campagne: {campaign.name}"
@@ -1155,14 +1192,14 @@ from .models import Feedback, Campaign
 def gestion_feedback(request):
     
 
-    feedbacks = Feedback.objects.all().order_by('-created_at')  # Charger tous les feedbacks
+    feedbacks = Feedback.objects.all().order_by('-created_at')  
 
     if request.method == 'POST':
         feedback_id = request.POST.get('feedback_id')
         response_message = request.POST.get('response')
         feedback = get_object_or_404(Feedback, id=feedback_id)
 
-        # Envoyer la réponse par email
+        
         send_mail(
             subject=f"Réponse à votre feedback pour la campagne {feedback.campaign.name}",
             message=response_message,
@@ -1170,7 +1207,7 @@ def gestion_feedback(request):
             recipient_list=[feedback.contact_email],
         )
 
-        # Mettre à jour le feedback avec la réponse
+        
         feedback.response = response_message
         feedback.responded_at = now()
         feedback.save()
@@ -1242,7 +1279,7 @@ def predictions_dashboard(request):
         })
         if selected_contact and str(contact_hash) == str(selected_contact):
             plot_base64 = prophet_plot_base64(prophet_data, forecast, contact_hash)
-            # Calcul du MSE sur l'historique
+            # Calcul du (MSE) ==> la moyenne des différences au carré entre les valeurs cibles prédites
             y_true = prophet_data['y'].values
             y_pred = forecast.set_index('ds').loc[prophet_data['ds'], 'yhat'].values
             mse_value = mean_squared_error(y_true, y_pred)

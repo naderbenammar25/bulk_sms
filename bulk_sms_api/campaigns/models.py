@@ -32,9 +32,10 @@ class CustomUser(AbstractUser):
     company = models.ForeignKey(Company, on_delete=models.CASCADE, null=True, blank=True)
     phone = models.CharField(max_length=15, blank=True, null=True)
     timezone = models.CharField(max_length=50, default='UTC')
-    profile_picture = models.ImageField(upload_to='profile_pics/', null=True, blank=True)
     language = models.CharField(max_length=50, default='Français')
     date_format = models.CharField(max_length=20, default='JJ-MM-YYYY')
+    profile_picture = models.ImageField(upload_to='profile_pics/', null=True, blank=True)  # <-- AJOUTE CETTE LIGNE
+
 
     def __str__(self):
         return f"{self.username} ({self.get_role_display()})"
@@ -141,3 +142,5 @@ class Feedback(models.Model):
 
     def __str__(self):
         return f"Feedback de {self.contact_email} pour la campagne {self.campaign.name}"
+    
+

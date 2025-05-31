@@ -14,13 +14,14 @@ def train_and_save_model(X, y, model_path='random_forest_model.pkl'):
     print(f"Modèle entraîné et sauvegardé dans {model_path}.")
 
 if __name__ == "__main__":
-    # Charger les données depuis la base de données
+
     print("Chargement des données...")
     data = load_data_from_db()
-    data['EVENT_DATE'] = pd.to_datetime(data['EVENT_DATE'], format='%Y-%m-%d %H:%M:%S')  # Convertir les dates
-    data['day_of_week'] = data['EVENT_DATE'].dt.day_name()  # Ajouter la colonne du jour de la semaine
+    data['EVENT_DATE'] = pd.to_datetime(data['EVENT_DATE'], format='%Y-%m-%d %H:%M:%S')  
+    data['day_of_week'] = data['EVENT_DATE'].dt.day_name()  
 
-    # Définir les colonnes et les paramètres
+    # Définir les noms de colonnes pour le dataset
+    # Ces noms de colonnes doivent correspondre à ceux utilisés dans la fonction create_dataset
     column_names = ["COMMUNICATION_NAME", "ContactHash", "MessageHash", "OR 0-1", "OR 1-2", "OR 2-3", "OR 3-4", "OR 4-5", "OR 5-6", "OR 6-7", "OR 7-8", "OR 8-9", "OR 9-10", "OR 10-11", "OR 11-12",
     "OR 12-13", "OR 13-14", "OR 14-15", "OR 15-16", "OR 16-17", "OR 17-18", "OR 18-19", "OR 19-20", "OR 20-21", "OR 21-22", "OR 22-23", "OR 23-24",
     "CR 0-1", "CR 1-2", "CR 2-3", "CR 3-4", "CR 4-5", "CR 5-6", "CR 6-7", "CR 7-8", "CR 8-9", "CR 9-10", "CR 10-11", "CR 11-12",
@@ -34,7 +35,7 @@ if __name__ == "__main__":
     sent_open_hour_range = 36  
     open_click_hour_range = 24  
 
-    # Créer le dataset
+    
     print("Création du dataset...")
     df, X, y = create_dataset(data, sent_open_hour_range, open_click_hour_range, column_names)
     print("Dataset créé avec succès.")

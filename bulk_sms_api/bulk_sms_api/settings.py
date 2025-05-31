@@ -14,7 +14,7 @@ from pathlib import Path
 import os
 
 GEMINI_API_KEY = 'AIzaSyCz0PG1OKKUqxK8XIZax1RX75Gu6NCjSWk'
-DEEPSEEK_API_KEY = "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"
+DEEPSEEK_API_KEY = 'sk-ea124c0171ed48b09a8c83e12c795f7c'
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent

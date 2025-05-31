@@ -16,7 +16,7 @@ locations = [
     'Sousse', 'Tataouine', 'Tozeur', 'Zaghouan'
 ]
 
-# Probabilités ajustées pour les types d'événements
+# Probabilités ajustées 
 event_probabilities = {
     'Click': 0.35,         # 35% des événements
     'Open': 0.30,          # 30% des événements
@@ -35,19 +35,19 @@ data = {
     'COMMUNICATION_NAME': [],
     'COMMUNICATION_SUBJECT': [],
     'CAMPAIGN_NAME': [],
-    'EVENT_LOCATION': []  # Nouvelle colonne pour les gouvernorats
+    'EVENT_LOCATION': []  
 }
 
 start_date = datetime(2021, 1, 1)
 for _ in range(num_events):
-    event_date = start_date + timedelta(minutes=random.randint(0, 525600))  # Date aléatoire dans l'année
+    event_date = start_date + timedelta(minutes=random.randint(0, 525600))  
     event_type = random.choices(list(event_probabilities.keys()), weights=event_probabilities.values(), k=1)[0]
     message_hash = f"msg_{random.randint(1, num_events)}"
     contact_hash = f"user_{random.randint(1, num_users)}"
     communication_name = random.choice(communication_names)
     subject = random.choice(subjects)
     campaign_name = random.choice(campaign_names)
-    event_location = random.choice(locations)  # Gouvernorat aléatoire
+    event_location = random.choice(locations)  
     
     data['EVENT_DATE'].append(event_date)
     data['EVENT_TYPE'].append(event_type)
@@ -58,7 +58,7 @@ for _ in range(num_events):
     data['CAMPAIGN_NAME'].append(campaign_name)
     data['EVENT_LOCATION'].append(event_location)
 
-# Créer un DataFrame
+# création du DataFrame
 df = pd.DataFrame(data)
 
 # Sauvegarder dans un fichier CSV

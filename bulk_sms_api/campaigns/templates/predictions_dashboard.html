@@ -1,4 +1,3 @@
-<!-- filepath: campaigns/templates/predictions_dashboard.html -->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -43,7 +42,7 @@
     </style>
 </head>
 <body>
-    <!-- Loader/Progress Bar -->
+    <!-- Progress Bar -->
     <div id="loading-overlay" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(255,255,255,0.95);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;">
         <div style="width:60%;max-width:400px;">
             <div style="margin-bottom:20px;font-size:1.2em;color:#2c3e50;">
@@ -56,7 +55,7 @@
             </div>
         </div>
     </div>
-    <!-- Navbar -->
+    
     <div class="navbar">
         <div>
             <a href="{% url 'admin_dashboard' %}">Accueil Admin</a>
@@ -116,7 +115,7 @@
 </div>
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-    // Simule une progression (car le backend ne peut pas envoyer l'état d'avancement réel sans WebSocket/AJAX)
+    
     let progress = 10;
     const bar = document.getElementById('progress-bar');
     const text = document.getElementById('progress-text');
@@ -144,7 +143,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     fakeProgress();
 
-    // Masquer l'overlay quand la page est chargée
+    
     window.onload = function() {
         bar.style.width = "100%";
         text.textContent = "Traitement terminé. Affichage des résultats...";

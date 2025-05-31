@@ -15,7 +15,7 @@ conn = psycopg2.connect(
 )
 cursor = conn.cursor()
 
-# Insérer les données dans la table campaigns_emailtracking2
+
 for index, row in data.iterrows():
     cursor.execute("""
         INSERT INTO campaigns_emailtracking2 (
@@ -28,7 +28,7 @@ for index, row in data.iterrows():
         row['EVENT_LOCATION']
     ))
 
-# Valider les changements et fermer la connexion
+# Valider la transaction
 conn.commit()
 cursor.close()
 conn.close()

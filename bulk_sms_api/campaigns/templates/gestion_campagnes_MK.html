@@ -1,4 +1,3 @@
-<!-- filepath: /C:/Users/LENOVO/django_projects/bulk_sms/bulk_sms_api/campaigns/templates/gestion_campagnes_MK.html -->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -155,11 +154,9 @@
             </div>
 
             <div class="stats">
-                <h3>Statistiques des Rapides</h3>
-                <button onclick="window.open('http://127.0.0.1:8050/hourly-distribution', '_blank')">Statistiques détaillées</button>
-
-                <canvas id="campaignStatsChart" width="400" height="200"></canvas>
-            </div>
+    <h3>Statistiques des Campagnes</h3>
+    <canvas id="campaignStatsChart" width="400" height="250"></canvas>
+</div>
             
             <script>
                 document.addEventListener('DOMContentLoaded', function () {
@@ -294,5 +291,53 @@
             
         </div>
     </div>
+    <script>
+document.addEventListener('DOMContentLoaded', function () {
+    const ctx = document.getElementById('campaignStatsChart').getContext('2d');
+    const data = {
+        labels: ['En cours', 'Planifiées', 'Terminées'],
+        datasets: [{
+            label: 'Nombre de campagnes',
+            data: [
+                {{ ongoing_campaigns|default:0 }},
+                {{ scheduled_campaigns|default:0 }},
+                {{ completed_campaigns|default:0 }}
+            ],
+            backgroundColor: [
+                'rgba(54, 162, 235, 0.7)',
+                'rgba(255, 206, 86, 0.7)',
+                'rgba(75, 192, 192, 0.7)'
+            ],
+            borderColor: [
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)'
+            ],
+            borderWidth: 1
+        }]
+    };
+    const options = {
+        responsive: true,
+        plugins: {
+            legend: { display: false },
+            title: {
+                display: true,
+                text: 'Statistiques des Campagnes'
+            }
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                precision: 0
+            }
+        }
+    };
+    new Chart(ctx, {
+        type: 'bar',
+        data: data,
+        options: options
+    });
+});
+</script>
 </body>
 </html>
